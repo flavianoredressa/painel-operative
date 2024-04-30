@@ -1,0 +1,23 @@
+<div class="flex justify-between h-14 lg:h-[60px] items-center border-b bg-gray-100/40 px-3">
+  <button (click)="useSideBar.toggle()">
+    <lucide-icon name="menu" />
+  </button>
+
+  <div ngbDropdown>
+    <a href="javascript: void(0);" id="dropdownUser" ngbDropdownToggle class="flex items-center">
+      <img
+        width="32"
+        height="32"
+        alt=""
+        class="rounded-full"
+        fallback="https://ui-avatars.com/api/?name={{ currentUser()?.name | shortName }}&background=3c405f&color=fff"
+        [src]="currentUser()?.avatar"
+      />
+    </a>
+
+    <div ngbDropdownMenu aria-labelledby="dropdownUser" class="dropdown-menu-end">
+      <h6 class="dropdown-header">Menu</h6>
+      <button ngbDropdownItem (click)="logout()">Sair</button>
+    </div>
+  </div>
+</div>

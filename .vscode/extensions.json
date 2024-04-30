@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "meganrogge.template-string-converter",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

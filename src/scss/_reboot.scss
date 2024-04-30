@@ -1,0 +1,34 @@
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  background-color: transparent;
+  background-image: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+button img,
+button lucide-icon,
+a img,
+a lucide-icon {
+  font-size: 0;
+}

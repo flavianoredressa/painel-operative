@@ -1,0 +1,41 @@
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-control[type="color"] {
+  height: 3rem;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.ng-submitted {
+  .form-control.ng-invalid {
+    border-color: var(--bs-danger);
+  }
+
+  .form-control.ng-invalid:focus {
+    box-shadow: 0 0 0 1px var(--bs-danger);
+  }
+
+  .ng-select.ng-invalid .ng-select-container {
+    border-color: var(--bs-danger);
+  }
+}
+
+.control-error {
+  color: var(--bs-danger);
+}

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "development": "$NOME_SEU_PROJETO_FIREBASE_HOMOL",
+    "production": "$NOME_SEU_PROJETO_FIREBASE_PROD"
+  }
+}

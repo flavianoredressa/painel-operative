@@ -1,0 +1,12 @@
+@if (label) {
+  <label class="form-label" [for]="id">{{ label }}</label>
+}
+
+<input
+  [id]="id"
+  [type]="type"
+  [formControl]="control"
+  [attr.placeholder]="placeholder"
+  [mask]="useMask"
+  class="form-control"
+/>

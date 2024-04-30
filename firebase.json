@@ -1,0 +1,113 @@
+{
+  "hosting": [
+    {
+      "site": "$FIREBASE_HOSTING_HOMOL",
+      "public": "dist/browser",
+      "ignore": ["firebase.json", "**/.*", "**/*.map", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "site": "$FIREBASE_HOSTING_PROD",
+      "public": "dist/browser",
+      "ignore": ["firebase.json", "**/.*", "**/*.map", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "index.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "private,no-cache,no-store,must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(woff2|woff|ttf|eot)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(svg|jpg|jpeg|png|webp|ico)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "site": "$FIREBASE_HOSTING_STAGE",
+      "public": "dist/browser",
+      "ignore": ["firebase.json", "**/.*", "**/*.map", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "index.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "private,no-cache,no-store,must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(woff2|woff|ttf|eot)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(svg|jpg|jpeg|png|webp|ico)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

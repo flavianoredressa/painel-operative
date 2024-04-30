@@ -1,0 +1,25 @@
+@if (label) {
+  <label [for]="id" class="form-label">{{ label }}</label>
+}
+
+@if (rightIcon) {
+  <div class="relative">
+    <ng-container *ngTemplateOutlet="textareaTemplate" />
+
+    <div class="absolute right-3 top-3 text-[0] z-50">
+      <ng-content select="[rightIcon]" />
+    </div>
+  </div>
+} @else {
+  <ng-container *ngTemplateOutlet="textareaTemplate" />
+}
+
+<ng-template #textareaTemplate>
+  <textarea
+    class="form-control"
+    [id]="id"
+    [rows]="rows"
+    [formControl]="control"
+    [attr.placeholder]="placeholder"
+  ></textarea>
+</ng-template>

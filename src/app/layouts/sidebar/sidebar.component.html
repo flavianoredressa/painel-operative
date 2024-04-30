@@ -1,0 +1,42 @@
+<div
+  class="backdrop"
+  [@openClose]="{
+    value: useSideBar.isExpanded() ? 'closed' : 'open',
+    params: { position: positionClass }
+  }"
+>
+  <div class="sidebar bg-gray-100 border-r" [class.sidebar-collapsed]="useSideBar.isExpanded()">
+    <div class="relative flex items-center justify-between h-14 lg:h-[60px] border-b px-3">
+      @if (!useSideBar.isExpanded()) {
+        <span class="font-semibold text-2xl">$NOME_SEU_SITE_TITLE</span>
+      }
+
+      <button class="md:hidden" (click)="useSideBar.toggle()">
+        <lucide-icon name="x" />
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul class="sidebar-content mt-3 text-sm">
+        @for (item of default; track item.url) {
+          <li>
+            <a
+              class="sidebar-link"
+              (click)="goToPage()"
+              [title]="item.name"
+              [routerLink]="item.url"
+              routerLinkActive="active"
+            >
+              <lucide-icon [img]="item.icon" [size]="26" />
+              {{ item.name }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <button class="hidden md:block mb-3 ml-8 text-left px-0" (click)="useSideBar.toggle()">
+        <lucide-icon [name]="useSideBar.isExpanded() ? 'chevron-right' : 'chevron-left'" />
+      </button>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+@import "variables";
+
+$ng-select-border-radius: $border-radius;
+$ng-select-height: 3rem;
+$ng-select-value-padding-left: $input-padding-x;
+$ng-select-border: #dee2e6;
+
+@import "node_modules/@ng-select/ng-select/scss/default.theme.scss";
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  height: calc($ng-select-height - 12px);
+}
+
+.ng-select .ng-select-container {
+  border-color: var(--bs-border-color);
+}

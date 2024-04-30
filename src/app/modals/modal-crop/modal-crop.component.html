@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Redimensionar imagem</h4>
+  <button type="button" class="btn-close" aria-label="Fechar modal" (click)="dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <image-cropper
+    [maintainAspectRatio]="true"
+    [aspectRatio]="aspectRatio"
+    format="jpeg"
+    [imageBase64]="imageBase64"
+    [imageFile]="imageFile"
+    [containWithinAspectRatio]="false"
+    (imageCropped)="onImageCropped($event)"
+    [roundCropper]="true"
+    output="base64"
+  >
+  </image-cropper>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary w-full" (click)="dismiss($any(croppedImage))" [disabled]="!croppedImage">
+    Selecionar
+  </button>
+</div>

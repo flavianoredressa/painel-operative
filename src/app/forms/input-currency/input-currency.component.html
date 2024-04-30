@@ -1,0 +1,12 @@
+@if (label) {
+  <label class="form-label" [for]="id">{{ label }}</label>
+}
+
+<input
+  currencyMask
+  class="form-control"
+  [id]="id"
+  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+  [formControl]="control"
+  [attr.placeholder]="placeholder"
+/>

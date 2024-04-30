@@ -1,0 +1,19 @@
+@if (label) {
+  <label class="form-label" [for]="id">{{ label }}</label>
+}
+
+@if (rightIcon) {
+  <div class="relative">
+    <ng-container *ngTemplateOutlet="inputTemplate" />
+
+    <div class="absolute right-3 top-1/2 -translate-y-1/2 text-[0] z-50">
+      <ng-content select="[rightIcon]" />
+    </div>
+  </div>
+} @else {
+  <ng-container *ngTemplateOutlet="inputTemplate" />
+}
+
+<ng-template #inputTemplate>
+  <input class="form-control" [id]="id" [type]="type" [formControl]="control" [attr.placeholder]="placeholder" />
+</ng-template>
