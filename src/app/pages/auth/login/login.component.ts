@@ -1,17 +1,29 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { AppError } from '@burand/angular/exceptions';
 import { emailValidator } from '@burand/angular/validators';
 import { ToastrService } from 'ngx-toastr';
 
+import { IsLoadingDirective } from '@burand/angular';
 import { SessionContext } from '@contexts/session.context';
+import { InputPasswordComponent } from '@forms/input-password/input-password.component';
+import { InputComponent } from '@forms/input/input.component';
+import { errorTailorImports } from '@ngneat/error-tailor';
 import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../authentication.scss']
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    RouterModule,
+    InputComponent,
+    InputPasswordComponent,
+    IsLoadingDirective,
+    errorTailorImports
+  ]
 })
 export class LoginComponent implements OnInit {
   private router = inject(Router);

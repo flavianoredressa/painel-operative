@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { emailValidator } from '@burand/angular/validators';
 import { ToastrService } from 'ngx-toastr';
 
+import { IsLoadingDirective } from '@burand/angular';
+import { InputComponent } from '@forms/input/input.component';
+import { errorTailorImports } from '@ngneat/error-tailor';
 import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['../authentication.scss']
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule, InputComponent, IsLoadingDirective, errorTailorImports]
 })
 export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
