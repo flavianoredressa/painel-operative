@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angul
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
+import { NgClass } from '@angular/common';
 import { sideBarOpenClose } from '@animations/side-bar-open-close';
 import { SideBarContext } from '@contexts/side-bar-context';
-import { SidebarItems } from '@core/datas/sidebar-items';
+import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
 
 @Component({
   standalone: true,
@@ -13,12 +14,13 @@ import { SidebarItems } from '@core/datas/sidebar-items';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sideBarOpenClose],
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule]
+  imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass]
 })
 export class SidebarComponent {
   public useSideBar = inject(SideBarContext);
 
   default = SidebarItems;
+  others = SidebarOthersItems;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
