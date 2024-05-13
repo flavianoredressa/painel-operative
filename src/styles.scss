@@ -1,3 +1,5 @@
+@import url("assets/fonts/fonts.scss");
+
 html {
   height: 100%;
 
@@ -21,4 +23,8 @@ body {
 
 lucide-icon svg {
   stroke-width: 1.8;
+}
+
+.font-poppins {
+  font-family: "Poppins", sans-serif !important;
 }
