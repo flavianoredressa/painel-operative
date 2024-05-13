@@ -1,20 +1,32 @@
-<div class="flex justify-center items-center h-screen px-3 md:px-0">
-  <div
-    class="w-full md:max-w-[480px] flex justify-center items-center flex-col shadow-[0px_1px_2px_0px_#1018280F] border p-3 md:p-6 rounded-2xl border-solid border-[#DFE1E7]"
-  >
-    <img src="assets/icons/default-user.svg" class="h-20 w-20 object-cover" alt="" srcset="" />
-    <h1 class="h3 mb-1">Bem vindo de volta!</h1>
-    <p class="opacity-80">Faça login em sua conta para continuar.</p>
+<div class="relative flex justify-center items-center h-screen px-3 md:px-0 bg-[#F6F8FA]">
+  <!-- <img src="assets/images/logo.png" class="absolute left-16 top-8 h-8 w-8 object-cover" /> -->
 
-    <form class="mt-12 w-full" [formGroup]="loginForm" errorTailor (ngSubmit)="onSubmit()" novalidate>
+  <img src="assets/images/background.svg" class="hidden lg:block absolute" />
+
+  <div
+    class="lg:absolute w-full md:!max-w-[480px] flex justify-center items-center flex-col shadow-[0px_1px_2px_0px_#1018280F] border p-3 md:p-6 rounded-2xl border-solid border-[#DFE1E7] bg-[#FFFFFF]"
+  >
+    <div class="mb-6">
+      <img src="assets/icons/default-user.svg" class="h-20 w-20 object-cover" alt="" srcset="" />
+    </div>
+    <h1 class="font-poppins font-medium text-2xl mb-1">Bem vindo de volta!</h1>
+    <p class="font-poppins text-[#666D80] leading-6 font-normal text-base">Faça login em sua conta para continuar.</p>
+
+    <form class="mt-6 w-full" [formGroup]="loginForm" errorTailor (ngSubmit)="onSubmit()" novalidate>
       <div class="mb-3">
-        <app-input type="email" label="Seu e-mail" formControlName="email" position="left">
+        <app-input
+          type="email"
+          label="Seu e-mail"
+          formControlName="email"
+          placeholder="usuario@operative.com.br"
+          position="left"
+        >
           <img Icon src="assets/icons/email.svg" alt="email" />
         </app-input>
       </div>
 
       <div class="mb-3">
-        <app-input-password label="Senha" formControlName="password" position="left">
+        <app-input-password placeholder="Senha" label="Senha" formControlName="password" position="left">
           <img Icon src="assets/icons/padlock.svg" alt="email" />
         </app-input-password>
       </div>
@@ -24,8 +36,14 @@
       </div>
 
       <div class="flex justify-center mt-10">
-        <button type="submit" class="btn btn-primary w-full rounded-2xl py-[14px]" [isLoading]="loading">Entrar</button>
+        <button type="submit" class="btn btn-primary w-full rounded-2xl py-[14px]" [isLoading]="loading">
+          Acessar
+        </button>
       </div>
     </form>
   </div>
+
+  <p class="font-poppins font-normal text-lg leading-6 text-[#666D80] absolute bottom-10">
+    ©2024 operative tecnologia
+  </p>
 </div>
