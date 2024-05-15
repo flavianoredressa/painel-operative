@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
       }
 
       await this.authService.signin(email, password);
-      await this.sessionContext.fetchLoggedUser();
 
       this.router.navigateByUrl('/dashboard', {
         replaceUrl: true

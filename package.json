@@ -5,7 +5,7 @@
     "lint": "ng lint",
     "dev": "ng serve -o --port 4210 --configuration development",
     "stage": "ng serve -o --port 4210 --configuration production",
-    "deploy": "ng build --configuration development && firebase deploy --project development --only hosting:$FIREBASE_HOSTING_HOMOL"
+    "deploy": "ng build --configuration development && firebase deploy --project development --only hosting:painel-operative-homol"
   },
   "private": true,
   "dependencies": {
