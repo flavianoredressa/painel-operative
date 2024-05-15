@@ -13,6 +13,7 @@
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
             <th scope="col">Tipo</th>
+            <th scope="col" width="40px">Ações</th>
           </tr>
         </thead>
 
@@ -29,6 +30,14 @@
                 <td class="font-semibold">{{ item.name }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ UserTypeLabel.get(item.type) }}</td>
+                <td class="flex flex-row">
+                  <span class="cursor-pointer text-dark me-3" title="Editar" [routerLink]="item.id + '/edit'">
+                    <lucide-icon name="pencil" color="#0080ff" [size]="20" />
+                  </span>
+                  <span class="cursor-pointer text-dark delete-product" (click)="delete(item.id)" title="Excluir">
+                    <lucide-icon name="trash-2" color="#ff0000" />
+                  </span>
+                </td>
               </tr>
             } @empty {
               <tr>

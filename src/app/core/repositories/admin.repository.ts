@@ -20,6 +20,11 @@ export class AdminRepository {
     return null;
   }
 
+  public async update(admin: CreateAdmin): Promise<string> {
+    await lastValueFrom(this._http.post<Admin>('/users/create/admins', admin));
+    return null;
+  }
+
   getAll() {
     return this._http.get<User[]>(`${environment.urlApi}/users/admins`);
   }

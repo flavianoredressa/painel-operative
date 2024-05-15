@@ -8,12 +8,17 @@ const routes: Routes = [
   {
     path: '',
     component: AdminListComponent,
-    title: 'Admin | $NOME_SEU_SITE_TITLE'
+    title: 'Admin | Painel Operative'
   },
   {
     path: 'create',
     component: AdminComponent,
-    title: 'Cadastrar Admin | $NOME_SEU_SITE_TITLE'
+    title: 'Cadastrar Admin | Painel Operative'
+  },
+  {
+    path: '/:id/edit',
+    title: 'Editar Admin | Painel Operative ',
+    component: AdminComponent
   }
 ];
 

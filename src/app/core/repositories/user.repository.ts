@@ -17,4 +17,9 @@ export class UserRepository {
 
     return lastValueFrom(this.httpClient.patch<string>(`/users/${userId}/avatar`, formData));
   }
+
+  getUser(id: string) {
+    console.log(id);
+    // this.httpClient.post(`${environment.urlApi}/`);
+  }
 }

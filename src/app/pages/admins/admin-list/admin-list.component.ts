@@ -31,4 +31,8 @@ export class AdminListComponent {
     const admins = this.list();
     return admins.length === 1 && admins[0] === null;
   });
+
+  delete(id: string) {
+    console.log(id);
+  }
 }
