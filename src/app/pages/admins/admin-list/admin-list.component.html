@@ -17,14 +17,14 @@
         </thead>
 
         <tbody>
-          @if (loading) {
+          @if (isLoading()) {
             <tr>
               <td colspan="3" class="text-center">
                 <span class="spinner-border spinner-border-sm mr-1"></span>
               </td>
             </tr>
           } @else {
-            @for (item of list; track item.id) {
+            @for (item of list(); track item.id) {
               <tr>
                 <td class="font-semibold">{{ item.name }}</td>
                 <td>{{ item.email }}</td>

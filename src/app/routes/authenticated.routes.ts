@@ -17,11 +17,6 @@ const routes: Routes = [
         path: 'admins',
         title: 'Administradores',
         loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
-      },
-      {
-        path: 'workflows',
-        title: 'Workflows',
-        loadComponent: () => import('../pages/workflows/workflows.page').then(m => m.WorkflowsPage)
       }
     ]
   }

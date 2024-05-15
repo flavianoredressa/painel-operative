@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from '@layouts/layout.component';
 
 const routes: Routes = [
   {
@@ -16,17 +15,6 @@ const routes: Routes = [
     path: 'reset-password',
     loadComponent: () =>
       import('../pages/auth/reset-password/reset-password.component').then(m => m.ResetPasswordComponent)
-  },
-  {
-    path: 'dashboard',
-    component: LayoutComponent,
-    children: [
-      {
-        path: '',
-        title: 'Dashboard',
-        loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
-      }
-    ]
   }
 ];
 

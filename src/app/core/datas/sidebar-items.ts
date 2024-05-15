@@ -1,4 +1,4 @@
-import { Banknote, Blocks, CreditCard, HelpCircle, Home, Settings, Users, Workflow } from 'lucide-angular';
+import { Blocks, CreditCard, HelpCircle, Home, Settings, UserRoundCog, Users, Workflow } from 'lucide-angular';
 
 import { NavItem } from '@interfaces/nav-item';
 
@@ -9,8 +9,8 @@ export const SidebarItems: NavItem[] = [
     url: '/dashboard'
   },
   {
-    icon: Banknote,
-    name: 'Financeiro',
+    icon: UserRoundCog,
+    name: 'Admins',
     url: '/admins'
   },
   {
