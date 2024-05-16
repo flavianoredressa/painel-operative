@@ -1,0 +1,26 @@
+<div class="p-8">
+  <div class="flex justify-end mb-[24px]">
+    <span (click)="activeModal.close()">
+      <lucide-icon name="x" class="cursor-pointer"></lucide-icon>
+    </span>
+  </div>
+
+  <h4 class="text-center font-bold mb-4 text-[32px] font-switzer">{{ title }}</h4>
+
+  <p class="text-center text-[#939699] mb-[34px] text-base font-switzer font-normal tracking-[0.5px]">
+    {{ message }}
+  </p>
+
+  <button
+    class="btn w-full !text-[#9ea0a3] font-semibold opacity-100 !py-[18px] !mb-[24px] bg-white border-solid border-[2px] !border-[#9ea0a3] rounded-2xl font-switzer tracking-[0.2px]"
+    (click)="activeModal.close(false)"
+  >
+    {{ textCancel }}
+  </button>
+  <button
+    class="btn !bg-[#e55050] w-full !text-white !py-[18px] !shadow-none !outline-none border-0 rounded-2xl font-switzer tracking-[0.2px]"
+    (click)="activeModal.close(true)"
+  >
+    {{ textConfirm }}
+  </button>
+</div>

@@ -28,3 +28,10 @@ lucide-icon svg {
 .font-poppins {
   font-family: "Poppins", sans-serif !important;
 }
+
+.custom-modal {
+  background-color: #107bb93b;
+  .modal-content {
+    border-radius: 16px;
+  }
+}
