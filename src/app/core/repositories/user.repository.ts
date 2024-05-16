@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { base64ToFile } from '@burand/angular';
+import { environment } from '@environment';
+import { User } from '@models/user';
 import { lastValueFrom } from 'rxjs';
+
+type UpdateParams = {
+  email: string;
+  name: string;
+  password?: string;
+};
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +26,13 @@ export class UserRepository {
     return lastValueFrom(this.httpClient.patch<string>(`/users/${userId}/avatar`, formData));
   }
 
-  getUser(id: string) {
-    console.log(id);
-    // this.httpClient.post(`${environment.urlApi}/`);
+  async getUserById(id: string) {
+    const user = await lastValueFrom(this.httpClient.get(`${environment.urlApi}/users/${id}`));
+    return user;
+  }
+
+  public async update(id: string, data: UpdateParams): Promise<string> {
+    await lastValueFrom(this.httpClient.put<User>(`${environment.urlApi}/users/${id}`, data));
+    return null;
   }
 }

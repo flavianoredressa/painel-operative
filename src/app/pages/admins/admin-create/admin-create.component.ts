@@ -5,6 +5,7 @@ import { ApiError } from '@burand/angular';
 import { ToastrService } from 'ngx-toastr';
 
 import { AdminRepository } from '@repositories/admin.repository';
+import { UserRepository } from '@repositories/user.repository';
 
 @Component({
   selector: 'app-admin-create',
@@ -14,6 +15,7 @@ export class AdminComponent implements OnInit {
   private fb = inject(FormBuilder);
   private toastr = inject(ToastrService);
   private _admin = inject(AdminRepository);
+  private _user = inject(UserRepository);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
@@ -26,16 +28,26 @@ export class AdminComponent implements OnInit {
 
   submitting = false;
 
+  isLoading = false;
+
   async ngOnInit() {
-    if (this.userId) {
-      this.formGroup.patchValue();
+    try {
+      if (this.userId) {
+        this.isLoading = true;
+        const user = await this._user.getUserById(this.userId);
+        this.formGroup.patchValue(user);
+      }
+    } catch (error) {
+      this.toastr.error('Não foi possível carregar os dados.');
+      console.error(error);
+    } finally {
+      this.isLoading = false;
     }
   }
 
   async handleSubmit() {
     if (this.formGroup.invalid) {
       this.toastr.error('Não foi possível salvar os dados.');
-
       return;
     }
 
@@ -48,16 +60,18 @@ export class AdminComponent implements OnInit {
         name
       };
 
-      if (this.userId) {
+      if (!this.userId) {
         await this._admin.add(user);
       } else {
-        await this._admin.update(user);
+        await this._admin.update(this.userId, user);
       }
-
-      this.toastr.success('Administrador cadastrado com sucesso.');
+      this.toastr.success(`Administrador ${!this.userId ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/admins');
     } catch (error) {
-      const errorMessage = error instanceof ApiError ? error.message : 'Ocorreu um erro ao cadastrar usuário.';
+      const errorMessage =
+        error instanceof ApiError
+          ? error.message
+          : `Ocorreu um erro ao ${!this.userId ? 'cadastrar' : 'atualizar'} usuário.`;
       this.toastr.error(errorMessage);
     }
 

@@ -16,7 +16,7 @@ const routes: Routes = [
     title: 'Cadastrar Admin | Painel Operative'
   },
   {
-    path: '/:id/edit',
+    path: ':id/edit',
     title: 'Editar Admin | Painel Operative ',
     component: AdminComponent
   }
