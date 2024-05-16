@@ -6,7 +6,6 @@ import { emailValidator } from '@burand/angular/validators';
 import { ToastrService } from 'ngx-toastr';
 
 import { IsLoadingDirective } from '@burand/angular';
-import { SessionContext } from '@contexts/session.context';
 import { InputPasswordComponent } from '@forms/input-password/input-password.component';
 import { InputComponent } from '@forms/input/input.component';
 import { errorTailorImports } from '@ngneat/error-tailor';
@@ -30,7 +29,6 @@ export class LoginComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
   private authService = inject(AuthService);
-  private sessionContext = inject(SessionContext);
 
   loginForm: FormGroup;
   submitted = false;
@@ -61,7 +59,6 @@ export class LoginComponent implements OnInit {
       }
 
       await this.authService.signin(email, password);
-      await this.sessionContext.fetchLoggedUser();
 
       this.router.navigateByUrl('/dashboard', {
         replaceUrl: true

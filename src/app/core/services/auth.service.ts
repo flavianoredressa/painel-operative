@@ -8,6 +8,7 @@ import {
   verifyPasswordResetCode
 } from '@angular/fire/auth';
 import { UserType } from '@enums/user-type';
+import { environment } from '@environment';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -21,11 +22,7 @@ export class AuthService {
 
   async canLogin(email: string): Promise<boolean> {
     const { type } = await lastValueFrom(
-      this._http.get<{ type: UserType }>('/authentication/type', {
-        params: {
-          email
-        }
-      })
+      this._http.post<{ type: UserType }>(`${environment.urlApi}/users/authentication/type`, email)
     );
 
     return type === UserType.ADMIN;

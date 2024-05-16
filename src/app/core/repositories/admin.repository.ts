@@ -1,37 +1,42 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { FirebaseAbstract } from '@burand/angular/firestore';
+import { Injectable, inject } from '@angular/core';
 import { AddDocument } from '@burand/angular/typings';
 import { lastValueFrom } from 'rxjs';
 
-import { FirestoreCollecionName } from '@configs/firestore-collection-name';
-import { UserType } from '@enums/user-type';
+import { environment } from '@environment';
 import { Admin } from '@models/admin';
+import { User } from '@models/user';
 
 type CreateAdmin = Pick<AddDocument<Admin>, 'name' | 'email'>;
+
+type UpdateParams = {
+  email: string;
+  name: string;
+  password?: string;
+};
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminRepository extends FirebaseAbstract<Admin> {
-  constructor(
-    protected firestore: Firestore,
-    private _http: HttpClient
-  ) {
-    super(firestore, FirestoreCollecionName.USERS);
-  }
+export class AdminRepository {
+  _http = inject(HttpClient);
 
   public async add(admin: CreateAdmin): Promise<string> {
-    await lastValueFrom(this._http.post<Admin>('/users/admins', admin));
-
+    await lastValueFrom(this._http.post<Admin>('/admins', admin));
     return null;
   }
 
-  getAll<U extends Admin = Admin>(): Promise<U[]> {
-    return this.getWhereMany([
-      ['active', '==', true],
-      ['type', '==', UserType.ADMIN]
-    ]);
+  public async delete(id: string): Promise<unknown> {
+    await lastValueFrom(this._http.delete<Admin>(`/admins/${id}`));
+    return null;
+  }
+
+  getAll() {
+    return this._http.get<User[]>(`${environment.urlApi}/admins`);
+  }
+
+  public async update(id: string, data: UpdateParams): Promise<string> {
+    await lastValueFrom(this._http.put<User>(`${environment.urlApi}/admins/${id}`, data));
+    return null;
   }
 }

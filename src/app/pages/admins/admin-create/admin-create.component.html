@@ -1,21 +1,31 @@
 <div class="container mb-5">
-  <h1 class="font-semibold text-lg md:text-2xl mb-4">Novo Administrador</h1>
+  <h1 class="font-semibold text-lg md:text-2xl mb-4">{{ !userId ? "Novo Administrador" : "Editar Administrador" }}</h1>
 
-  <div class="border rounded-md p-4">
-    <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <app-input label="Nome" formControlName="name" />
+  <div class="border rounded-md p-4 md:min-h-[212px] relative">
+    @if (!isLoading) {
+      <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <app-input label="Nome" formControlName="name" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <app-input label="E-mail" formControlName="email" />
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <app-input label="E-mail" formControlName="email" />
-        </div>
-      </div>
 
-      <div class="flex justify-center gap-3 mt-3 md:mt-8">
-        <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64">Voltar</a>
-        <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting">Cadastrar</button>
+        <div class="flex justify-center gap-3 mt-3 md:mt-8">
+          <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white"
+            >Voltar</a
+          >
+          <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting">
+            {{ !userId ? "Cadastrar" : "Atualizar" }}
+          </button>
+        </div>
+      </form>
+    } @else {
+      <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <span class="spinner-border spinner-border-sm mr-1"></span>
       </div>
-    </form>
+    }
   </div>
 </div>

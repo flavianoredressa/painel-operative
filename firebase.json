@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "site": "$FIREBASE_HOSTING_HOMOL",
+      "site": "painel-operative-homol",
       "public": "dist/browser",
       "ignore": ["firebase.json", "**/.*", "**/*.map", "**/node_modules/**"],
       "rewrites": [
