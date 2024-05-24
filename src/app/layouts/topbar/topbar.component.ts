@@ -13,6 +13,7 @@ import { environment } from '@environment';
   standalone: true,
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
+  styleUrls: ['./topbar.comonete.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgbDropdownModule, LucideAngularModule, ShortNamePipe, ImgFallbackDirective, NgClass]
 })
