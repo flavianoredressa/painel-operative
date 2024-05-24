@@ -1,4 +1,14 @@
-import { Blocks, CreditCard, HelpCircle, Home, Settings, UserRoundCog, Users, Workflow } from 'lucide-angular';
+import {
+  Blocks,
+  CreditCard,
+  HelpCircle,
+  Home,
+  PackageSearch,
+  Settings,
+  UserRoundCog,
+  Users,
+  Workflow
+} from 'lucide-angular';
 
 import { NavItem } from '@interfaces/nav-item';
 
@@ -27,6 +37,11 @@ export const SidebarItems: NavItem[] = [
     icon: Users,
     name: 'Usuários',
     url: '/users'
+  },
+  {
+    icon: PackageSearch,
+    name: 'Produtos',
+    url: '/products'
   }
 ];
 

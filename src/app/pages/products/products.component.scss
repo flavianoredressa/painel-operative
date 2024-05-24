@@ -1,0 +1,14 @@
+th {
+  @apply text-[#0D0D12] text-base font-medium leading-[64px] font-poppins;
+}
+
+table,
+th,
+td {
+  border-bottom: 1.8px solid #c1c7d0;
+}
+
+td {
+  max-height: 48px;
+  cursor: pointer;
+}

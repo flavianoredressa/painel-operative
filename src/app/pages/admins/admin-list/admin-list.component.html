@@ -31,12 +31,20 @@
                 <td>{{ item.email }}</td>
                 <td>{{ UserTypeLabel.get(item.type) }}</td>
                 <td class="flex flex-row">
-                  <span class="cursor-pointer text-dark me-3" title="Editar" [routerLink]="item.id + '/edit'">
-                    <lucide-icon name="pencil" color="#0080ff" [size]="20" />
-                  </span>
-                  <span class="cursor-pointer text-dark delete-product" (click)="delete(item.id)" title="Excluir">
-                    <lucide-icon name="trash-2" color="#ff0000" />
-                  </span>
+                  <div
+                    class="flex items-center justify-center cursor-pointer rounded-lg me-3 bg-[#666D80] w-7 h-[26px]"
+                    title="Editar"
+                    [routerLink]="item.id + '/edit'"
+                  >
+                    <img src="assets/icons/pencil.svg" class="object-cover" />
+                  </div>
+                  <div
+                    class="flex items-center justify-center cursor-pointer relative rounded-lg bg-[#D74B76] w-7 h-[26px]"
+                    (click)="delete(item.id)"
+                    title="Excluir"
+                  >
+                    <img src="assets/icons/trash.svg" />
+                  </div>
                 </td>
               </tr>
             } @empty {
