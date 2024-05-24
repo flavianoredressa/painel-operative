@@ -93,8 +93,10 @@
       />
       @if (!useSideBar.isExpanded()) {
         <div class="flex flex-col truncate">
-          <h5 class="text-sm">Ana Operative</h5>
-          <p class="text-xs">ana&#64;operatice.com.br</p>
+          @if (userAuth()) {
+            <h5>{{ userAuth().displayName }}</h5>
+            <p>{{ userAuth().email }}</p>
+          }
         </div>
         <button
           type="button"

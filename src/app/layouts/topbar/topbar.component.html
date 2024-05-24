@@ -10,14 +10,18 @@
 
   <div ngbDropdown>
     <a href="javascript: void(0);" id="dropdownUser" ngbDropdownToggle class="flex items-center">
-      <img
-        width="32"
-        height="32"
-        alt=""
-        class="rounded-full"
-        fallback="https://ui-avatars.com/api/?name={{ currentUser()?.name | shortName }}&background=3c405f&color=fff"
-        [src]="currentUser()?.avatar"
-      />
+      @if (currentUser()) {
+        <img
+          width="32"
+          height="32"
+          alt=""
+          class="rounded-full"
+          fallback="https://ui-avatars.com/api/?name={{
+            currentUser().displayName | shortName
+          }}&background=3c405f&color=fff"
+          [src]="currentUser().photoURL"
+        />
+      }
     </a>
 
     <div ngbDropdownMenu aria-labelledby="dropdownUser" class="dropdown-menu-end">

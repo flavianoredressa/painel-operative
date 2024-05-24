@@ -24,7 +24,7 @@ export class TopbarComponent {
   isMobile = false;
 
   version = environment.appVersion;
-  currentUser = this.useSession.getLoggedUser;
+  currentUser = this.useSession.getLoggedUserFire;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
