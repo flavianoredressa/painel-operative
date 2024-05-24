@@ -36,6 +36,9 @@ export class TopbarComponent {
     this.isMobile = document.documentElement.clientWidth < 768 ? true : false;
   }
 
+  openNotification(): void {}
+  changeColor(): void {}
+
   async logout() {
     await this.useSession.logout();
     await this.router.navigateByUrl('/login');

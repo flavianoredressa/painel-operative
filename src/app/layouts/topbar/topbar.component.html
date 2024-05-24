@@ -10,11 +10,11 @@
 
   <div class="flex">
     <div class="flex items-center">
-      <button class="me-8 p-0">
+      <button class="me-8 p-0" (click)="changeColor()">
         <img src="/assets/icons/color-mode.png" alt="" height="25" />
       </button>
       <!-- @if (!isMobile) { -->
-      <button class="relative p-0 me-4">
+      <button class="relative p-0 me-4" (click)="openNotification()">
         <img src="/assets/icons/notification.png" alt="" class="notifications-icon" width="25" height="25" />
         <div
           class="notifications-count flex items-center justify-center rounded-full text-white p-2 w-[15px] h-[15px] text-xs absolute bottom-4 left-4 border-2 border-solid border-white"

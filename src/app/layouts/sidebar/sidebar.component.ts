@@ -4,6 +4,7 @@ import { LucideAngularModule } from 'lucide-angular';
 
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { sideBarOpenClose } from '@animations/side-bar-open-close';
+import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { SessionContext } from '@contexts/session.context';
 import { SideBarContext } from '@contexts/side-bar-context';
 import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
@@ -15,7 +16,16 @@ import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sideBarOpenClose],
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass, AsyncPipe, NgIf]
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    LucideAngularModule,
+    NgClass,
+    AsyncPipe,
+    NgIf,
+    ShortNamePipe,
+    ImgFallbackDirective
+  ]
 })
 export class SidebarComponent {
   public sessionContext = inject(SessionContext);
