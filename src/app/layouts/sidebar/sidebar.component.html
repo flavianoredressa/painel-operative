@@ -14,7 +14,7 @@
         @if (!useSideBar.isExpanded()) {
           <div class="flex items-center justify-between w-full">
             <div class="flex items-center gap-3">
-              <img src="assets/images/logo-tipo.png" class="top-8 h-9 w-9 object-cover" />
+              <img src="assets/images/logo.svg" class="top-8 h-9 w-9 object-cover" />
               <div class="flex flex-col">
                 <p class="text-[#0D0D12] uppercase font-poppins font-medium text-base leading-[22.4px]">Operative</p>
                 <p class="text-[#666D80] uppercase font-poppins font-normal text-xs leading-[18.6px]">Tecnologia</p>
@@ -34,7 +34,7 @@
           </div>
         } @else {
           <div class="flex items-center gap-3 cursor-pointer" (click)="useSideBar.toggle()">
-            <img src="assets/images/logo-tipo.png" class="top-8 h-9 w-9 object-cover" />
+            <img src="assets/images/logo.svg" class="top-8 h-9 w-9 object-cover" />
           </div>
         }
 
@@ -86,8 +86,9 @@
     </div>
     <div class="px-3 py-4 flex items-center flex-nowrap">
       <img
-        src="assets/images/user-test.png"
-        class="rounded-full w-10 h-10 object-cover transition-all duration-1000"
+        (click)="useSideBar.toggle()"
+        src="assets/images/user-default.svg"
+        class="rounded-full h-10 w-10 object-cover transition-all duration-1000 border-2 border-solid border-[#DFE1E7]"
         [ngClass]="{ 'me-3': !useSideBar.isExpanded(), 'ml-2': useSideBar.isExpanded() }"
       />
       @if (!useSideBar.isExpanded()) {
@@ -99,10 +100,11 @@
         </div>
         <button
           type="button"
-          class="relative shadow-[0px_1px_2px_0px_#0D0D120F] w-[32px] h-[32px] border border-solid border-[#DFE1E7] rounded-full"
+          class="hidden md:block relative shadow-[0px_1px_2px_0px_#0D0D120F] w-[32px] h-[32px] border border-solid border-[#DFE1E7] rounded-full"
+          (click)="useSideBar.toggle()"
         >
           <lucide-icon
-            [name]="'chevron-right'"
+            [name]="'chevron-left'"
             size="15"
             class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4"
           />
