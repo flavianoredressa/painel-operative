@@ -4,6 +4,8 @@ import { LucideAngularModule } from 'lucide-angular';
 
 import { NgClass } from '@angular/common';
 import { sideBarOpenClose } from '@animations/side-bar-open-close';
+import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
+import { SessionContext } from '@contexts/session.context';
 import { SideBarContext } from '@contexts/side-bar-context';
 import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
 
@@ -14,10 +16,13 @@ import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sideBarOpenClose],
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass]
+  imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass, ShortNamePipe, ImgFallbackDirective]
 })
 export class SidebarComponent {
+  public sessionContext = inject(SessionContext);
   public useSideBar = inject(SideBarContext);
+
+  userAuth = this.sessionContext.getLoggedUserFire;
 
   default = SidebarItems;
   others = SidebarOthersItems;

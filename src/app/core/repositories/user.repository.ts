@@ -27,7 +27,7 @@ export class UserRepository {
   }
 
   async getUserById(id: string) {
-    const user = await lastValueFrom(this.httpClient.get(`${environment.urlApi}/users/${id}`));
+    const user = await lastValueFrom(this.httpClient.get<User>(`${environment.urlApi}/users/${id}`));
     return user;
   }
 
