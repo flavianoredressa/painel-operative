@@ -1,10 +1,10 @@
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LucideAngularModule } from 'lucide-angular';
 
-import { NgClass } from '@angular/common';
 import { SessionContext } from '@contexts/session.context';
 import { SideBarContext } from '@contexts/side-bar-context';
 import { environment } from '@environment';

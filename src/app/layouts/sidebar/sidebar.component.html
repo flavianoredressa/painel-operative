@@ -20,17 +20,6 @@
                 <p class="text-[#666D80] uppercase font-poppins font-normal text-xs leading-[18.6px]">Tecnologia</p>
               </div>
             </div>
-            <!-- <button
-              type="button"
-              class="hidden md:block relative shadow-[0px_1px_2px_0px_#0D0D120F] w-[32px] h-[32px] border border-solid border-[#DFE1E7] rounded-full"
-              (click)="useSideBar.toggle()"
-            >
-              <lucide-icon
-                [name]="useSideBar.isExpanded() ? 'chevron-right' : 'chevron-left'"
-                size="15"
-                class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4"
-              />
-            </button> -->
           </div>
         } @else {
           <div class="flex items-center gap-3 cursor-pointer" (click)="useSideBar.toggle()">
@@ -103,17 +92,6 @@
             <p>{{ userAuth().email }}</p>
           }
         </div>
-        <!-- <button
-          type="button"
-          class="hidden md:block relative shadow-[0px_1px_2px_0px_#0D0D120F] w-[32px] h-[32px] border border-solid border-[#DFE1E7] rounded-full"
-          (click)="useSideBar.toggle()"
-        >
-          <lucide-icon
-            [name]="'chevron-left'"
-            size="15"
-            class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4"
-          />
-        </button> -->
       }
     </div>
   </div>

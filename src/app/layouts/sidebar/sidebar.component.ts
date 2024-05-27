@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angul
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
-import { AsyncPipe, NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { sideBarOpenClose } from '@animations/side-bar-open-close';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { SessionContext } from '@contexts/session.context';
@@ -16,16 +16,7 @@ import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sideBarOpenClose],
-  imports: [
-    RouterLink,
-    RouterLinkActive,
-    LucideAngularModule,
-    NgClass,
-    AsyncPipe,
-    NgIf,
-    ShortNamePipe,
-    ImgFallbackDirective
-  ]
+  imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass, ShortNamePipe, ImgFallbackDirective]
 })
 export class SidebarComponent {
   public sessionContext = inject(SessionContext);
