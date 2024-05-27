@@ -35,3 +35,74 @@ lucide-icon svg {
     border-radius: 16px;
   }
 }
+
+table {
+  @apply md:table-fixed w-full text-left border-separate border-spacing-0 border-[1.8px] border-solid border-[#c1c7d0] rounded-lg font-poppins whitespace-nowrap;
+  & thead {
+    @apply bg-[#ECEFF3];
+    th {
+      @apply h-14 p-2 ps-3 border-b-[3px] border-solid border-[#c1c7d0] text-sm font-medium text-[#000];
+    }
+  }
+  & tbody {
+    @apply bg-[#F6F8FA];
+
+    td {
+      @apply h-12 overflow-hidden p-2 ps-3 text-ellipsis whitespace-nowrap border-b-2 border-solid border-[#c1c7d0] text-xs font-normal text-[#000];
+    }
+
+    tr:hover {
+      @apply bg-[#f0f0f0] cursor-pointer;
+    }
+
+    tr td:hover {
+      @apply text-[#000] font-semibold;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+ngb-pagination {
+  & ul > li:not(.active) > a {
+    background-color: transparent !important;
+  }
+  & ul > li.active > a {
+    background-color: #666d80 !important;
+    color: #ffffff !important;
+  }
+  & .pagination,
+  .pagination:hover,
+  .pagination:focus {
+    --bs-pagination-border-width: 0 !important;
+    gap: 0.5rem;
+  }
+
+  & .page-item .page-link {
+    border-radius: 8px !important;
+    user-select: none;
+    box-shadow: none !important;
+  }
+}
