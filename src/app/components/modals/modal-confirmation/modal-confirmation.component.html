@@ -11,16 +11,18 @@
     {{ message }}
   </p>
 
-  <button
-    class="btn w-full !text-[#9ea0a3] font-semibold opacity-100 !py-[18px] !mb-[24px] bg-white border-solid border-[2px] !border-[#9ea0a3] rounded-2xl font-switzer tracking-[0.2px]"
-    (click)="activeModal.close(false)"
-  >
-    {{ textCancel }}
-  </button>
-  <button
-    class="btn !bg-[#e55050] w-full !text-white !py-[18px] !shadow-none !outline-none border-0 rounded-2xl font-switzer tracking-[0.2px]"
-    (click)="activeModal.close(true)"
-  >
-    {{ textConfirm }}
-  </button>
+  <div class="flex gap-2">
+    <button
+      class="btn h-full w-full !text-[#9ea0a3] font-semibold opacity-100 !py-[18px] !mb-[24px] bg-white border-solid border-[2px] !border-[#9ea0a3] rounded-2xl font-switzer tracking-[0.2px]"
+      (click)="activeModal.close(false)"
+    >
+      {{ textCancel }}
+    </button>
+    <button
+      class="btn !bg-[#e55050] h-full w-full !text-white !py-[18px] !shadow-none !outline-none border-0 rounded-2xl font-switzer tracking-[0.2px]"
+      (click)="activeModal.close(true)"
+    >
+      {{ textConfirm }}
+    </button>
+  </div>
 </div>

@@ -2,6 +2,7 @@ import { JsonPipe, SlicePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { mockProducts } from '@core/datas/products';
 import { Pagination } from '@interfaces/pagination';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,13 +23,13 @@ export interface Product {
   selector: 'app-products',
   standalone: true,
   imports: [RouterLink, NgbPaginationModule, SlicePipe, JsonPipe, FormsModule, ReactiveFormsModule],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+  templateUrl: './products.component.html'
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   builder = inject(FormBuilder);
+  modalConfirmationService = inject(ModalConfirmationService);
 
   originalList: Product[] = mockProducts;
   list: Product[] = [...this.originalList];
@@ -40,7 +41,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   pagination: Pagination = {
     page: 1,
-    perPage: 10,
+    perPage: 7,
     total: 0,
     totalPages: 1
   };
@@ -83,8 +84,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.calculateItemsPagination();
   }
 
-  delete(id: number) {
-    console.log(id);
+  async delete(id: string | number) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer excluir o administrador?',
+      textCancel: 'Voltar',
+      textConfirm: 'Excluir'
+    };
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      console.log('Executar ação', id);
+      // const index = lista.findIndex(admin => admin.id === id);
+      // lista.splice(index, 1);
+    }
   }
 
   calculatePagination() {
