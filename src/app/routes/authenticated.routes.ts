@@ -22,6 +22,28 @@ const routes: Routes = [
         path: 'products',
         title: 'Produtos',
         loadComponent: () => import('../pages/products/products.component').then(c => c.ProductsComponent)
+      },
+      {
+        path: 'list-status-sales',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-sale/satus-sale-list/satus-sale-list.component').then(c => c.SatusSaleListComponent)
+      },
+      {
+        path: 'create-status-sales',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-sale/satus-sale-create/satus-sale-create.component').then(
+            c => c.SatusSaleCreateComponent
+          )
+      },
+      {
+        path: 'create-status-sales/:id/edit',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-sale/satus-sale-create/satus-sale-create.component').then(
+            c => c.SatusSaleCreateComponent
+          )
       }
     ]
   }

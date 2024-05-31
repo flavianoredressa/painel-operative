@@ -1,0 +1,110 @@
+<div class="container my-8">
+  <div class="flex flex-wrap justify-end md:justify-between items-center">
+    <form [formGroup]="formSearch" class="relative w-full md:max-w-[232px] select-none mb-4 md:mb-0">
+      <input
+        formControlName="term"
+        placeholder="Pesquisar"
+        class="h-[38px] border border-solid border-[#C1C7D0] bg-[#F6F8FA] rounded-lg outline-none ps-11 w-full select-text"
+      />
+      <img src="assets/icons/search.svg" class="absolute top-50 left-4 translate-y-1/2" alt="" srcset="" />
+    </form>
+
+    <div class="text-end">
+      <a class="btn btn-primary w-full md:w-auto flex items-center" routerLink="/create-status-sales">
+        <img src="assets/icons/add.svg" class="me-2" /> Adicionar Status de vendas</a
+      >
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <div class="relative w-full overflow-auto">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Criado em</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if (isLoading) {
+            <tr>
+              <td colspan="3" class="text-center">
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+              </td>
+            </tr>
+          } @else {
+            @for (item of list; track item.id) {
+              <tr>
+                <td class="font-semibold">{{ item.id }}</td>
+                <td>{{ 199851312654 | date: "dd/MM/yyyy 'às' HH'h':mm" }}</td>
+                <td>{{ item.name }}</td>
+                <!--
+                <td>{{ item.preco }}</td>
+                <td>{{ item.categoria }}</td>
+                <td>{{ item.descricao }}</td>
+                <td>{{ item.estoque }}</td>
+                <td>{{ item.avaliacao }}</td> -->
+                <td>
+                  <div class="flex flex-row">
+                    <button
+                      type="button"
+                      class="flex items-center justify-center cursor-pointer rounded-lg me-3 bg-[#666D80] w-7 h-[26px]"
+                      title="Editar"
+                      [routerLink]="'/create-status-sales/' + item.id + '/edit'"
+                    >
+                      <img src="assets/icons/pencil.svg" class="object-cover" />
+                    </button>
+                    <button
+                      type="button"
+                      class="flex items-center justify-center cursor-pointer relative rounded-lg bg-[#D74B76] w-7 h-[26px]"
+                      (click)="delete(item.id)"
+                      title="Excluir"
+                    >
+                      <img src="assets/icons/trash.svg" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="8" class="text-center">Não há administradores cadastrados!</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  @if (list.length) {
+    <div class="mt-4 flex justify-between">
+      <div class="w-[33%] md:w-auto"></div>
+      <ngb-pagination
+        #ngbPaginationRef
+        [collectionSize]="pagination.total"
+        [pageSize]="pagination.perPage"
+        [(page)]="pagination.page"
+        [directionLinks]="false"
+        [maxSize]="3"
+        [rotate]="true"
+        class="pagination-width w-[33%] md:w-auto"
+        (pageChange)="pageChange($event)"
+      >
+        <ng-template ngbPaginationFirst>First</ng-template>
+        <ng-template ngbPaginationLast>Last</ng-template>
+        <ng-template ngbPaginationPrevious>Prev</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+        <ng-template ngbPaginationEllipsis>...</ng-template>
+        <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+      </ngb-pagination>
+
+      <div class="flex items-center gap-3 cursor-pointer w-[33%] md:w-auto" (click)="nextPage()">
+        <p class="text-[#666D80 text-sm font-medium leading-5">Próxima</p>
+        <img src="assets/icons/arrow-right.svg" />
+      </div>
+    </div>
+  }
+</div>
