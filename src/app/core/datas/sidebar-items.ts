@@ -1,4 +1,5 @@
 import {
+  BadgeDollarSign,
   Blocks,
   CreditCard,
   HelpCircle,
@@ -42,6 +43,11 @@ export const SidebarItems: NavItem[] = [
     icon: PackageSearch,
     name: 'Produtos',
     url: '/products'
+  },
+  {
+    icon: BadgeDollarSign,
+    name: 'Status Vendas',
+    url: '/status-sales'
   }
 ];
 
