@@ -2,7 +2,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment';
-import { lastValueFrom } from 'rxjs';
+import { StatusSale } from '@models/status-sale';
+import { lastValueFrom, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,16 @@ import { lastValueFrom } from 'rxjs';
 export class StatusSaleRepository {
   constructor(private httpClient: HttpClient) {}
 
-  async getAll() {
-    const lista: any = await lastValueFrom(this.httpClient.get(`${environment.urlApi}/status-sale`));
-    return lista.lista;
+  getAll() {
+    return this.httpClient.get<StatusSale[]>(`${environment.urlApi}/status-sale`).pipe(
+      map((res: any) => {
+        return res.lista;
+      })
+    );
+  }
+
+  async delete(id: string) {
+    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/status-sale/${id}`));
+    return;
   }
 }

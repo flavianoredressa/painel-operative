@@ -4,7 +4,7 @@ import { getRouterParam } from '@utils/get-router-param';
   selector: 'app-satus-sale-create',
   standalone: true,
   imports: [],
-  templateUrl: './satus-sale-create.component.html',
+  templateUrl: './status-sale-create.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SatusSaleCreateComponent implements OnInit {

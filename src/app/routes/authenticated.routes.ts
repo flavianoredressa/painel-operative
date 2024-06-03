@@ -24,16 +24,18 @@ const routes: Routes = [
         loadComponent: () => import('../pages/products/products.component').then(c => c.ProductsComponent)
       },
       {
-        path: 'list-status-sales',
+        path: 'status-sales',
         title: 'Status de Vendas',
         loadComponent: () =>
-          import('../pages/status-sale/satus-sale-list/satus-sale-list.component').then(c => c.SatusSaleListComponent)
+          import('../pages/status-sale/status-sale-list/status-sale-list.component').then(
+            c => c.StatusSaleListComponent
+          )
       },
       {
         path: 'create-status-sales',
         title: 'Status de Vendas',
         loadComponent: () =>
-          import('../pages/status-sale/satus-sale-create/satus-sale-create.component').then(
+          import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.SatusSaleCreateComponent
           )
       },
@@ -41,7 +43,7 @@ const routes: Routes = [
         path: 'create-status-sales/:id/edit',
         title: 'Status de Vendas',
         loadComponent: () =>
-          import('../pages/status-sale/satus-sale-create/satus-sale-create.component').then(
+          import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.SatusSaleCreateComponent
           )
       }
