@@ -27,7 +27,8 @@ export class StatusSaleListComponent {
   });
 
   list = toSignal(this.statusSalesRepository.getAll(), { initialValue: [null] });
-  searchTerm = toSignal(this.formSearch.controls['term'].valueChanges, { initialValue: '' });
+
+  searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
     const statusSales = this.list();
