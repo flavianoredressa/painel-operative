@@ -46,6 +46,30 @@ const routes: Routes = [
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.SatusSaleCreateComponent
           )
+      },
+      {
+        path: 'status-task',
+        title: 'Status de Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-list/status-task-list.component').then(
+            c => c.StatusTaskListComponent
+          )
+      },
+      {
+        path: 'create-status-task',
+        title: 'Status de Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
+      },
+      {
+        path: 'create-status-task/:id/edit',
+        title: 'Status de Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
       }
     ]
   }
