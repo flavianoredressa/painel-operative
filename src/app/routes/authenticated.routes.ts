@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { LayoutComponent } from '@layouts/layout.component';
 
 const routes: Routes = [
@@ -22,6 +21,24 @@ const routes: Routes = [
         path: 'workflows',
         title: 'Workflows | $NOME_SEU_SITE_TITLE',
         loadComponent: () => import('../pages/workflows/workflows.page').then(m => m.WorkflowsPage)
+      },
+      // {
+      //   path: 'activities',
+      //   title: 'Atividades',
+      //   loadComponent: () =>
+      //     import('../pages/activity/activity-list/activity-list.component').then(c => c.ActivityListComponent)
+      // },
+      {
+        path: 'create-activities',
+        title: 'Atividades',
+        loadComponent: () =>
+          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
+      },
+      {
+        path: 'create-activities/:id/edit',
+        title: 'Atividades',
+        loadComponent: () =>
+          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       }
     ]
   }
