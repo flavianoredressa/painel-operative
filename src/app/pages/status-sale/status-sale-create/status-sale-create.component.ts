@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './status-sale-create.component.html'
 })
-export class SatusSaleCreateComponent implements OnInit {
+export class StatusSaleCreateComponent implements OnInit {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);

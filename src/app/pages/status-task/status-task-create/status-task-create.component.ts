@@ -7,7 +7,7 @@ import { getRouterParam } from '@burand/angular';
   imports: [],
   templateUrl: './status-task-create.component.html'
 })
-export class ModelCreateComponent implements OnInit {
+export class StatusTaskCreateComponent implements OnInit {
   idStatusTaksCreate = getRouterParam('id');
 
   ngOnInit() {

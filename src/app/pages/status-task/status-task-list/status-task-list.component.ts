@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './status-task-list.component.html'
 })
-export class ModelListComponent {}
+export class StatusTaskListComponent {}
