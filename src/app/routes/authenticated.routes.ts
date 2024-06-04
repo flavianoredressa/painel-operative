@@ -36,7 +36,7 @@ const routes: Routes = [
         title: 'Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
-            c => c.SatusSaleCreateComponent
+            c => c.StatusSaleCreateComponent
           )
       },
       {
@@ -44,7 +44,31 @@ const routes: Routes = [
         title: 'Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
-            c => c.SatusSaleCreateComponent
+            c => c.StatusSaleCreateComponent
+          )
+      },
+      {
+        path: 'status-task',
+        title: 'Status da Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-list/status-task-list.component').then(
+            c => c.StatusTaskListComponent
+          )
+      },
+      {
+        path: 'status-task-create',
+        title: 'Status da Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
+      },
+      {
+        path: 'status-task-create/:id/edit',
+        title: 'Status da Tarefa',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
           )
       }
     ]
