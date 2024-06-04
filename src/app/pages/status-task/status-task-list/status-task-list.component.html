@@ -34,7 +34,7 @@
               </td>
             </tr>
           } @else {
-            @for (item of filteredList(); track item.id) {
+            @for (item of list(); track item.id) {
               <tr>
                 <td class="font-semibold">{{ item.id }}</td>
                 <td>{{ item.name }}</td>

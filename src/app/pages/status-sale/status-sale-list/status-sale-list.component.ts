@@ -32,11 +32,17 @@ export class StatusSaleListComponent {
 
   isLoading = computed(() => {
     const statusSales = this.list();
-    return statusSales.length === 1 && statusSales[0] === null;
+    return statusSales?.length === 1 && statusSales[0] === null;
   });
 
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
+    console.log(this.list());
+    console.log('term: ', term);
+    if (!term) {
+      return this.list().filter((item: undefined) => item);
+    }
+
     return this.list().filter(
       (item: StatusSale) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );

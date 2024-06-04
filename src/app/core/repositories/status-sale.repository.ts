@@ -14,7 +14,8 @@ export class StatusSaleRepository {
   getAll() {
     return this.httpClient.get<StatusSale[]>(`${environment.urlApi}/status-sale`).pipe(
       map((res: any) => {
-        return res.lista;
+        console.warn(res);
+        return res;
       })
     );
   }

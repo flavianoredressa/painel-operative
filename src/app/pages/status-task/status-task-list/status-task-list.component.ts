@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-list-status-task',
   standalone: true,
-  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, JsonPipe],
   templateUrl: './status-task-list.component.html'
 })
 export class StatusTaskListComponent {
@@ -26,20 +26,24 @@ export class StatusTaskListComponent {
     term: ['']
   });
 
-  list = toSignal(this.statusTaskRepository.getAll(), { initialValue: [null] });
-
+  list = toSignal(this.statusTaskRepository.getAll(), { initialValue: [] });
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
     const statusTask = this.list();
-    return statusTask.length === 1 && statusTask[0] === null;
+    return statusTask?.length === 1 && statusTask[0] === null;
   });
 
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
-    return this.list().filter(
-      (item: StatusTask) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
-    );
+    const list = this.list();
+
+    if (list) {
+      return list.filter(
+        (item: StatusTask) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
+      );
+    }
+    return [];
   });
 
   async delete(id: string) {

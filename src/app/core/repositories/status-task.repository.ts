@@ -13,8 +13,9 @@ export class StatusTaskRepository {
 
   getAll() {
     return this.httpClient.get<StatusTask[]>(`${environment.urlApi}/status-task`).pipe(
-      map((res: any) => {
-        return res.lista;
+      map((res: StatusTask[]) => {
+        console.log(res);
+        return res;
       })
     );
   }
