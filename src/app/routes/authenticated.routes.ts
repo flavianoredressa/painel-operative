@@ -9,36 +9,42 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        title: 'Dashboard | $NOME_SEU_SITE_TITLE',
+        title: 'Dashboard',
         loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'admins',
-        title: 'Administradores | $NOME_SEU_SITE_TITLE',
+        title: 'Administradores',
         loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
       },
       {
-        path: 'workflows',
-        title: 'Workflows | $NOME_SEU_SITE_TITLE',
-        loadComponent: () => import('../pages/workflows/workflows.page').then(m => m.WorkflowsPage)
-      },
-      // {
-      //   path: 'activities',
-      //   title: 'Atividades',
-      //   loadComponent: () =>
-      //     import('../pages/activity/activity-list/activity-list.component').then(c => c.ActivityListComponent)
-      // },
-      {
-        path: 'create-activities',
-        title: 'Atividades',
-        loadComponent: () =>
-          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
+        path: 'products',
+        title: 'Produtos',
+        loadComponent: () => import('../pages/products/products.component').then(c => c.ProductsComponent)
       },
       {
-        path: 'create-activities/:id/edit',
-        title: 'Atividades',
+        path: 'status-sales',
+        title: 'Status de Vendas',
         loadComponent: () =>
-          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
+          import('../pages/status-sale/status-sale-list/status-sale-list.component').then(
+            c => c.StatusSaleListComponent
+          )
+      },
+      {
+        path: 'create-status-sales',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
+            c => c.SatusSaleCreateComponent
+          )
+      },
+      {
+        path: 'create-status-sales/:id/edit',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
+            c => c.SatusSaleCreateComponent
+          )
       }
     ]
   }

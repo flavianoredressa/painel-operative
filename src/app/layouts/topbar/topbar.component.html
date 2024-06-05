@@ -1,23 +1,55 @@
-<div class="flex justify-between h-14 lg:h-[60px] items-center border-b bg-gray-100/40 px-3">
-  <button (click)="useSideBar.toggle()">
-    <lucide-icon name="menu" />
-  </button>
+<div class="flex h-14 lg:h-[60px] justify-between items-center border-b bg-gray-100/40 px-3">
+  <div class="flex">
+    <button (click)="useSideBar.toggle()" class="me-5">
+      <lucide-icon name="menu" />
+    </button>
+    @if (!isMobile) {
+      <p>Lorem ipsum dolor sit</p>
+    }
+  </div>
 
-  <div ngbDropdown>
-    <a href="javascript: void(0);" id="dropdownUser" ngbDropdownToggle class="flex items-center">
-      <img
-        width="32"
-        height="32"
-        alt=""
-        class="rounded-full"
-        fallback="https://ui-avatars.com/api/?name={{ currentUser()?.name | shortName }}&background=3c405f&color=fff"
-        [src]="currentUser()?.avatar"
-      />
-    </a>
+  <div class="flex">
+    <div class="flex items-center">
+      <button class="me-8 p-0" (click)="changeColor()">
+        <img src="/assets/icons/color-mode.png" alt="" height="25" />
+      </button>
+      <button class="relative p-0 me-4" (click)="openNotification()">
+        <img src="/assets/icons/notification.png" alt="" class="notifications-icon" width="25" height="25" />
+        <div
+          class="notifications-count flex items-center justify-center rounded-full text-white p-2 w-[15px] h-[15px] text-xs absolute bottom-4 left-4 border-2 border-solid border-white"
+        >
+          2
+        </div>
+      </button>
+    </div>
 
-    <div ngbDropdownMenu aria-labelledby="dropdownUser" class="dropdown-menu-end">
-      <h6 class="dropdown-header">Menu</h6>
-      <button ngbDropdownItem (click)="logout()">Sair</button>
+    <div ngbDropdown class="cursor-pointer">
+      @if (currentUser()) {
+        <div class="flex items-center" id="dropdownUser" ngbDropdownToggle>
+          <img
+            class="flex items-center"
+            width="35"
+            height="35"
+            alt=""
+            class="rounded-full mx-5"
+            fallback="https://ui-avatars.com/api/?name={{
+              currentUser().displayName | shortName
+            }}&background=3c405f&color=fff"
+            [src]="currentUser().photoURL"
+          />
+          <div class="">
+            <p>{{ currentUser().displayName }}</p>
+            @if (!isMobile) {
+              <p class="text-xs">[other_info]</p>
+            }
+          </div>
+        </div>
+      }
+
+      <div ngbDropdownMenu aria-labelledby="dropdownUser" class="dropdown-menu-end">
+        <h6 class="dropdown-header">Menu</h6>
+        <button ngbDropdownItem (click)="logout()">Sair</button>
+      </div>
     </div>
   </div>
 </div>

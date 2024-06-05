@@ -24,7 +24,7 @@ export const routes: Routes = [
 
   {
     path: '**',
-    title: 'Página não encontrada | $NOME_SEU_SITE_TITLE',
+    title: 'Página não encontrada',
     loadComponent: () => import('../pages/not-found/not-found.component').then(m => m.NotFoundComponent)
   }
 ];

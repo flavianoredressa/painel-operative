@@ -5,6 +5,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { LucideAngularModule } from 'lucide-angular';
 
+import { RouterLink } from '@angular/router';
 import { InputComponent } from '@forms/input/input.component';
 import { AdminComponent } from './admin-create/admin-create.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
@@ -19,7 +20,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     ReactiveFormsModule,
     AdminRoutingModule,
     InputComponent,
-    LucideAngularModule
+    LucideAngularModule,
+    RouterLink
   ]
 })
 export class AdminModule {}
