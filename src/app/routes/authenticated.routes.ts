@@ -177,7 +177,31 @@ const routes: Routes = [
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
             c => c.ChargeTypeCreateComponent
           )
-      }
+      },
+      {
+        path: 'user-types',
+        title: 'Tipos de Usuário',
+        loadComponent: () =>
+          import('../pages/user-types/user-types-list/user-types-list.component').then(
+            c => c.UserTypesListComponent
+          )
+      },
+      {
+        path: 'create-user-types',
+        title: 'Tipos de Usuário',
+        loadComponent: () =>
+          import('../pages/user-types/user-types-create/user-types-create.component').then(
+            c => c.UserTypesCreateComponent
+          )
+      },
+      {
+        path: 'create-user-types/:id/edit',
+        title: 'Tipos de Usuário',
+        loadComponent: () =>
+          import('../pages/user-types/user-types-create/user-types-create.component').then(
+            c => c.UserTypesCreateComponent
+          )
+      },
     ]
   }
 ];
