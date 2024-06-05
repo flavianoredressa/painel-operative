@@ -88,6 +88,30 @@ const routes: Routes = [
             c => c.ActivityCreateComponent
           )
       },
+      {
+        path: 'cost-center',
+        title: 'Centro de Custos',
+        loadComponent: () =>
+          import('../pages/cost-center/cost-center-list/cost-center-list.component').then(
+            c => c.CostCenterListComponent
+          )
+      },
+      {
+        path: 'create-cost-center',
+        title: 'Centro de Custos',
+        loadComponent: () =>
+          import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
+            c => c.CostCenterCreateComponent
+          )
+      },
+      {
+        path: 'create-cost-center/:id/edit',
+        title: 'Centro de Custos',
+        loadComponent: () =>
+          import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
+            c => c.CostCenterCreateComponent
+          )
+      },
     ]
   }
 ];
