@@ -105,7 +105,7 @@ const routes: Routes = [
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
-      }
+      },
       {
         path: 'cost-center',
         title: 'Centro de Custos',
@@ -130,6 +130,31 @@ const routes: Routes = [
             c => c.CostCenterCreateComponent
           )
       },
+      {
+        path: 'project-type',
+        title: 'Tipo de Projeto',
+        loadComponent: () =>
+          import('../pages/project-type/project-type-list/project-type-list.component').then(
+            c => c.ProjectTypeListComponent
+          )
+      },
+      {
+        path: 'create-project-type',
+        title: 'Tipo de Projeto',
+        loadComponent: () =>
+          import('../pages/project-type/project-type-create/project-type-create.component').then(
+            c => c.ProjectTypeCreateComponent
+          )
+      },
+      {
+        path: 'create-project-type/:id/edit',
+        title: 'Tipo de Projeto',
+        loadComponent: () =>
+          import('../pages/project-type/project-type-create/project-type-create.component').then(
+            c => c.ProjectTypeCreateComponent
+          )
+      },
+
     ]
   }
 ];
