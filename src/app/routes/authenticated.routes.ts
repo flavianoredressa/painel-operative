@@ -63,7 +63,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'create-activity/:id/edit',
+        path: 'create-activities/:id/edit',
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(
