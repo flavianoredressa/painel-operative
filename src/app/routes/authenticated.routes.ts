@@ -65,29 +65,47 @@ const routes: Routes = [
           import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
       },
       {
+        path: 'payment-method',
+        title: 'Metódo de Pagamento',
+        loadComponent: () =>
+          import('../pages/payment-method/payment-method-list/payment-method-list.component').then(
+            c => c.PaymentMethodListComponent
+          )
+      },
+      {
+        path: 'payment-method-create',
+        title: 'Metódo de Pagamento',
+        loadComponent: () =>
+          import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
+            c => c.PaymentMethodCreateComponent
+          )
+      },
+      {
+        path: 'payment-method-create/:id/edit',
+        title: 'Metódo de Pagamento edit',
+        loadComponent: () =>
+          import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
+            c => c.PaymentMethodCreateComponent
+          )
+      },
+      {
         path: 'activities',
         title: 'Atividades',
         loadComponent: () =>
-          import('../pages/activity/activity-list/activity-list.component').then(
-            c => c.ActivityListComponent
-          )
+          import('../pages/activity/activity-list/activity-list.component').then(c => c.ActivityListComponent)
       },
       {
         path: 'create-activities',
         title: 'Atividades',
         loadComponent: () =>
-          import('../pages/activity/activity-create/activity-create.component').then(
-            c => c.ActivityCreateComponent
-          )
+          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
       {
         path: 'create-activities/:id/edit',
         title: 'Atividades',
         loadComponent: () =>
-          import('../pages/activity/activity-create/activity-create.component').then(
-            c => c.ActivityCreateComponent
-          )
-      },
+          import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
+      }
     ]
   }
 ];
