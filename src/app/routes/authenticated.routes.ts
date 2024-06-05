@@ -12,11 +12,11 @@ const routes: Routes = [
         title: 'Dashboard',
         loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
-      {
-        path: 'admins',
-        title: 'Administradores',
-        loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
-      },
+      // {
+      //   path: 'admins',
+      //   title: 'Administradores',
+      //   loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
+      // },
       {
         path: 'products',
         title: 'Produtos',
@@ -45,7 +45,31 @@ const routes: Routes = [
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.SatusSaleCreateComponent
           )
-      }
+      },
+      {
+        path: 'activities',
+        title: 'Atividades',
+        loadComponent: () =>
+          import('../pages/activity/activity-list/activity-list.component').then(
+            c => c.ActivityListComponent
+          )
+      },
+      {
+        path: 'create-activities',
+        title: 'Atividades',
+        loadComponent: () =>
+          import('../pages/activity/activity-create/activity-create.component').then(
+            c => c.ActivityCreateComponent
+          )
+      },
+      {
+        path: 'create-activity/:id/edit',
+        title: 'Atividades',
+        loadComponent: () =>
+          import('../pages/activity/activity-create/activity-create.component').then(
+            c => c.ActivityCreateComponent
+          )
+      },
     ]
   }
 ];
