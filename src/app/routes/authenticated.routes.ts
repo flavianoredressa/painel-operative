@@ -105,7 +105,7 @@ const routes: Routes = [
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
-      }
+      },
       {
         path: 'cost-center',
         title: 'Centro de Custos',
