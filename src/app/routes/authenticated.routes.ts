@@ -47,6 +47,24 @@ const routes: Routes = [
           )
       },
       {
+        path: 'journey',
+        title: 'Jornada',
+        loadComponent: () =>
+          import('../pages/journey/journey-list/journey-list.component').then(c => c.JourneyListComponent)
+      },
+      {
+        path: 'journey-create',
+        title: 'Jornada da criação',
+        loadComponent: () =>
+          import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
+      },
+      {
+        path: 'journey-create/:id/edit',
+        title: 'Jornada da criação edit',
+        loadComponent: () =>
+          import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
+      },
+      {
         path: 'activities',
         title: 'Atividades',
         loadComponent: () =>
