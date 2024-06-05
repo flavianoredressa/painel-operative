@@ -12,11 +12,11 @@ const routes: Routes = [
         title: 'Dashboard',
         loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
-      // {
-      //   path: 'admins',
-      //   title: 'Administradores',
-      //   loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
-      // },
+      {
+        path: 'admins',
+        title: 'Administradores',
+        loadChildren: () => import('../pages/admins/admin.module').then(m => m.AdminModule)
+      },
       {
         path: 'products',
         title: 'Produtos',
