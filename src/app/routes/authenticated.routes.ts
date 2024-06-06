@@ -202,6 +202,30 @@ const routes: Routes = [
             c => c.UserTypesCreateComponent
           )
       },
+      {
+        path: 'tags',
+        title: 'Etiqueta',
+        loadComponent: () =>
+          import('../pages/tag/tag-list/tag-list.component').then(
+            c => c.TagListComponent
+          )
+      },
+      {
+        path: 'create-tags',
+        title: 'Etiqueta',
+        loadComponent: () =>
+          import('../pages/tag/tag-create/tag-create.component').then(
+            c => c.TagCreateComponent
+          )
+      },
+      {
+        path: 'create-tags/:id/edit',
+        title: 'Etiqueta',
+        loadComponent: () =>
+          import('../pages/tag/tag-create/tag-create.component').then(
+            c => c.TagCreateComponent
+          )
+      },
     ]
   }
 ];
