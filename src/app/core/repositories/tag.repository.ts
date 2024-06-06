@@ -20,7 +20,7 @@ export class TagRepository {
   }
 
   async delete(id: string) {
-    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/activties/${id}`));
+    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/tags/${id}`));
     return;
   }
 }
