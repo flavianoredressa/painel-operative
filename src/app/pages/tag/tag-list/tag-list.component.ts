@@ -32,7 +32,7 @@ export class TagListComponent {
 
   isLoading = computed(() => {
     const tag = this.list();
-    return tag.length === 1 && tag[0] === null;
+    return tag?.length && tag.length === 1 && tag[0] === null;
   });
 
   filteredList = computed(() => {
