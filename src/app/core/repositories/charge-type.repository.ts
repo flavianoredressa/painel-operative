@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { ChargeType } from '@models/charge-type';
-import { lastValueFrom, map } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,7 @@ export class ChargeTypeRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<ChargeType[]>(`${environment.urlApi}/charge-type`).pipe(
-      map((res: any) => {
-        return res.lista;
-      })
-    );
+    return this.httpClient.get<ChargeType[]>(`${environment.urlApi}/charge-type`);
   }
 
   async delete(id: string) {
