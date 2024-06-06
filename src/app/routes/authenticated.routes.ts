@@ -89,19 +89,19 @@ const routes: Routes = [
           )
       },
       {
-        path: 'activities',
+        path: 'activity',
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-list/activity-list.component').then(c => c.ActivityListComponent)
       },
       {
-        path: 'create-activities',
+        path: 'create-activity',
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
       {
-        path: 'create-activities/:id/edit',
+        path: 'create-activity/:id/edit',
         title: 'Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
@@ -182,9 +182,7 @@ const routes: Routes = [
         path: 'user-types',
         title: 'Tipos de Usuário',
         loadComponent: () =>
-          import('../pages/user-types/user-types-list/user-types-list.component').then(
-            c => c.UserTypesListComponent
-          )
+          import('../pages/user-types/user-types-list/user-types-list.component').then(c => c.UserTypesListComponent)
       },
       {
         path: 'create-user-types',
@@ -202,6 +200,24 @@ const routes: Routes = [
             c => c.UserTypesCreateComponent
           )
       },
+      {
+        path: 'checklist',
+        title: 'Verificar Lista',
+        loadComponent: () =>
+          import('../pages/checklist/checklist-list/checklist-list.component').then(c => c.CheckListComponent)
+      },
+      {
+        path: 'checklist-create',
+        title: 'Verificar Lista',
+        loadComponent: () =>
+          import('../pages/checklist/checklist-create/checklist-create.component').then(c => c.ChecklistCreateComponent)
+      },
+      {
+        path: 'checklist-create/:id/edit',
+        title: 'Tipos de Usuário',
+        loadComponent: () =>
+          import('../pages/checklist/checklist-create/checklist-create.component').then(c => c.ChecklistCreateComponent)
+      }
     ]
   }
 ];

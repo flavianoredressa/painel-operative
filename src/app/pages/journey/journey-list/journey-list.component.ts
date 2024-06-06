@@ -5,7 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
-import { StatusSale } from '@models/status-sale';
+import { Journey } from '@models/journey';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { JourneyRepository } from '@repositories/journey.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -31,14 +31,14 @@ export class JourneyListComponent {
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
-    const statusSales = this.list();
-    return statusSales.length === 1 && statusSales[0] === null;
+    const journey = this.list();
+    return journey.length === 1 && journey[0] === null;
   });
 
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.list().filter(
-      (item: StatusSale) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
+      (item: Journey) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );
   });
 
@@ -55,7 +55,7 @@ export class JourneyListComponent {
     if (res) {
       try {
         await this.JourneyRepository.delete(id);
-        const index = this.list().findIndex((statusSale: StatusSale) => statusSale.id === id);
+        const index = this.list().findIndex((journey: Journey) => journey.id === id);
         this.list().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {

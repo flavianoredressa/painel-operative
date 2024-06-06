@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ActivityListComponent {
   modalConfirmationService = inject(ModalConfirmationService);
-  activityRepository = inject(ActivityRepository);
+  ActivityRepository = inject(ActivityRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
 
@@ -26,13 +26,13 @@ export class ActivityListComponent {
     term: ['']
   });
 
-  list = toSignal(this.activityRepository.getAll(), { initialValue: [null] });
+  list = toSignal(this.ActivityRepository.getAll(), { initialValue: [null] });
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
-    const statusSales = this.list();
-    return statusSales.length === 1 && statusSales[0] === null;
+    const activity = this.list();
+    return activity.length === 1 && activity[0] === null;
   });
 
   filteredList = computed(() => {
@@ -54,7 +54,7 @@ export class ActivityListComponent {
 
     if (res) {
       try {
-        await this.activityRepository.delete(id);
+        await this.ActivityRepository.delete(id);
         const index = this.list().findIndex((activity: Activity) => activity.id === id);
         this.list().splice(index, 1);
       } catch (e) {
