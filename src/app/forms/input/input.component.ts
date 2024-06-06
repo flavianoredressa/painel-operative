@@ -1,5 +1,5 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChildren, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChildren, Input, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { inputUUID } from '@burand/angular/utils';
 
@@ -11,7 +11,7 @@ type InputType = 'color' | 'date' | 'datetime-local' | 'month' | 'number' | 'tex
   standalone: true,
   selector: 'app-input',
   templateUrl: './input.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
   imports: [NgTemplateOutlet, ReactiveFormsModule, NgClass],
   providers: [
     {

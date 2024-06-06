@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,6 @@ import { environment } from '@environment';
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.comonete.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgbDropdownModule, LucideAngularModule, ShortNamePipe, ImgFallbackDirective, NgClass]
 })
 export class TopbarComponent {
@@ -26,11 +25,6 @@ export class TopbarComponent {
 
   version = environment.appVersion;
   currentUser = this.useSession.getLoggedUserFire;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile = event.target.innerWidth > 768 ? false : true;
-  }
 
   constructor() {
     this.isMobile = document.documentElement.clientWidth < 768 ? true : false;
