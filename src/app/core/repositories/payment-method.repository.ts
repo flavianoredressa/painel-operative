@@ -12,11 +12,11 @@ export class PaymentMethodRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<[PaymentMethod]>(`${environment.urlApi}/PaymentMethod`);
+    return this.httpClient.get<[PaymentMethod]>(`${environment.urlApi}/payment-method`);
   }
 
   async delete(id: string) {
-    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/PaymentMethod/${id}`));
+    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/payment-method/${id}`));
     return;
   }
 }
