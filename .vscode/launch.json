@@ -1,0 +1,21 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+  
+    {
+      "name": "ng development",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: dev",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "ng production",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: stage",
+      "url": "http://localhost:4200/"
+    }
+  ]
+}

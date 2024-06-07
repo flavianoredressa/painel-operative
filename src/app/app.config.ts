@@ -53,6 +53,20 @@ export const appConfig: ApplicationConfig = {
     { provide: ErrorHandler, useValue: createErrorHandler() },
     { provide: TraceService, deps: [Router] },
     { provide: APP_INITIALIZER, useFactory: () => () => {}, deps: [TraceService], multi: true },
-    { provide: LUCIDE_ICONS, multi: true, useValue: new LucideIconProvider(icons) }
+    { provide: LUCIDE_ICONS, multi: true, useValue: new LucideIconProvider(icons) },
+    importProvidersFrom(
+      provideFirebaseApp(() =>
+        initializeApp({
+          projectId: 'painel-operative',
+          appId: '1:938299821635:web:1ee92361711ba5a8c38ef6',
+          storageBucket: 'painel-operative.appspot.com',
+          apiKey: 'AIzaSyByG41oqJmRDPhYwq0Jwf1_SSNhvOL3-Go',
+          authDomain: 'painel-operative.firebaseapp.com',
+          messagingSenderId: '938299821635',
+          measurementId: 'G-48YNMW7S6F'
+        })
+      )
+    ),
+    importProvidersFrom(provideAuth(() => getAuth()))
   ]
 };

@@ -7,6 +7,7 @@ module.exports = {
         padding: '1rem'
       },
       fontFamily: {
+        poppins: ['"Poppins";'],
         sans: ['Inter', 'sans-serif']
       }
     }

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,16 +13,25 @@ import { environment } from '@environment';
   standalone: true,
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgbDropdownModule, LucideAngularModule, ShortNamePipe, ImgFallbackDirective]
+  styleUrls: ['./topbar.comonete.scss'],
+  imports: [NgbDropdownModule, LucideAngularModule, ShortNamePipe, ImgFallbackDirective, NgClass]
 })
 export class TopbarComponent {
   private router = inject(Router);
   private useSession = inject(SessionContext);
   public useSideBar = inject(SideBarContext);
 
+  isMobile = false;
+
   version = environment.appVersion;
-  currentUser = this.useSession.getLoggedUser;
+  currentUser = this.useSession.getLoggedUserFire;
+
+  constructor() {
+    this.isMobile = document.documentElement.clientWidth < 768 ? true : false;
+  }
+
+  openNotification(): void {}
+  changeColor(): void {}
 
   async logout() {
     await this.useSession.logout();

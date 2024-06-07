@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChildren, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChildren, Input, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { inputUUID } from '@burand/angular/utils';
 
@@ -9,7 +9,6 @@ import { ControlValueAccessorConnectorComponent } from '../control-value-accesso
   standalone: true,
   selector: 'app-input-textarea',
   templateUrl: './input-textarea.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgTemplateOutlet, ReactiveFormsModule],
   providers: [
     {

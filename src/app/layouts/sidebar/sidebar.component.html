@@ -1,42 +1,98 @@
 <div
-  class="backdrop"
+  class="z-10 bg-[rgba(0,0,0,0.4)] inset-0"
   [@openClose]="{
     value: useSideBar.isExpanded() ? 'closed' : 'open',
     params: { position: positionClass }
   }"
 >
-  <div class="sidebar bg-gray-100 border-r" [class.sidebar-collapsed]="useSideBar.isExpanded()">
-    <div class="relative flex items-center justify-between h-14 lg:h-[60px] border-b px-3">
-      @if (!useSideBar.isExpanded()) {
-        <span class="font-semibold text-2xl">$NOME_SEU_SITE_TITLE</span>
-      }
-
-      <button class="md:hidden" (click)="useSideBar.toggle()">
-        <lucide-icon name="x" />
-      </button>
-    </div>
-
-    <nav class="sidebar-nav">
-      <ul class="sidebar-content mt-3 text-sm">
-        @for (item of default; track item.url) {
-          <li>
-            <a
-              class="sidebar-link"
-              (click)="goToPage()"
-              [title]="item.name"
-              [routerLink]="item.url"
-              routerLinkActive="active"
-            >
-              <lucide-icon [img]="item.icon" [size]="26" />
-              {{ item.name }}
-            </a>
-          </li>
+  <div
+    class="sidebar w-[17.5rem] flex flex-col justify-between h-screen overflow-y-auto overflow-x-hidden ml-0 bg-gray-100 border-r"
+    [class.sidebar-collapsed]="useSideBar.isExpanded()"
+  >
+    <div>
+      <div class="relative flex items-center justify-between h-14 lg:h-[89px] px-5 py-[26.5px]">
+        @if (!useSideBar.isExpanded()) {
+          <div class="flex items-center justify-between w-full">
+            <div class="flex items-center gap-3">
+              <img src="assets/images/logo.svg" class="top-8 h-9 w-9 object-cover" />
+              <div class="flex flex-col">
+                <p class="text-[#0D0D12] uppercase font-poppins font-medium text-base leading-[22.4px]">Operative</p>
+                <p class="text-[#666D80] uppercase font-poppins font-normal text-xs leading-[18.6px]">Tecnologia</p>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <div class="flex items-center gap-3 cursor-pointer" (click)="useSideBar.toggle()">
+            <img src="assets/images/logo.svg" class="top-8 h-9 w-9 object-cover" />
+          </div>
         }
-      </ul>
 
-      <button class="hidden md:block mb-3 ml-8 text-left px-0" (click)="useSideBar.toggle()">
-        <lucide-icon [name]="useSideBar.isExpanded() ? 'chevron-right' : 'chevron-left'" />
-      </button>
-    </nav>
+        <button class="md:hidden" (click)="useSideBar.toggle()">
+          <lucide-icon name="x" />
+        </button>
+      </div>
+
+      <nav class="sidebar-nav flex flex-col overflow-x-hidden px-3 mt-4 font-poppins w-full truncate">
+        <p class="uppercase text-xs text-[#818898] leading-4 font-poppins font-medium">Principal</p>
+        <ul class="mt-3 text-sm">
+          @for (item of default; track item.url) {
+            <li class="mb-1">
+              <a
+                class="sidebar-link flex items-center h-10 gap-3 border text-sm tracking-[0.2px] leading-[21.7px] no-underline transition-all duration-[250ms] font-medium px-3.5 py-[9px] rounded-md border-solid border-transparent"
+                (click)="goToPage()"
+                [title]="item.name"
+                [routerLink]="item.url"
+                routerLinkActive="active"
+              >
+                <lucide-icon [img]="item.icon" [size]="26" />
+                @if (!useSideBar.isExpanded()) {
+                  {{ item.name }}
+                }
+              </a>
+            </li>
+          }
+        </ul>
+        <p class="uppercase text-xs text-[#818898] leading-4 font-poppins font-medium py-3">Outros</p>
+        <ul class="mt-3 text-sm">
+          @for (item of others; track item.url) {
+            <li class="mb-1">
+              <a
+                class="sidebar-link flex items-center h-10 gap-3 border text-sm tracking-[0.2px] leading-[21.7px] no-underline transition-all duration-[250ms] font-medium px-3.5 py-[9px] rounded-md border-solid border-transparent"
+                (click)="goToPage()"
+                [title]="item.name"
+                [routerLink]="item.url"
+                routerLinkActive="active"
+              >
+                <lucide-icon [img]="item.icon" [size]="26" />
+                @if (!useSideBar.isExpanded()) {
+                  {{ item.name }}
+                }
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+    <div class="px-3 py-4 flex items-center flex-nowrap">
+      @if (userAuth()) {
+        <img
+          (click)="useSideBar.toggle()"
+          fallback="https://ui-avatars.com/api/?name={{
+            userAuth().displayName | shortName
+          }}&background=3c405f&color=fff"
+          [src]="userAuth().photoURL"
+          class="rounded-full h-10 w-10 object-cover transition-all duration-1000 border-2 border-solid border-[#DFE1E7]"
+          [ngClass]="{ 'me-3': !useSideBar.isExpanded(), 'ml-2': useSideBar.isExpanded() }"
+        />
+      }
+      @if (!useSideBar.isExpanded()) {
+        <div class="flex flex-col truncate">
+          @if (userAuth()) {
+            <h5>{{ userAuth().displayName }}</h5>
+            <p>{{ userAuth().email }}</p>
+          }
+        </div>
+      }
+    </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import { Component, ContentChildren, Input, TemplateRef, signal } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { inputUUID } from '@burand/angular/utils';
 import { LucideAngularModule } from 'lucide-angular';
@@ -9,7 +9,6 @@ import { ControlValueAccessorConnectorComponent } from '../control-value-accesso
   standalone: true,
   selector: 'app-input-password',
   templateUrl: './input-password.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, LucideAngularModule],
   providers: [
     {
@@ -26,4 +25,5 @@ export class InputPasswordComponent extends ControlValueAccessorConnectorCompone
   @Input() iconColor: string = null;
 
   eyePassword = signal(false);
+  @ContentChildren('Icon') rightIcon: TemplateRef<unknown>;
 }

@@ -1,8 +1,8 @@
 import packageInfo from '../../package.json';
 
 export const environment = {
-  urlApi: '$URL_API',
-  urlWorkflowApi: '$URL_API',
+  // urlApi: 'http://127.0.0.1:5001/painel-operative/southamerica-east1/api',
+  urlApi: 'https://api-v36mvjtija-rj.a.run.app',
   sentryDsn: '',
   storage: {
     url: '$URL_STORAGE',
@@ -10,13 +10,13 @@ export const environment = {
     endpoint: '$ENDPOINT_STORAGE'
   },
   firebase: {
-    apiKey: 'FIREBASE_APIKEY',
-    authDomain: 'FIREBASE_AUTHDOMAIN',
-    projectId: 'FIREBASE_PROJECTID',
-    storageBucket: 'FIREBASE_STORAGEBUCKET',
-    messagingSenderId: 'FIREBASE_MESSAGINGSENDERID',
-    appId: 'FIREBASE_APPID',
-    measurementId: 'FIREBASE_MEASUREMENTID'
+    apiKey: 'AIzaSyByG41oqJmRDPhYwq0Jwf1_SSNhvOL3-Go',
+    authDomain: 'painel-operative.firebaseapp.com',
+    projectId: 'painel-operative',
+    storageBucket: 'painel-operative.appspot.com',
+    messagingSenderId: '938299821635',
+    appId: '1:938299821635:web:1ee92361711ba5a8c38ef6',
+    measurementId: 'G-48YNMW7S6F'
   },
   appVersion: `${packageInfo.version}-dev`
 };
