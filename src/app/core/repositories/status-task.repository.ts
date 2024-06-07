@@ -12,12 +12,7 @@ export class StatusTaskRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<StatusTask[]>(`${environment.urlApi}/status-task`).pipe(
-      map((res: StatusTask[]) => {
-        console.log(res);
-        return res;
-      })
-    );
+    return this.httpClient.get<StatusTask[]>(`${environment.urlApi}/status-task`);
   }
 
   async delete(id: string) {

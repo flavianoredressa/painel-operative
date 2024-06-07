@@ -1,15 +1,4 @@
-import {
-  BadgeDollarSign,
-  Blocks,
-  CreditCard,
-  HelpCircle,
-  Home,
-  PackageSearch,
-  Settings,
-  UserRoundCog,
-  Users,
-  Workflow
-} from 'lucide-angular';
+import { CreditCard, Home, PackageSearch, Settings, UserRoundCog, Users, Workflow } from 'lucide-angular';
 
 import { NavItem } from '@interfaces/nav-item';
 
@@ -43,28 +32,28 @@ export const SidebarItems: NavItem[] = [
     icon: PackageSearch,
     name: 'Produtos',
     url: '/products'
-  },
-  {
-    icon: BadgeDollarSign,
-    name: 'Status Vendas',
-    url: '/status-sales'
   }
+  // {
+  //   icon: BadgeDollarSign,
+  //   name: 'Status Vendas',
+  //   url: '/status-sales'
+  // }
 ];
 
 export const SidebarOthersItems: NavItem[] = [
-  {
-    icon: Blocks,
-    name: 'Integrations',
-    url: '/integrations'
-  },
+  // {
+  //   icon: Blocks,
+  //   name: 'Integrations',
+  //   url: '/integrations'
+  // },
   {
     icon: Settings,
     name: 'Configurações',
-    url: '/configs'
-  },
-  {
-    icon: HelpCircle,
-    name: 'Get Help',
-    url: '/help'
+    url: '/settings'
   }
+  // {
+  //   icon: HelpCircle,
+  //   name: 'Get Help',
+  //   url: '/help'
+  // }
 ];
