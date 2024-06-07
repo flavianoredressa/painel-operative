@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { inputUUID } from '@burand/angular/utils';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
@@ -11,7 +11,6 @@ import { ZipCodeService } from './zipcode.service';
   standalone: true,
   selector: 'app-input-cep',
   templateUrl: './input-cep.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgxMaskDirective, ReactiveFormsModule],
   providers: [
     ZipCodeService,

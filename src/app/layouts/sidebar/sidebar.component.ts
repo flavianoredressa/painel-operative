@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
@@ -14,7 +14,6 @@ import { SidebarItems, SidebarOthersItems } from '@core/datas/sidebar-items';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sideBarOpenClose],
   imports: [RouterLink, RouterLinkActive, LucideAngularModule, NgClass, ShortNamePipe, ImgFallbackDirective]
 })
@@ -26,11 +25,6 @@ export class SidebarComponent {
 
   default = SidebarItems;
   others = SidebarOthersItems;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.useSideBar.setExpanded(event.target.innerWidth > 768 ? false : true);
-  }
 
   get positionClass() {
     return window.innerWidth > 768 ? 'relative' : 'fixed';
