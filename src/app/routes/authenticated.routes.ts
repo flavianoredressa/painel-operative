@@ -40,7 +40,7 @@ const routes: Routes = [
         title: 'Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
-            c => c.SatusSaleCreateComponent
+            c => c.StatusSaleCreateComponent
           )
       },
       {
@@ -48,7 +48,7 @@ const routes: Routes = [
         title: 'Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
-            c => c.SatusSaleCreateComponent
+            c => c.StatusSaleCreateComponent
           )
       },
       {
