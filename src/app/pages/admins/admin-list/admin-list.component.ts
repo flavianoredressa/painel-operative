@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,7 +13,7 @@ import { UserRepository } from '@repositories/user.repository';
   selector: 'app-admin-list',
   templateUrl: './admin-list.component.html'
 })
-export class AdminListComponent {
+export class AdminListComponent implements OnInit {
   loading = true;
   UserTypeLabel = UserTypeLabel;
 
@@ -32,8 +32,12 @@ export class AdminListComponent {
 
   isLoading = computed(() => {
     const admins = this.list();
-    return admins.length === 1 && admins[0] === null;
+    return admins?.length === 1 && admins[0] === null;
   });
+
+  ngOnInit(): void {
+    console.log(this.list);
+  }
 
   async delete(id: string) {
     if (this.list().length === 1) {
