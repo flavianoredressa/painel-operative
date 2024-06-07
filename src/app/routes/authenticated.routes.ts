@@ -239,12 +239,12 @@ const routes: Routes = [
         loadComponent: () => import('../pages/collaborator/collaborator-list/collaborator-list.component').then(c => c.CollaboratorListComponent)
       },
       {
-        path: 'collaborator',
+        path: 'create-collaborator',
         title: 'Colaborador',
         loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
       },
       {
-        path: 'collaborator/:id/edit',
+        path: 'create-collaborator/:id/edit',
         title: 'Colaborador',
         loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
       },

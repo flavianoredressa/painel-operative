@@ -7,8 +7,7 @@ import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { Collaborator } from '@models/collaborator';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { CollaboratorRepository } from '@repositories/collaborator';
-import moment from 'moment';
+import { CollaboratorRepository } from '@repositories/collaborator.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -39,8 +38,7 @@ export class CollaboratorListComponent {
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.list().filter((item: Collaborator) => {
-      const formattedDate = moment(item.admission_date).format('YYYY-MM-DD');
-      return (item && formattedDate.includes(term)) || item.id.toString().includes(term);
+      return item.id.toString().includes(term);
     });
   });
 
