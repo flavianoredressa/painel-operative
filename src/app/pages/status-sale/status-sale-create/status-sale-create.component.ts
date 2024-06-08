@@ -33,7 +33,7 @@ export class StatusSaleCreateComponent implements OnInit {
     try {
       if (this.idStatusSales) {
         this.loading.set(true);
-        const statusSale = await this.statusSaleRepository.getUserById(this.idStatusSales);
+        const statusSale = await this.statusSaleRepository.getStatusById(this.idStatusSales);
         this.formGroup.patchValue(statusSale);
         this.loading.set(false);
       }

@@ -18,7 +18,7 @@ export class StatusSaleRepository {
     return this.httpClient.get<StatusSale[]>(`${environment.urlApi}/status-sale`);
   }
 
-  async getUserById(id: string) {
+  async getStatusById(id: string) {
     const statusSale = await lastValueFrom(this.httpClient.get<StatusSale>(`${environment.urlApi}/status-sale/${id}`));
     return statusSale;
   }

@@ -37,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-sales',
-        title: 'Status de Vendas',
+        title: 'Criando Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.StatusSaleCreateComponent
@@ -45,7 +45,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-sales/:id/edit',
-        title: 'Status de Vendas',
+        title: 'Editando Status de Vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.StatusSaleCreateComponent
@@ -101,13 +101,13 @@ const routes: Routes = [
       },
       {
         path: 'create-activity',
-        title: 'Atividades',
+        title: 'Criando Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
       {
         path: 'create-activity/:id/edit',
-        title: 'Atividades',
+        title: 'Editando Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
@@ -121,15 +121,15 @@ const routes: Routes = [
       },
       {
         path: 'create-cost-center',
-        title: 'Centro de Custos',
+        title: 'Criando Centro de Custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent
           )
       },
       {
-        path: 'create-cost-center/:id/edit',
-        title: 'Centro de Custos',
+        path: 'cost-center/:id/edit',
+        title: 'Editando Centro de Custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent

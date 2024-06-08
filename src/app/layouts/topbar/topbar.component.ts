@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +8,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { SessionContext } from '@contexts/session.context';
 import { SideBarContext } from '@contexts/side-bar-context';
 import { environment } from '@environment';
+import { TitleService } from '@services/title.service';
 
 @Component({
   standalone: true,
@@ -20,14 +21,17 @@ export class TopbarComponent {
   private router = inject(Router);
   private useSession = inject(SessionContext);
   public useSideBar = inject(SideBarContext);
+  private titleService = inject(TitleService);
 
-  isMobile = false;
+  title: Signal<string>;
+  isMobile = signal(false);
 
   version = environment.appVersion;
   currentUser = this.useSession.getLoggedUserFire;
 
   constructor() {
-    this.isMobile = document.documentElement.clientWidth < 768 ? true : false;
+    this.isMobile.set(document.documentElement.clientWidth < 768 ? true : false);
+    this.title = this.titleService.getTitle();
   }
 
   openNotification(): void {}
