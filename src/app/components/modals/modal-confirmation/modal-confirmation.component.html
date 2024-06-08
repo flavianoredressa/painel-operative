@@ -19,7 +19,8 @@
       {{ textCancel }}
     </button>
     <button
-      class="btn !bg-[#e55050] h-full w-full !text-white !py-[18px] !shadow-none !outline-none border-0 rounded-2xl font-switzer tracking-[0.2px]"
+      [class]="colorButton"
+      class="btn h-full w-full !text-white !py-[18px] !shadow-none !outline-none border-0 rounded-2xl font-switzer tracking-[0.2px]"
       (click)="activeModal.close(true)"
     >
       {{ textConfirm }}
