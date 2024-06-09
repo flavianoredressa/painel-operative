@@ -1,11 +1,18 @@
 import { Model } from '@burand/angular/firestore';
-import { UserType } from '@enums/user-type';
+import { UserTypes } from './user-types';
 
 export interface User extends Model {
   active: boolean;
-  name: string;
-  email: string;
   avatar: string | null;
+  email: string;
   lastAccess: Date | null;
-  type: UserType;
+  name: string;
+  type: UserTypes;
+  CEP: string | null;
+  cellphone: string | null;
+  street: string | null;
+  number: number | null;
+  district: string | null;
+  city: string | null;
+  state: string | null;
 }
