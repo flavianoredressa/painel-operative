@@ -15,26 +15,26 @@ export class ClientRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<Client[]>(`${environment.urlApi}/client`);
+    return this.httpClient.get<Client[]>(`${environment.urlApi}/clients`);
   }
 
   async getStatusById(id: string) {
-    const client = await lastValueFrom(this.httpClient.get<Client>(`${environment.urlApi}/client/${id}`));
+    const client = await lastValueFrom(this.httpClient.get<Client>(`${environment.urlApi}/clients/${id}`));
     return client;
   }
 
   async create(client: CreateClient) {
-    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/client`, client));
+    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/clients`, client));
     return;
   }
 
   async update(id: string, client: CreateClient) {
-    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/client/${id}`, client));
+    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/clients/${id}`, client));
     return;
   }
 
   async delete(id: string) {
-    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/client/${id}`));
+    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/clients/${id}`));
     return;
   }
 }

@@ -68,7 +68,7 @@ export class ClientListComponent {
   async changeStatus(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      message: 'Você tem certeza que quer mudar o Cliente?',
       textCancel: 'Voltar',
       textConfirm: 'Sim',
       colorButton: '!bg-[#2d9c7f]'

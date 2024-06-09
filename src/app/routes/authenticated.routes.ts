@@ -241,18 +241,45 @@ const routes: Routes = [
       {
         path: 'collaborator',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-list/collaborator-list.component').then(c => c.CollaboratorListComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-list/collaborator-list.component').then(
+            c => c.CollaboratorListComponent
+          )
       },
       {
         path: 'create-collaborator',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
+            c => c.CollaboratorCreateComponent
+          )
       },
       {
         path: 'create-collaborator/:id/edit',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
+            c => c.CollaboratorCreateComponent
+          )
       },
+      {
+        path: 'clients',
+        title: 'Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-list/client-list.component').then(c => c.ClientListComponent)
+      },
+      {
+        path: 'create-clients',
+        title: 'Criando Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
+      },
+      {
+        path: 'create-clients/:id/edit',
+        title: 'Editando Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
+      }
     ]
   }
 ];

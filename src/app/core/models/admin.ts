@@ -1,6 +1,6 @@
-import { UserType } from '@enums/user-type';
 import { User } from './user';
+import { UserTypes } from './user-types';
 
 export interface Admin extends User {
-  type: UserType.ADMIN;
+  type: UserTypes;
 }
