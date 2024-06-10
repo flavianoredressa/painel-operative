@@ -64,4 +64,32 @@ export class PaymentMethodListComponent {
       }
     }
   }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id).name,
+          active: !this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id).active
+        };
+        await this.PaymentMethodRepository.update(id, status);
+        const paymentMethod = this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id);
+        paymentMethod.active = !paymentMethod.active;
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
 }
