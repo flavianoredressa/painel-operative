@@ -19,7 +19,9 @@ export class PaymentMethodRepository {
   }
 
   async getStatusById(id: string) {
-    const payment = await lastValueFrom(this.httpClient.get<PaymentMethod>(`${environment.urlApi}/journey/${id}`));
+    const payment = await lastValueFrom(
+      this.httpClient.get<PaymentMethod>(`${environment.urlApi}/payment-method/${id}`)
+    );
     return payment;
   }
 
