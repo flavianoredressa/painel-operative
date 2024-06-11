@@ -26,7 +26,9 @@ export class ClientCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]]
+    active: [true, [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    manager: ['', [Validators.required]]
   });
 
   async ngOnInit() {
@@ -53,10 +55,12 @@ export class ClientCreateComponent implements OnInit {
     this.submitting.set(true);
 
     try {
-      const { name, active } = this.formGroup.value;
+      const { name, active, email, manager } = this.formGroup.value;
       const client = {
         active,
-        name
+        name,
+        email,
+        manager
       };
 
       if (!this.idClients) {
