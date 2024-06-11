@@ -64,4 +64,32 @@ export class CostCenterListComponent {
       }
     }
   }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((costCenter: CostCenter) => costCenter.id === id).name,
+          active: !this.list().find((costCenter: CostCenter) => costCenter.id === id).active
+        };
+        await this.costCenterRepository.update(id, status);
+        const costCenter = this.list().find((costCenter: CostCenter) => costCenter.id === id);
+        costCenter.active = !costCenter.active;
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
 }
