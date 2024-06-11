@@ -1,14 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
-import {
-  APP_INITIALIZER,
-  ApplicationConfig,
-  DEFAULT_CURRENCY_CODE,
-  ErrorHandler,
-  LOCALE_ID,
-  importProvidersFrom
-} from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, DEFAULT_CURRENCY_CODE, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -31,11 +24,9 @@ registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(
-      provideAuth(() => getAuth()),
-      provideFirestore(() => getFirestore()),
-      provideFirebaseApp(() => initializeApp(environment.firebase))
-    ),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnimations(),
     provideToastr({
       progressBar: true
@@ -54,19 +45,17 @@ export const appConfig: ApplicationConfig = {
     { provide: TraceService, deps: [Router] },
     { provide: APP_INITIALIZER, useFactory: () => () => {}, deps: [TraceService], multi: true },
     { provide: LUCIDE_ICONS, multi: true, useValue: new LucideIconProvider(icons) },
-    importProvidersFrom(
-      provideFirebaseApp(() =>
-        initializeApp({
-          projectId: 'painel-operative',
-          appId: '1:938299821635:web:1ee92361711ba5a8c38ef6',
-          storageBucket: 'painel-operative.appspot.com',
-          apiKey: 'AIzaSyByG41oqJmRDPhYwq0Jwf1_SSNhvOL3-Go',
-          authDomain: 'painel-operative.firebaseapp.com',
-          messagingSenderId: '938299821635',
-          measurementId: 'G-48YNMW7S6F'
-        })
-      )
-    ),
-    importProvidersFrom(provideAuth(() => getAuth()))
+
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'painel-operative',
+        appId: '1:938299821635:web:1ee92361711ba5a8c38ef6',
+        storageBucket: 'painel-operative.appspot.com',
+        apiKey: 'AIzaSyByG41oqJmRDPhYwq0Jwf1_SSNhvOL3-Go',
+        authDomain: 'painel-operative.firebaseapp.com',
+        messagingSenderId: '938299821635',
+        measurementId: 'G-48YNMW7S6F'
+      })
+    )
   ]
 };
