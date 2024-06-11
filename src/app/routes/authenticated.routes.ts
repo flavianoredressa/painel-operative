@@ -160,7 +160,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'charge-type',
+        path: 'typeOfCharge',
         title: 'Tipo de Cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-list/charge-type-list.component').then(
@@ -168,7 +168,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'create-charge-type',
+        path: 'create-typeOfCharge',
         title: 'Tipo de Projeto',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
@@ -176,7 +176,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'create-charge-type/:id/edit',
+        path: 'create-typeOfCharge/:id/edit',
         title: 'Tipo de Projeto',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
