@@ -34,7 +34,7 @@ export class UserTypesRepository {
   }
 
   async delete(id: string) {
-    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/user-type/${id}`));
+    await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/user-types/${id}`));
     return;
   }
 }
