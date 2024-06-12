@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ActivityListComponent {
   modalConfirmationService = inject(ModalConfirmationService);
-  ActivityRepository = inject(ActivityRepository);
+  activityRepository = inject(ActivityRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
 
@@ -26,7 +26,7 @@ export class ActivityListComponent {
     term: ['']
   });
 
-  list = toSignal(this.ActivityRepository.getAll(), { initialValue: [null] });
+  list = toSignal(this.activityRepository.getAll(), { initialValue: [null] });
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
@@ -54,7 +54,7 @@ export class ActivityListComponent {
 
     if (res) {
       try {
-        await this.ActivityRepository.delete(id);
+        await this.activityRepository.delete(id);
         const index = this.list().findIndex((activity: Activity) => activity.id === id);
         this.list().splice(index, 1);
       } catch (e) {
@@ -66,6 +66,7 @@ export class ActivityListComponent {
   }
 
   async changeStatus(id: string) {
+    console.log(id);
     const modalOptions = {
       title: 'Confirmação',
       message: 'Você tem certeza que quer mudar o Status de vendas?',
@@ -82,7 +83,7 @@ export class ActivityListComponent {
           name: this.list().find((activity: Activity) => activity.id === id).name,
           active: !this.list().find((activity: Activity) => activity.id === id).active
         };
-        await this.ActivityRepository.update(id, status);
+        await this.activityRepository.update(id, status);
         const activity = this.list().find((activity: Activity) => activity.id === id);
         activity.active = !activity.active;
       } catch (e) {
