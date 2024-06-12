@@ -1,20 +1,76 @@
-import { Component, OnInit } from '@angular/core';
-import { getRouterParam } from '@burand/angular';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IsLoadingDirective, getRouterParam } from '@burand/angular';
+import { InputComponent } from '@forms/input/input.component';
+import { errorTailorImports } from '@ngneat/error-tailor';
+import { JourneyRepository } from '@repositories/journey.repository';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-jouney-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './journey-create.component.html'
 })
 export class JourneyCreateComponent implements OnInit {
-  idJourney = getRouterParam('id');
+  private router = inject(Router);
+  private formBuilder = inject(FormBuilder);
+  private toastrService = inject(ToastrService);
+  private journeyRepository = inject(JourneyRepository);
 
-  ngOnInit() {
-    console.log(this.idJourney);
+  idJourneys = getRouterParam('id');
 
-    if (this.idJourney) {
-      console.log('edit');
+  loading = signal(false);
+  submitting = signal(false);
+
+  formGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    active: [true, [Validators.required]]
+  });
+
+  async ngOnInit() {
+    try {
+      if (this.idJourneys) {
+        this.loading.set(true);
+        const journey = await this.journeyRepository.getStatusById(this.idJourneys);
+        this.formGroup.patchValue(journey);
+        this.loading.set(false);
+      }
+    } catch (error) {
+      this.loading.set(false);
+      this.toastrService.error('Não foi possível carregar os dados.');
+      console.error(error);
+    }
+  }
+
+  async handleSubmit() {
+    if (this.formGroup.invalid) {
+      this.toastrService.error('Verifique os campos e tenta novamente.');
+      return;
+    }
+
+    this.submitting.set(true);
+
+    try {
+      const { name, active } = this.formGroup.value;
+      const journey = {
+        active,
+        name
+      };
+
+      if (!this.idJourneys) {
+        await this.journeyRepository.create(journey);
+      } else {
+        await this.journeyRepository.update(this.idJourneys, journey);
+      }
+      this.toastrService.success(`Status Sales ${!this.idJourneys ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.router.navigateByUrl('/journey');
+    } catch (error) {
+      this.toastrService.error('Não foi possível salvar os dados.');
+      console.error(error);
+    } finally {
+      this.submitting.set(false);
     }
   }
 }

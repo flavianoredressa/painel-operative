@@ -11,7 +11,7 @@ import { PaymentMethodRepository } from '@repositories/payment-method.repository
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-list-status-sale',
+  selector: 'app-list-payment-method',
   standalone: true,
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './payment-method-list.component.html'
