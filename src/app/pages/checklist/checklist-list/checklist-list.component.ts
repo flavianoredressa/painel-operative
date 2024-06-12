@@ -64,4 +64,32 @@ export class CheckListComponent {
       }
     }
   }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((checklist: Checklist) => checklist.id === id).name,
+          active: !this.list().find((checklist: Checklist) => checklist.id === id).active
+        };
+        await this.ChecklistRepository.update(id, status);
+        const checklist = this.list().find((checklist: Checklist) => checklist.id === id);
+        checklist.active = !checklist.active;
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
 }
