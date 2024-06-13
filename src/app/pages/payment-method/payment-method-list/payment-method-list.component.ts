@@ -45,7 +45,7 @@ export class PaymentMethodListComponent {
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir o Status de vendas?',
+      message: 'Você tem certeza que quer excluir o Método de pagamento?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };
@@ -68,7 +68,7 @@ export class PaymentMethodListComponent {
   async changeStatus(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      message: 'Você tem certeza que quer mudar o Método de pagamento?',
       textCancel: 'Voltar',
       textConfirm: 'Sim',
       colorButton: '!bg-[#2d9c7f]'
