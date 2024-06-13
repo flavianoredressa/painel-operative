@@ -8,7 +8,7 @@ import { PaymentMethodRepository } from '@repositories/payment-method.repository
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-satus-payment-create',
+  selector: 'app-payment-method-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './payment-method-create.component.html'
