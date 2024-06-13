@@ -1,5 +1,87 @@
-@if (idCollaborator) {
+<!-- @if (idCollaborator) {
   <p>Estou Editando</p>
 } @else {
   <p>Estou Criando</p>
-}
+} -->
+
+<section class="container mb-5">
+  <h4 class="mb-5">Informações básicas</h4>
+
+  <div class="border rounded-md p-2 md:min-h-[212px] relative">
+    <div>
+      <img src="" alt="" />
+      <h5>Foto de perfil</h5>
+      <span>Formatos permitidos: PNG e JPG. Recomenda-se 500x500 pixels.</span>
+    </div>
+
+    @if (!loading) {
+      <form class="grid gap-3" [formGroup]="form" errorTailor (ngSubmit)="handleSubmit()" novalidate>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <app-input label="Nome completo" formControlName="name" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Email" formControlName="email" />
+          </div>
+
+          <!-- select journey -->
+          <div class="col-md-4 mb-3">
+            <app-input label="Jornada" formControlName="journey" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Telefone" formControlName="phone" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Admissão" formControlName="admission" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Data de nascimento" formControlName="birthday" type="date" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="CEP" formControlName="cep" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Número" formControlName="number" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Endereço" formControlName="address" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Estado" formControlName="state" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Bairro" formControlName="neighborhood" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <app-input label="Cidade" formControlName="city" />
+          </div>
+        </div>
+
+        <h4>Endereço</h4>
+
+        <div class="flex justify-center gap-3 mt-3 md:mt-8">
+          <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white"
+            >Voltar</a
+          >
+          <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting">
+            {{ !idCollaborator ? "Cadastrar" : "Atualizar" }}
+          </button>
+        </div>
+      </form>
+    } @else {
+      <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <span class="spinner-border spinner-border-sm mr-1"></span>
+      </div>
+    }
+  </div>
+</section>
