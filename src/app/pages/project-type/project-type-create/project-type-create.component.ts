@@ -1,9 +1,9 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
-import { Router } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
 import { InputComponent } from '../../../forms/input/input.component';
 
@@ -33,8 +33,8 @@ export class ProjectTypeCreateComponent implements OnInit {
     try {
       if (this.idProjectType) {
         this.loading.set(true);
-        const statusSale = await this.projectTypeRepository.getStatusById(this.idProjectType);
-        this.formGroup.patchValue(statusSale);
+        const projectType = await this.projectTypeRepository.getStatusById(this.idProjectType);
+        this.formGroup.patchValue(projectType);
         this.loading.set(false);
       }
     } catch (error) {
@@ -54,18 +54,18 @@ export class ProjectTypeCreateComponent implements OnInit {
 
     try {
       const { name, active } = this.formGroup.value;
-      const statusSale = {
+      const projectType = {
         active,
         name
       };
 
       if (!this.idProjectType) {
-        await this.projectTypeRepository.create(statusSale);
+        await this.projectTypeRepository.create(projectType);
       } else {
-        await this.projectTypeRepository.update(this.idProjectType, statusSale);
+        await this.projectTypeRepository.update(this.idProjectType, projectType);
       }
-      this.toastrService.success(`Status Sales ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/status-sales');
+      this.toastrService.success(`Project Type ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.router.navigateByUrl('/project-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
