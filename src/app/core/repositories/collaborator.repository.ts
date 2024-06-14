@@ -11,6 +11,16 @@ import { lastValueFrom } from 'rxjs';
 export class CollaboratorRepository {
   constructor(private httpClient: HttpClient) {}
 
+  async create(collaborator: Collaborator) {
+    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/collaborator`, collaborator));
+    return;
+  }
+
+  async update(id: string, activity: Collaborator) {
+    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/activity/${id}`, activity));
+    return;
+  }
+
   getAll() {
     return this.httpClient.get<Collaborator[]>(`${environment.urlApi}/collaborator`);
   }
