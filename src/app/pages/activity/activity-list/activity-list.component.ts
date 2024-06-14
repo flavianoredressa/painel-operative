@@ -56,7 +56,7 @@ export class ActivityListComponent {
       try {
         await this.ActivityRepository.delete(id);
         const index = this.list().findIndex((activity: Activity) => activity.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);
