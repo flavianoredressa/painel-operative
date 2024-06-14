@@ -60,7 +60,35 @@ export class StatusTaskListComponent {
       try {
         await this.statusTaskRepository.delete(id);
         const index = this.list().findIndex((statusTask: StatusTask) => statusTask.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Método de pagamento?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((statusTask: StatusTask) => statusTask.id === id).name,
+          active: !this.list().find((statusTask: StatusTask) => statusTask.id === id).active
+        };
+        await this.statusTaskRepository.update(id, status);
+        const statusTask = this.list().find((statusTask: StatusTask) => statusTask.id === id);
+        statusTask.active = !statusTask.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

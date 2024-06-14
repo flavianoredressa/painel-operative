@@ -57,7 +57,7 @@ export class ChargeTypeListComponent {
       try {
         await this.chargeTypeRepository.delete(id);
         const index = this.list().findIndex((chargeType: ChargeType) => chargeType.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);
