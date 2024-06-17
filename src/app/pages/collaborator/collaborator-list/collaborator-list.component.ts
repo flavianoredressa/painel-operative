@@ -42,6 +42,12 @@ export class CollaboratorListComponent {
     });
   });
 
+  formatDate(date: Date): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 1);
+    return newDate;
+  }
+
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
@@ -65,7 +71,3 @@ export class CollaboratorListComponent {
     }
   }
 }
-
-
-
-
