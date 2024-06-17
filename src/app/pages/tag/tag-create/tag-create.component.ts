@@ -1,20 +1,76 @@
-import { Component, OnInit } from '@angular/core';
-import { getRouterParam } from '@burand/angular';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IsLoadingDirective, getRouterParam } from '@burand/angular';
+import { InputComponent } from '@forms/input/input.component';
+import { errorTailorImports } from '@ngneat/error-tailor';
+import { TagRepository } from '@repositories/tag.repository';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tag-create',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './tag-create.component.html'
 })
 export class TagCreateComponent implements OnInit {
+  private router = inject(Router);
+  private formBuilder = inject(FormBuilder);
+  private toastrService = inject(ToastrService);
+  private tagRepository = inject(TagRepository);
+
   idTag = getRouterParam('id');
 
-  ngOnInit() {
-    console.log(this.idTag);
+  loading = signal(false);
+  submitting = signal(false);
 
-    if (this.idTag) {
-      console.log('edit');
+  formGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    active: [true, [Validators.required]]
+  });
+
+  async ngOnInit() {
+    try {
+      if (this.idTag) {
+        this.loading.set(true);
+        const tag = await this.tagRepository.getStatusById(this.idTag);
+        this.formGroup.patchValue(tag);
+        this.loading.set(false);
+      }
+    } catch (error) {
+      this.loading.set(false);
+      this.toastrService.error('Não foi possível carregar os dados.');
+      console.error(error);
+    }
+  }
+
+  async handleSubmit() {
+    if (this.formGroup.invalid) {
+      this.toastrService.error('Verifique os campos e tenta novamente.');
+      return;
+    }
+
+    this.submitting.set(true);
+
+    try {
+      const { name, active } = this.formGroup.value;
+      const tag = {
+        active,
+        name
+      };
+
+      if (!this.idTag) {
+        await this.tagRepository.create(tag);
+      } else {
+        await this.tagRepository.update(this.idTag, tag);
+      }
+      this.toastrService.success(`Tag ${!this.idTag ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.router.navigateByUrl('/tags');
+    } catch (error) {
+      this.toastrService.error('Não foi possível salvar os dados.');
+      console.error(error);
+    } finally {
+      this.submitting.set(false);
     }
   }
 }
