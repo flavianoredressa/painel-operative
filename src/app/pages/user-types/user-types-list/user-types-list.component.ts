@@ -30,8 +30,8 @@ export class UserTypesListComponent {
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
-    const projectType = this.list();
-    return projectType.length === 1 && projectType[0] === null;
+    const userTypes = this.list();
+    return userTypes.length === 1 && userTypes[0] === null;
   });
 
   filteredList = computed(() => {
@@ -55,7 +55,35 @@ export class UserTypesListComponent {
       try {
         await this.userTypesRepository.delete(id);
         const index = this.list().findIndex((userTypes: UserTypes) => userTypes.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((userTypes: UserTypes) => userTypes.id === id).name,
+          active: !this.list().find((userTypes: UserTypes) => userTypes.id === id).active
+        };
+        await this.userTypesRepository.update(id, status);
+        const userTypes = this.list().find((userTypes: UserTypes) => userTypes.id === id);
+        userTypes.active = !userTypes.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);
