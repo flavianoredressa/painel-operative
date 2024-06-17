@@ -206,7 +206,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'checklist',
+        path: 'checklists',
         title: 'Verificar Lista',
         loadComponent: () =>
           import('../pages/checklist/checklist-list/checklist-list.component').then(c => c.CheckListComponent)
@@ -241,33 +241,51 @@ const routes: Routes = [
       {
         path: 'collaborator',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-list/collaborator-list.component').then(c => c.CollaboratorListComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-list/collaborator-list.component').then(
+            c => c.CollaboratorListComponent
+          )
       },
       {
         path: 'create-collaborator',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
+            c => c.CollaboratorCreateComponent
+          )
       },
       {
         path: 'create-collaborator/:id/edit',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/collaborator/collaborator-create/collaborator-create.component').then(c => c.CollaboratorCreateComponent)
+        loadComponent: () =>
+          import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
+            c => c.CollaboratorCreateComponent
+          )
       },
       {
         path: 'status-task',
         title: 'Status de Tarefas',
-        loadComponent: () => import('../pages/status-task/status-task-list/status-task-list.component').then(c => c.StatusTaskListComponent)
+        loadComponent: () =>
+          import('../pages/status-task/status-task-list/status-task-list.component').then(
+            c => c.StatusTaskListComponent
+          )
       },
       {
         path: 'create-status-task',
         title: 'Status de Tarefas',
-        loadComponent: () => import('../pages/status-task/status-task-create/status-task-create.component').then(c => c.StatusTaskCreateComponent)
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
       },
       {
         path: 'create-status-task/:id/edit',
         title: 'Colaborador',
-        loadComponent: () => import('../pages/status-task/status-task-create/status-task-create.component').then(c => c.StatusTaskCreateComponent)
-      },
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
+      }
     ]
   }
 ];
