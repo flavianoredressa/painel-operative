@@ -33,21 +33,6 @@ export class JourneyRepository {
     return;
   }
 
-  async getStatusById(id: string) {
-    const journey = await lastValueFrom(this.httpClient.get<Journey>(`${environment.urlApi}/journey/${id}`));
-    return journey;
-  }
-
-  async create(journey: CreateJourney) {
-    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/journey`, journey));
-    return;
-  }
-
-  async update(id: string, journey: CreateJourney) {
-    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/journey/${id}`, journey));
-    return;
-  }
-
   async delete(id: string) {
     await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/journey/${id}`));
     return;

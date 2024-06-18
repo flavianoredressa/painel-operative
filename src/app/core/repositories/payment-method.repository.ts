@@ -35,23 +35,6 @@ export class PaymentMethodRepository {
     return;
   }
 
-  async getStatusById(id: string) {
-    const payment = await lastValueFrom(
-      this.httpClient.get<PaymentMethod>(`${environment.urlApi}/payment-method/${id}`)
-    );
-    return payment;
-  }
-
-  async create(payment: CreatePaymentMethod) {
-    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/payment-method`, payment));
-    return;
-  }
-
-  async update(id: string, payment: CreatePaymentMethod) {
-    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/payment-method/${id}`, payment));
-    return;
-  }
-
   async delete(id: string) {
     await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/payment-method/${id}`));
     return;

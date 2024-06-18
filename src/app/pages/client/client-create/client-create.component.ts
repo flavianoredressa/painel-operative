@@ -29,15 +29,15 @@ export class ClientCreateComponent implements OnInit {
     active: [true, [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     manager: ['', [Validators.required]],
-    cnpj: ['', [Validators.required]],
-    cep: ['', [Validators.required]],
+    CNPJ: ['', [Validators.required]],
+    CEP: ['', [Validators.required]],
     cellphone: ['', [Validators.required]],
     street: ['', [Validators.required]],
     number: [0, [Validators.required]],
     district: ['', [Validators.required]],
     city: ['', [Validators.required]],
     state: ['', [Validators.required]],
-    corporate_name: ['', [Validators.required]]
+    corporateName: ['', [Validators.required]]
   });
 
   async ngOnInit() {
@@ -69,31 +69,40 @@ export class ClientCreateComponent implements OnInit {
         active,
         email,
         manager,
-        cnpj,
-        cep,
+        CNPJ,
+        CEP,
         cellphone,
         street,
         number,
         district,
         city,
         state,
-        corporate_name
+        corporateName
       } = this.formGroup.value;
       const client = {
         active,
         name,
         email,
         manager,
-        cnpj,
-        cep,
+        CNPJ,
+        CEP,
         cellphone,
         street,
         number,
         district,
         city,
         state,
-        corporate_name
+        corporateName,
+        type: {
+          id: 8,
+          active: true,
+          name: 'reth'
+        }
       };
+
+      client.number = parseInt(client.number + ' ');
+
+      console.log(client);
 
       if (!this.idClients) {
         await this.clientRepository.create(client);
