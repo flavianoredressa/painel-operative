@@ -45,7 +45,7 @@ export class PaymentMethodListComponent {
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir o Status de vendas?',
+      message: 'Você tem certeza que quer excluir o Método de pagamento?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };
@@ -57,6 +57,34 @@ export class PaymentMethodListComponent {
         await this.PaymentMethodRepository.delete(id);
         const index = this.list().findIndex((paymentMethod: PaymentMethod) => paymentMethod.id === id);
         this.list().splice(index, 1);
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Método de pagamento?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id).name,
+          active: !this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id).active
+        };
+        await this.PaymentMethodRepository.update(id, status);
+        const paymentMethod = this.list().find((paymentMethod: PaymentMethod) => paymentMethod.id === id);
+        paymentMethod.active = !paymentMethod.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { getRouterParam } from '@utils/get-router-param';
+import { getRouterParam } from '@burand/angular';
+
 @Component({
   selector: 'app-status-task-create',
   standalone: true,

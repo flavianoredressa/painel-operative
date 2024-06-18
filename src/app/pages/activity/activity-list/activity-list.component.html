@@ -45,7 +45,13 @@
                     class="flex items-center cursor-pointer select-none text-dark dark:text-white"
                   >
                     <div class="relative">
-                      <input type="checkbox" id="{{ item.id }}" class="peer sr-only" [checked]="item.active" />
+                      <input
+                        type="checkbox"
+                        id="{{ item.id }}"
+                        class="peer sr-only"
+                        [checked]="item.active"
+                        (change)="changeStatus(item.id)"
+                      />
                       <div
                         class="block h-5 rounded-full box bg-dark dark:bg-dark-2 w-11 bg-gray-400 peer-checked:bg-blue-400"
                       ></div>
