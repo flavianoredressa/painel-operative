@@ -64,4 +64,32 @@ export class TagListComponent {
       }
     }
   }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((tag: Tag) => tag.id === id).name,
+          active: !this.list().find((tag: Tag) => tag.id === id).active
+        };
+        await this.tagRepository.update(id, status);
+        const tag = this.list().find((tag: Tag) => tag.id === id);
+        tag.active = !tag.active;
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
 }
