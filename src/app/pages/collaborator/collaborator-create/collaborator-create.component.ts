@@ -65,7 +65,6 @@ export class CollaboratorCreateComponent implements OnInit {
     try {
       // Obtém os valores de 'admission_date' e 'active' do formulário
       const { admission_date, active } = this.formGroup.value;
-      // Cria um objeto 'collaborator' com as propriedades 'active', 'admission_date' e 'birth_date caso precise mostrar na lista'
       const collaborator = {
         active,
         admission_date: parse(admission_date, 'yyyy-MM-dd', new Date()),
@@ -77,15 +76,12 @@ export class CollaboratorCreateComponent implements OnInit {
       } else {
         await this.collaboratorRepository.update(this.idCollaborator, collaborator);
       }
-      // Exibe mensagem de sucesso e redireciona para a página de colaboradores
       this.toastrService.success(`Colaborador ${!this.idCollaborator ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/collaborator');
     } catch (error) {
-      // Em caso de erro, exibe a mensagem de erro e registra o erro no console
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
     } finally {
-      // Define a flag 'submitting' como false ao final da execução da função
       this.submitting.set(false);
     }
   }
