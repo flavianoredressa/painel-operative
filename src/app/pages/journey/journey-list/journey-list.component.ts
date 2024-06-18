@@ -56,7 +56,7 @@ export class JourneyListComponent {
       try {
         await this.JourneyRepository.delete(id);
         const index = this.list().findIndex((journey: Journey) => journey.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

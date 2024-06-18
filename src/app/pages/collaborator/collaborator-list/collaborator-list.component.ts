@@ -21,6 +21,8 @@ export class CollaboratorListComponent {
   collaboratorRepository = inject(CollaboratorRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+  currentDate: string;
+  
 
   protected formSearch = this.builder.group({
     term: ['']
@@ -42,6 +44,12 @@ export class CollaboratorListComponent {
     });
   });
 
+  formatDate(date: Date): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 1);
+    return newDate;
+  }
+
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
@@ -56,7 +64,7 @@ export class CollaboratorListComponent {
       try {
         await this.collaboratorRepository.delete(id);
         const index = this.list().findIndex((collaborator: Collaborator) => collaborator.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);
