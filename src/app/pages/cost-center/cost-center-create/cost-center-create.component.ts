@@ -8,7 +8,7 @@ import { CostCenterRepository } from '@repositories/cost-center.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cost-center-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './cost-center-create.component.html'
@@ -19,7 +19,7 @@ export class CostCenterCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private costCenterRepository = inject(CostCenterRepository);
 
-  idCostCenter = getRouterParam('id');
+  idCostCenters = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -31,9 +31,9 @@ export class CostCenterCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idCostCenter) {
+      if (this.idCostCenters) {
         this.loading.set(true);
-        const costCenter = await this.costCenterRepository.getStatusById(this.idCostCenter);
+        const costCenter = await this.costCenterRepository.getStatusById(this.idCostCenters);
         this.formGroup.patchValue(costCenter);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class CostCenterCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idCostCenter) {
+      if (!this.idCostCenters) {
         await this.costCenterRepository.create(costCenter);
       } else {
-        await this.costCenterRepository.update(this.idCostCenter, costCenter);
+        await this.costCenterRepository.update(this.idCostCenters, costCenter);
       }
-      this.toastrService.success(`Cost Center ${!this.idCostCenter ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idCostCenters ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/cost-center');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

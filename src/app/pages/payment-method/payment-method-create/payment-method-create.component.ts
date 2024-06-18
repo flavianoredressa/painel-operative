@@ -8,7 +8,7 @@ import { PaymentMethodRepository } from '@repositories/payment-method.repository
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-payment-method-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './payment-method-create.component.html'
@@ -19,7 +19,7 @@ export class PaymentMethodCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private paymentMethodRepository = inject(PaymentMethodRepository);
 
-  idPaymentMethod = getRouterParam('id');
+  idPaymentMethods = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -31,9 +31,9 @@ export class PaymentMethodCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idPaymentMethod) {
+      if (this.idPaymentMethods) {
         this.loading.set(true);
-        const paymentMethod = await this.paymentMethodRepository.getStatusById(this.idPaymentMethod);
+        const paymentMethod = await this.paymentMethodRepository.getStatusById(this.idPaymentMethods);
         this.formGroup.patchValue(paymentMethod);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class PaymentMethodCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idPaymentMethod) {
+      if (!this.idPaymentMethods) {
         await this.paymentMethodRepository.create(paymentMethod);
       } else {
-        await this.paymentMethodRepository.update(this.idPaymentMethod, paymentMethod);
+        await this.paymentMethodRepository.update(this.idPaymentMethods, paymentMethod);
       }
-      this.toastrService.success(`Método de Pagamento ${!this.idPaymentMethod ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idPaymentMethods ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/payment-method');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

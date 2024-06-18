@@ -45,7 +45,7 @@ export class CheckListComponent {
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir o Status de vendas?',
+      message: 'Você tem certeza que quer excluir o Checklist?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };

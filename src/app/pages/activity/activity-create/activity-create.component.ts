@@ -8,7 +8,7 @@ import { ActivityRepository } from '@repositories/activity.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-activity-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './activity-create.component.html'
@@ -19,7 +19,7 @@ export class ActivityCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private activityRepository = inject(ActivityRepository);
 
-  idActivity = getRouterParam('id');
+  idActivitys = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -31,9 +31,9 @@ export class ActivityCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idActivity) {
+      if (this.idActivitys) {
         this.loading.set(true);
-        const activity = await this.activityRepository.getStatusById(this.idActivity);
+        const activity = await this.activityRepository.getStatusById(this.idActivitys);
         this.formGroup.patchValue(activity);
         this.loading.set(false);
       }
@@ -59,14 +59,12 @@ export class ActivityCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idActivity) {
+      if (!this.idActivitys) {
         await this.activityRepository.create(activity);
       } else {
-        await this.activityRepository.update(this.idActivity, activity);
+        await this.activityRepository.update(this.idActivitys, activity);
       }
-      this.toastrService.success(
-        `Atividade ${!this.idActivity ? 'cadastrada' : 'atualizada'} com sucesso.`
-      );
+      this.toastrService.success(`Status Sales ${!this.idActivitys ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/activity');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

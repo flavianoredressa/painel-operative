@@ -8,7 +8,7 @@ import { ChargeTypeRepository } from '@repositories/charge-type.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-charge-type-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './charge-type-create.component.html'
@@ -19,7 +19,7 @@ export class ChargeTypeCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private chargeTypeRepository = inject(ChargeTypeRepository);
 
-  idChargeType = getRouterParam('id');
+  idChargeTypes = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -31,9 +31,9 @@ export class ChargeTypeCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idChargeType) {
+      if (this.idChargeTypes) {
         this.loading.set(true);
-        const chargeType = await this.chargeTypeRepository.getStatusById(this.idChargeType);
+        const chargeType = await this.chargeTypeRepository.getStatusById(this.idChargeTypes);
         this.formGroup.patchValue(chargeType);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class ChargeTypeCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idChargeType) {
+      if (!this.idChargeTypes) {
         await this.chargeTypeRepository.create(chargeType);
       } else {
-        await this.chargeTypeRepository.update(this.idChargeType, chargeType);
+        await this.chargeTypeRepository.update(this.idChargeTypes, chargeType);
       }
-      this.toastrService.success(`Charge Type ${!this.idChargeType ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idChargeTypes ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/charge-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

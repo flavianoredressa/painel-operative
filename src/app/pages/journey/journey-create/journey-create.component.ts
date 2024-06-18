@@ -8,7 +8,7 @@ import { JourneyRepository } from '@repositories/journey.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-jouney-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
   templateUrl: './journey-create.component.html'
@@ -19,7 +19,7 @@ export class JourneyCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private journeyRepository = inject(JourneyRepository);
 
-  idJourney = getRouterParam('id');
+  idJourneys = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -31,9 +31,9 @@ export class JourneyCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idJourney) {
+      if (this.idJourneys) {
         this.loading.set(true);
-        const journey = await this.journeyRepository.getStatusById(this.idJourney);
+        const journey = await this.journeyRepository.getStatusById(this.idJourneys);
         this.formGroup.patchValue(journey);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class JourneyCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idJourney) {
+      if (!this.idJourneys) {
         await this.journeyRepository.create(journey);
       } else {
-        await this.journeyRepository.update(this.idJourney, journey);
+        await this.journeyRepository.update(this.idJourneys, journey);
       }
-      this.toastrService.success(`Journey ${!this.idJourney ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idJourneys ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/journey');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
