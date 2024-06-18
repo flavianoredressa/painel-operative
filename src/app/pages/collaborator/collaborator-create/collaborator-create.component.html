@@ -13,7 +13,10 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <app-input type="date" label="Data de admissão" formControlName="admission_date" position="left">
-            <img Icon src="assets/icons/text.svg" alt="email" />
+            <img Icon src="assets/icons/text.svg" alt="date" />
+          </app-input>
+          <app-input type="date" label="Data de nasc" formControlName="birth_date" position="left">
+            <img Icon src="assets/icons/Birth_date.svg" alt="date" />
           </app-input>
         </div>
       </div>
@@ -21,7 +24,7 @@
       <div class="flex justify-center gap-3 mt-3 md:mt-8">
         <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white">Voltar</a>
         <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting()">
-          {{ !idCollaborator? "Cadastrar" : "Atualizar" }}
+          {{ !idCollaborator ? "Cadastrar" : "Atualizar" }}
         </button>
       </div>
     </form>
