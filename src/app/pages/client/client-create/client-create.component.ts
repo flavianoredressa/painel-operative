@@ -65,7 +65,7 @@ export class ClientCreateComponent implements OnInit {
         await this.clientRepository.update(this.idClients, client);
       }
       this.toastrService.success(`Clients ${!this.idClients ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/clients');
+      this.router.navigateByUrl('/client');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
