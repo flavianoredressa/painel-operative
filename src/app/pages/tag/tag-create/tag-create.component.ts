@@ -26,7 +26,8 @@ export class TagCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]]
+    active: [true, [Validators.required]],
+    color: ['', [Validators.required]]
   });
 
   async ngOnInit() {
@@ -53,10 +54,11 @@ export class TagCreateComponent implements OnInit {
     this.submitting.set(true);
 
     try {
-      const { name, active } = this.formGroup.value;
+      const { name, active, color } = this.formGroup.value;
       const tag = {
         active,
-        name
+        name,
+        color
       };
 
       if (!this.idTag) {
