@@ -11,15 +11,18 @@
     }
     <!-- @if (!isLoading) { -->
     <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
-      <div class="row">
+      <div class="row flex">
         <div class="col-md-6 mb-3">
           <app-input label="Nome" formControlName="name" position="left">
             <img Icon src="assets/icons/text.svg" alt="email" />
           </app-input>
         </div>
-        <!-- <div class="col-md-6 mb-3">
-          <app-input label="E-mail" formControlName="email" />
-        </div> -->
+        <!--  -->
+        <div class="col-md-6 mb-3">
+          <app-input label="Nome" formControlName="ref" position="left">
+            <img Icon src="assets/icons/text.svg" alt="email" />
+          </app-input>
+        </div>
       </div>
 
       <div class="flex justify-center gap-3 mt-3 md:mt-8">
