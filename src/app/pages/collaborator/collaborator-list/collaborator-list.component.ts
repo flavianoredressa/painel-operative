@@ -22,7 +22,6 @@ export class CollaboratorListComponent {
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
   currentDate: string;
-  
 
   protected formSearch = this.builder.group({
     term: ['']
