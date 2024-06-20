@@ -3,8 +3,8 @@
     <button (click)="useSideBar.toggle()" class="me-5">
       <lucide-icon name="menu" />
     </button>
-    @if (!isMobile) {
-      <p>{{ title() }}</p>
+    @if (!isMobile()) {
+      <p class="font-semibold text-[22px]">{{ title() }}</p>
     }
   </div>
 
@@ -40,7 +40,7 @@
           <div class="">
             <p>{{ currentUser().displayName }}</p>
             @if (isMobile) {
-              <p class="text-xs">{{version}}</p>
+              <p class="text-xs">{{ version }}</p>
             }
           </div>
         </div>

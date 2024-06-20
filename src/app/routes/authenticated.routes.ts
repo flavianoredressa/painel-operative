@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        title: 'Administradores',
+        title: 'Configuração',
         loadComponent: () => import('../pages/settings/settings.component').then(c => c.SettingsComponent)
       },
       {
