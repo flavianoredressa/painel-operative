@@ -26,7 +26,8 @@ export class ChecklistCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]]
+    active: [true, [Validators.required]],
+    ref: ['', [Validators.required]]
   });
 
   async ngOnInit() {
@@ -53,10 +54,11 @@ export class ChecklistCreateComponent implements OnInit {
     this.submitting.set(true);
 
     try {
-      const { name, active } = this.formGroup.value;
+      const { name, active, ref } = this.formGroup.value;
       const checklist = {
         active,
-        name
+        name,
+        ref
       };
 
       if (!this.idChecklist) {
@@ -65,7 +67,7 @@ export class ChecklistCreateComponent implements OnInit {
         await this.checkListRepository.update(this.idChecklist, checklist);
       }
       this.toastrService.success(`CheckList ${!this.idChecklist ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/checklist');
+      this.router.navigateByUrl('/checklists');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
