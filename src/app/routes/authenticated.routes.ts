@@ -59,13 +59,13 @@ const routes: Routes = [
       },
       {
         path: 'journey-create',
-        title: 'Jornada da criação',
+        title: 'Cadastrar jornada',
         loadComponent: () =>
           import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
       },
       {
         path: 'journey-create/:id/edit',
-        title: 'Jornada da criação edit',
+        title: 'Editando jornada',
         loadComponent: () =>
           import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
       },
