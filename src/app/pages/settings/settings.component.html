@@ -1,29 +1,28 @@
-<div class="container my-8 bg-[#F6F8FA] p-3 justify-center">
-  <p>Geral</p>
-  <div class="flex flex-wrap md:justify-center items-center">
-    <div class="flex justify-center items-center gap-6">
-      <div class="w-[319px] h-[147px] bg-white rounded-md">
-        <p class="cursor-pointer" routerLink="/journey">Jornadas</p>
-      </div>
-      <div class="w-[319px] h-[147px] bg-white rounded-md">
-        <p class="cursor-pointer" routerLink="/collaborator">Colaborador</p>
-      </div>
-      <div class="w-[319px] h-[147px] bg-white rounded-md">
-        <p class="cursor-pointer" routerLink="/status-sales">Status Vendas</p>
-      </div>
+<div class="container-fluid my-8 bg-[#F6F8FA] px-[38px] py-8 rounded-lg border-gray-200 border-2 border-solid">
+  <div class="w-full bg-white rounded-lg h-12 flex items-center border-gray-200 border-2 border-solid">
+    <img class="ml-4" src="assets/icons/search.svg" alt="" />
+    <input
+      class="w-full text-gray-600 outline-none ml-2 font-normal"
+      type="search"
+      name="Pesquisa"
+      placeholder="Pesquisa"
+      id=""
+    />
+  </div>
+  <div class="bg-white justify-start flex-col h-[157px] rounded-lg flex mt-6 border-2 border-solid border-gray-200">
+    <p class="font-semibold text-xl ml-6 mt-4">Administradores</p>
+    <div
+      class="bg-[#F6F8FA] w-[231px] h-[55px] flex items-center ml-6 rounded-lg border-gray-200 border-2 border-solid mt-6"
+    >
+      <img class="w-7 h-7 ml-5" src="assets/icons/Vector.svg" alt="" />
+      <span class="cursor-pointer font-semibold text-[#666D80] text-lg ml-3" routerLink="/journey">Jornadas</span>
     </div>
   </div>
-  <div class="flex justify-center items-center mt-4">
-    <div class="w-[319px] h-[147px]">
-      <p class="cursor-pointer" routerLink="/status-task">Status Tarefa</p>
-    </div>
-    <div class="w-[319px] h-[147px]">
-      <p class="cursor-pointer" routerLink="/payment-method">Metodo de pagamento</p>
-    </div>
-    <div class="w-[319px] h-[147px]">
-      <p class="cursor-pointer" routerLink="/activity">Atividades</p>
-    </div>
-  </div>
+  <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/collaborator">Colaborador</p>
+  <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/status-sales">Status Vendas</p>
+  <p class="cursor-pointer" routerLink="/status-task">Status Tarefa</p>
+  <p class="cursor-pointer" routerLink="/payment-method">Metodo de pagamento</p>
+  <p class="cursor-pointer" routerLink="/activity">Atividades</p>
   <p class="cursor-pointer" routerLink="/cost-center">Centro de Custo</p>
   <p class="cursor-pointer" routerLink="/project-type">Tipo de Projeto</p>
   <p class="cursor-pointer" routerLink="/charge-type">Tipo de cobrança</p>

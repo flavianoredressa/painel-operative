@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
 import { NgClass } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { sideBarOpenClose } from '@animations/side-bar-open-close';
 import { ImgFallbackDirective, ShortNamePipe } from '@burand/angular';
 import { SessionContext } from '@contexts/session.context';
