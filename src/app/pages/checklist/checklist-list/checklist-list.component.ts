@@ -56,7 +56,35 @@ export class CheckListComponent {
       try {
         await this.ChecklistRepository.delete(id);
         const index = this.list().findIndex((checklist: Checklist) => checklist.id === id);
-        this.list().splice(index, 1);
+        this.filteredList().splice(index, 1);
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar a Atividade?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          name: this.list().find((checklist: Checklist) => checklist.id === id).name,
+          active: !this.list().find((checklist: Checklist) => checklist.id === id).active
+        };
+        await this.ChecklistRepository.update(id, status);
+        const checklist = this.list().find((checklist: Checklist) => checklist.id === id);
+        checklist.active = !checklist.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

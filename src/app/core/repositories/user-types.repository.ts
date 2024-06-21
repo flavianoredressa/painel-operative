@@ -6,7 +6,7 @@ import { environment } from '@environment';
 import { UserTypes } from '@models/user-types';
 import { lastValueFrom } from 'rxjs';
 
-type CreateUserType = Pick<AddDocument<UserTypes>, 'name' | 'active'>;
+type CreateUserTypes = Pick<AddDocument<UserTypes>, 'name' | 'active'>;
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +19,17 @@ export class UserTypesRepository {
   }
 
   async getStatusById(id: string) {
-    const userType = await lastValueFrom(this.httpClient.get<UserTypes>(`${environment.urlApi}/user-types/${id}`));
-    return userType;
+    const userTypes = await lastValueFrom(this.httpClient.get<UserTypes>(`${environment.urlApi}/user-types/${id}`));
+    return userTypes;
   }
 
-  async create(userType: CreateUserType) {
-    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/user-types`, userType));
+  async create(userTypes: CreateUserTypes) {
+    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/user-types`, userTypes));
     return;
   }
 
-  async update(id: string, userType: CreateUserType) {
-    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/user-types/${id}`, userType));
+  async update(id: string, userTypes: CreateUserTypes) {
+    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/user-types/${id}`, userTypes));
     return;
   }
 

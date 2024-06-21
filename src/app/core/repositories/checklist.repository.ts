@@ -33,6 +33,21 @@ export class ChecklistRepository {
     return;
   }
 
+  async getStatusById(id: string) {
+    const checklist = await lastValueFrom(this.httpClient.get<Checklist>(`${environment.urlApi}/checklists/${id}`));
+    return checklist;
+  }
+
+  async create(checklist: CreateChecklist) {
+    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/checklists`, checklist));
+    return;
+  }
+
+  async update(id: string, checklist: CreateChecklist) {
+    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/checklists/${id}`, checklist));
+    return;
+  }
+
   async delete(id: string) {
     await lastValueFrom(this.httpClient.delete(`${environment.urlApi}/checklists/${id}`));
     return;

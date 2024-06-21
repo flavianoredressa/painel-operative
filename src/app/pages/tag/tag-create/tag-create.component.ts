@@ -19,22 +19,22 @@ export class TagCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private tagRepository = inject(TagRepository);
 
-  idTags = getRouterParam('id');
+  idTag = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    color: ['', [Validators.required]],
-    active: [true, [Validators.required]]
+    active: [true, [Validators.required]],
+    color: ['', [Validators.required]]
   });
 
   async ngOnInit() {
     try {
-      if (this.idTags) {
+      if (this.idTag) {
         this.loading.set(true);
-        const tag = await this.tagRepository.getStatusById(this.idTags);
+        const tag = await this.tagRepository.getStatusById(this.idTag);
         this.formGroup.patchValue(tag);
         this.loading.set(false);
       }
@@ -61,12 +61,12 @@ export class TagCreateComponent implements OnInit {
         color
       };
 
-      if (!this.idTags) {
+      if (!this.idTag) {
         await this.tagRepository.create(tag);
       } else {
-        await this.tagRepository.update(this.idTags, tag);
+        await this.tagRepository.update(this.idTag, tag);
       }
-      this.toastrService.success(`Status Sales ${!this.idTags ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Tag ${!this.idTag ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/tags');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

@@ -6,7 +6,7 @@ import { environment } from '@environment';
 import { Collaborator } from '@models/collaborator';
 import { lastValueFrom } from 'rxjs';
 
-type CreateCollaborator = Pick<AddDocument<Collaborator>, 'admission_date' | 'active'>;
+type CreateCollaborator = Pick<AddDocument<Collaborator>, 'admission_date' | 'active' | 'birth_date'>;
 
 @Injectable({
   providedIn: 'root'

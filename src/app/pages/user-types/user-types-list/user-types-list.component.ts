@@ -55,7 +55,7 @@ export class UserTypesListComponent {
     if (res) {
       try {
         await this.userTypesRepository.delete(id);
-        const index = this.list().findIndex((userType: UserTypes) => userType.id === id);
+        const index = this.list().findIndex((userTypes: UserTypes) => userTypes.id === id);
         this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
@@ -79,12 +79,12 @@ export class UserTypesListComponent {
     if (res) {
       try {
         const status = {
-          name: this.list().find((userType: UserTypes) => userType.id === id).name,
-          active: !this.list().find((userType: UserTypes) => userType.id === id).active
+          name: this.list().find((userTypes: UserTypes) => userTypes.id === id).name,
+          active: !this.list().find((userTypes: UserTypes) => userTypes.id === id).active
         };
         await this.userTypesRepository.update(id, status);
-        const userType = this.list().find((userType: UserTypes) => userType.id === id);
-        userType.active = !userType.active;
+        const userTypes = this.list().find((userTypes: UserTypes) => userTypes.id === id);
+        userTypes.active = !userTypes.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

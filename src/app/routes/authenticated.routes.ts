@@ -125,7 +125,7 @@ const routes: Routes = [
       },
       {
         path: 'create-activity',
-        title: 'Criando Atividades',
+        title: 'Cadastrar Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
@@ -230,7 +230,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'checklist',
+        path: 'checklists',
         title: 'Verificar Lista',
         loadComponent: () =>
           import('../pages/checklist/checklist-list/checklist-list.component').then(c => c.CheckListComponent)
@@ -309,24 +309,6 @@ const routes: Routes = [
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
           )
-      },
-      {
-        path: 'client',
-        title: 'Clientes',
-        loadComponent: () =>
-          import('../pages/client/client-list/client-list.component').then(c => c.ClientListComponent)
-      },
-      {
-        path: 'create-client',
-        title: 'Clientes',
-        loadComponent: () =>
-          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
-      },
-      {
-        path: 'create-client/:id/edit',
-        title: 'Clientes',
-        loadComponent: () =>
-          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
       }
     ]
   }

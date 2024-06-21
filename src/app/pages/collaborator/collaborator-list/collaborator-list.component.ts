@@ -22,7 +22,6 @@ export class CollaboratorListComponent {
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
   currentDate: string;
-  
 
   protected formSearch = this.builder.group({
     term: ['']
@@ -65,6 +64,35 @@ export class CollaboratorListComponent {
         await this.collaboratorRepository.delete(id);
         const index = this.list().findIndex((collaborator: Collaborator) => collaborator.id === id);
         this.filteredList().splice(index, 1);
+      } catch (e) {
+        if (e instanceof ApiError) {
+          this.toastr.error(e.message);
+        }
+      }
+    }
+  }
+
+  async changeStatus(id: string) {
+    const modalOptions = {
+      title: 'Confirmação',
+      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      textCancel: 'Voltar',
+      textConfirm: 'Sim',
+      colorButton: '!bg-[#2d9c7f]'
+    };
+
+    const res = await this.modalConfirmationService.open(modalOptions);
+
+    if (res) {
+      try {
+        const status = {
+          admission_date: this.list().find((collaborator: Collaborator) => collaborator.id === id).admission_date,
+          active: !this.list().find((collaborator: Collaborator) => collaborator.id === id).active,
+          birth_date: this.list().find((collaborator: Collaborator) => collaborator.id === id).birth_date
+        };
+        await this.collaboratorRepository.update(id, status);
+        const collaborator = this.list().find((collaborator: Collaborator) => collaborator.id === id);
+        collaborator.active = !collaborator.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

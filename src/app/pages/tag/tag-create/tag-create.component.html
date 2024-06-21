@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <h1 class="font-semibold text-lg md:text-2xl mb-4">
-    {{ !idTags ? "Novo Status de Venda" : "Editar Status de Venda" }}
+    {{ !idTag ? "Novo Status de Venda" : "Editar Status de Venda" }}
   </h1>
 
   <div class="border rounded-md p-4 md:min-h-[212px] relative">
@@ -17,17 +17,21 @@
             <img Icon src="assets/icons/text.svg" alt="email" />
           </app-input>
         </div>
+        <!-- color -->
         <div class="col-md-6 mb-3">
-          <app-input label="Cor" formControlName="color" position="left">
-            <img Icon src="assets/icons/text.svg" alt="color" />
+          <app-input label="Nome" formControlName="color" position="left">
+            <img Icon src="assets/icons/text.svg" alt="email" />
           </app-input>
         </div>
+        <!-- <div class="col-md-6 mb-3">
+          <app-input label="E-mail" formControlName="email" />
+        </div> -->
       </div>
 
       <div class="flex justify-center gap-3 mt-3 md:mt-8">
         <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white">Voltar</a>
         <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting()">
-          {{ !idTags ? "Cadastrar" : "Atualizar" }}
+          {{ !idTag ? "Cadastrar" : "Atualizar" }}
         </button>
       </div>
     </form>

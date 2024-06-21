@@ -17,7 +17,7 @@ export class UserTypesCreateComponent implements OnInit {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
-  private userTypeRepository = inject(UserTypesRepository);
+  private userTypesRepository = inject(UserTypesRepository);
 
   idUserTypes = getRouterParam('id');
 
@@ -33,8 +33,8 @@ export class UserTypesCreateComponent implements OnInit {
     try {
       if (this.idUserTypes) {
         this.loading.set(true);
-        const userType = await this.userTypeRepository.getStatusById(this.idUserTypes);
-        this.formGroup.patchValue(userType);
+        const userTypes = await this.userTypesRepository.getStatusById(this.idUserTypes);
+        this.formGroup.patchValue(userTypes);
         this.loading.set(false);
       }
     } catch (error) {
@@ -54,17 +54,17 @@ export class UserTypesCreateComponent implements OnInit {
 
     try {
       const { name, active } = this.formGroup.value;
-      const userType = {
+      const userTypes = {
         active,
         name
       };
 
       if (!this.idUserTypes) {
-        await this.userTypeRepository.create(userType);
+        await this.userTypesRepository.create(userTypes);
       } else {
-        await this.userTypeRepository.update(this.idUserTypes, userType);
+        await this.userTypesRepository.update(this.idUserTypes, userTypes);
       }
-      this.toastrService.success(`User ${!this.idUserTypes ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`User Types ${!this.idUserTypes ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/user-types');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

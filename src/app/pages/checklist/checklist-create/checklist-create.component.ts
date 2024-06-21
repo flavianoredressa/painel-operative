@@ -17,9 +17,9 @@ export class ChecklistCreateComponent implements OnInit {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
-  private checklistRepository = inject(ChecklistRepository);
+  private checkListRepository = inject(ChecklistRepository);
 
-  idChecklists = getRouterParam('id');
+  idChecklist = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -32,9 +32,9 @@ export class ChecklistCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idChecklists) {
+      if (this.idChecklist) {
         this.loading.set(true);
-        const checklist = await this.checklistRepository.getStatusById(this.idChecklists);
+        const checklist = await this.checkListRepository.getStatusById(this.idChecklist);
         this.formGroup.patchValue(checklist);
         this.loading.set(false);
       }
@@ -61,13 +61,13 @@ export class ChecklistCreateComponent implements OnInit {
         ref
       };
 
-      if (!this.idChecklists) {
-        await this.checklistRepository.create(checklist);
+      if (!this.idChecklist) {
+        await this.checkListRepository.create(checklist);
       } else {
-        await this.checklistRepository.update(this.idChecklists, checklist);
+        await this.checkListRepository.update(this.idChecklist, checklist);
       }
-      this.toastrService.success(`Checklist ${!this.idChecklists ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/checklist');
+      this.toastrService.success(`CheckList ${!this.idChecklist ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.router.navigateByUrl('/checklists');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
