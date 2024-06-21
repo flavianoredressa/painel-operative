@@ -30,8 +30,7 @@ export class CollaboratorCreateComponent implements OnInit {
   formGroup = this.formBuilder.group({
     admission_date: ['', [Validators.required]],
     birth_date: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedStatus: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
 
   selectedStatus = true;

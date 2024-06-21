@@ -113,7 +113,7 @@ const routes: Routes = [
       },
       {
         path: 'cost-center',
-        title: 'Centro de Custos',
+        title: 'Centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-list/cost-center-list.component').then(
             c => c.CostCenterListComponent
@@ -121,7 +121,7 @@ const routes: Routes = [
       },
       {
         path: 'create-cost-center',
-        title: 'Criando Centro de Custos',
+        title: 'Cadastrar centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent
@@ -129,7 +129,7 @@ const routes: Routes = [
       },
       {
         path: 'cost-center/:id/edit',
-        title: 'Editando Centro de Custos',
+        title: 'Editando centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent

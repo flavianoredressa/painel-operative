@@ -27,8 +27,7 @@ export class JourneyCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedJourney: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
 
   async ngOnInit() {

@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { CostCenterRepository } from '@repositories/cost-center.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-cost-center-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './cost-center-create.component.html'
 })
 export class CostCenterCreateComponent implements OnInit {
@@ -20,13 +21,13 @@ export class CostCenterCreateComponent implements OnInit {
   private costCenterRepository = inject(CostCenterRepository);
 
   idCostCenter = getRouterParam('id');
-
+  selectedCostCenter = true;
   loading = signal(false);
   submitting = signal(false);
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]]
+    active: [true, [Validators.required]],
   });
 
   async ngOnInit() {

@@ -27,8 +27,7 @@ export class ActivityCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedActivity: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
 
   async ngOnInit() {
