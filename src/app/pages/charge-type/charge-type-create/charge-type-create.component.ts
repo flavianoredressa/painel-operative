@@ -27,8 +27,7 @@ export class ChargeTypeCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedChargeType: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
 
   async ngOnInit() {
