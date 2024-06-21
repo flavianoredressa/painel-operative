@@ -101,7 +101,7 @@ const routes: Routes = [
       },
       {
         path: 'create-activity',
-        title: 'Criando Atividades',
+        title: 'Cadastrar Atividades',
         loadComponent: () =>
           import('../pages/activity/activity-create/activity-create.component').then(c => c.ActivityCreateComponent)
       },
