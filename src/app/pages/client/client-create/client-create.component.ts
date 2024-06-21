@@ -94,9 +94,9 @@ export class ClientCreateComponent implements OnInit {
         state,
         corporateName,
         type: {
-          id: 8,
+          id: 2,
           active: true,
-          name: 'reth'
+          name: 'cliente'
         }
       };
 

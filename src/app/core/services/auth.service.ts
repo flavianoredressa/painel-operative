@@ -24,7 +24,7 @@ export class AuthService {
       this._http.post<{ type: number }>(`${environment.urlApi}/users/authentication/type`, email)
     );
     console.log(type);
-    return type === 3;
+    return type === 1;
   }
 
   /**

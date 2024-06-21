@@ -20,7 +20,7 @@ export class ActivityCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private activityRepository = inject(ActivityRepository);
 
-  idActivity = getRouterParam('id');
+  idActivitys = getRouterParam('id');
   selectedActivity = true;
   loading = signal(false);
   submitting = signal(false);
