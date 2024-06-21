@@ -161,7 +161,7 @@ const routes: Routes = [
       },
       {
         path: 'charge-type',
-        title: 'Tipo de Cobrança',
+        title: 'Tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-list/charge-type-list.component').then(
             c => c.ChargeTypeListComponent
@@ -169,7 +169,7 @@ const routes: Routes = [
       },
       {
         path: 'create-charge-type',
-        title: 'Tipo de Projeto',
+        title: 'Cadastrar tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
             c => c.ChargeTypeCreateComponent
@@ -177,7 +177,7 @@ const routes: Routes = [
       },
       {
         path: 'create-charge-type/:id/edit',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
             c => c.ChargeTypeCreateComponent
@@ -248,7 +248,7 @@ const routes: Routes = [
       },
       {
         path: 'create-collaborator',
-        title: 'Colaborador',
+        title: 'Cadastrar Colaboradores',
         loadComponent: () =>
           import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
             c => c.CollaboratorCreateComponent
