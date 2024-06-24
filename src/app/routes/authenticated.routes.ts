@@ -185,13 +185,13 @@ const routes: Routes = [
       },
       {
         path: 'user-types',
-        title: 'Tipos de Usuário',
+        title: 'Tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-list/user-types-list.component').then(c => c.UserTypesListComponent)
       },
       {
         path: 'create-user-types',
-        title: 'Tipos de Usuário',
+        title: 'Cadastrar tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-create/user-types-create.component').then(
             c => c.UserTypesCreateComponent
@@ -199,7 +199,7 @@ const routes: Routes = [
       },
       {
         path: 'create-user-types/:id/edit',
-        title: 'Tipos de Usuário',
+        title: 'Tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-create/user-types-create.component').then(
             c => c.UserTypesCreateComponent
