@@ -21,7 +21,6 @@ export class ChargeTypeCreateComponent implements OnInit {
   private chargeTypeRepository = inject(ChargeTypeRepository);
 
   idChargeType = getRouterParam('id');
-  selectedChargeType = true;
   loading = signal(false);
   submitting = signal(false);
 

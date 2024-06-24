@@ -21,7 +21,6 @@ export class CostCenterCreateComponent implements OnInit {
   private costCenterRepository = inject(CostCenterRepository);
 
   idCostCenter = getRouterParam('id');
-  selectedCostCenter = true;
   loading = signal(false);
   submitting = signal(false);
 

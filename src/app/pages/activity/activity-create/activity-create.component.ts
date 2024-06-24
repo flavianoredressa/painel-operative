@@ -21,7 +21,6 @@ export class ActivityCreateComponent implements OnInit {
   private activityRepository = inject(ActivityRepository);
 
   idActivity = getRouterParam('id');
-  selectedActivity = true;
   loading = signal(false);
   submitting = signal(false);
 
