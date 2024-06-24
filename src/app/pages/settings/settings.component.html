@@ -9,16 +9,26 @@
       id=""
     />
   </div>
-  <div class="bg-white justify-start flex-col h-[157px] rounded-lg flex mt-6 border-2 border-solid border-gray-200">
-    <p class="font-semibold text-xl ml-6 mt-4">Administradores</p>
+
+  @for (setting of settingsItems; track $index) {
     <div
-      class="bg-[#F6F8FA] w-[231px] h-[55px] flex items-center ml-6 rounded-lg border-gray-200 border-2 border-solid mt-6"
+      class="bg-white flex justify-start rounded-lg mt-7 border-2 border-solid border-gray-300 flex-wrap p-[25px] gap-6"
     >
-      <img class="w-7 h-7 ml-5" src="assets/icons/Vector.svg" alt="" />
-      <span class="cursor-pointer font-semibold text-[#666D80] text-lg ml-3" routerLink="/journey">Jornadas</span>
+      <p class="font-semibold text-xl w-full">{{ setting.group }}</p>
+      @for (item of setting.items; track $index) {
+        <div class="bg-[#F6F8FA] w-[224px] h-[55px] flex items-center rounded-lg border-gray-300 border-2 border-solid">
+          @if (item.icon) {
+            <lucide-icon class="ml-3 text-[#545968]" [img]="item.icon" [size]="28" />
+          }
+          <span class="cursor-pointer font-semibold text-[#666D80] text-lg ml-3" [routerLink]="item.url">{{
+            item.label
+          }}</span>
+        </div>
+      }
     </div>
-  </div>
-  <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/collaborator">Colaborador</p>
+  }
+
+  <!-- <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/collaborator">Colaborador</p>
   <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/status-sales">Status Vendas</p>
   <p class="cursor-pointer" routerLink="/status-task">Status Tarefa</p>
   <p class="cursor-pointer" routerLink="/payment-method">Metodo de pagamento</p>
@@ -28,5 +38,5 @@
   <p class="cursor-pointer" routerLink="/charge-type">Tipo de cobrança</p>
   <p class="cursor-pointer" routerLink="/user-types">Tipo de usuário</p>
   <p class="cursor-pointer" routerLink="/checklists">Checklist</p>
-  <p class="cursor-pointer" routerLink="/tags">tags</p>
+  <p class="cursor-pointer" routerLink="/tags">tags</p> -->
 </div>
