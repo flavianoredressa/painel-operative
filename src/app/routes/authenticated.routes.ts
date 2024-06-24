@@ -264,7 +264,7 @@ const routes: Routes = [
       },
       {
         path: 'status-task',
-        title: 'Status de Tarefas',
+        title: 'Status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-list/status-task-list.component').then(
             c => c.StatusTaskListComponent
@@ -272,7 +272,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-task',
-        title: 'Status de Tarefas',
+        title: 'Cadastrar status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
@@ -280,7 +280,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-task/:id/edit',
-        title: 'Colaborador',
+        title: 'Status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
