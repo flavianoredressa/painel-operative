@@ -21,7 +21,6 @@ export class JourneyCreateComponent implements OnInit {
   private journeyRepository = inject(JourneyRepository);
 
   idJourney = getRouterParam('id');
-  selectedJourney = true;
   loading = signal(false);
   submitting = signal(false);
 

@@ -20,7 +20,6 @@ export class ProjectTypeCreateComponent implements OnInit {
   private projectTypeRepository = inject(ProjectTypeRepository);
 
   idProjectType = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
