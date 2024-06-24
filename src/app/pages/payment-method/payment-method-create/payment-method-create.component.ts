@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { PaymentMethodRepository } from '@repositories/payment-method.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-payment-method-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './payment-method-create.component.html'
 })
 export class PaymentMethodCreateComponent implements OnInit {
@@ -64,7 +65,9 @@ export class PaymentMethodCreateComponent implements OnInit {
       } else {
         await this.paymentMethodRepository.update(this.idPaymentMethod, paymentMethod);
       }
-      this.toastrService.success(`Método de Pagamento ${!this.idPaymentMethod ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(
+        `Método de Pagamento ${!this.idPaymentMethod ? 'cadastrado' : 'atualizado'} com sucesso.`
+      );
       this.router.navigateByUrl('/payment-method');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
