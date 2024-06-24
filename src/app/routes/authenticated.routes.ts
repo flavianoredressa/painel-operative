@@ -79,7 +79,7 @@ const routes: Routes = [
       },
       {
         path: 'payment-method-create',
-        title: 'Metódo de Pagamento',
+        title: 'Cadastrar metódo de pagamento',
         loadComponent: () =>
           import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
             c => c.PaymentMethodCreateComponent
@@ -87,7 +87,7 @@ const routes: Routes = [
       },
       {
         path: 'payment-method-create/:id/edit',
-        title: 'Metódo de Pagamento edit',
+        title: 'Metódo de pagamento',
         loadComponent: () =>
           import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
             c => c.PaymentMethodCreateComponent
