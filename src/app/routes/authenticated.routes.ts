@@ -137,7 +137,7 @@ const routes: Routes = [
       },
       {
         path: 'project-type',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-list/project-type-list.component').then(
             c => c.ProjectTypeListComponent
@@ -145,7 +145,7 @@ const routes: Routes = [
       },
       {
         path: 'create-project-type',
-        title: 'Tipo de Projeto',
+        title: 'Cadastrar tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-create/project-type-create.component').then(
             c => c.ProjectTypeCreateComponent
@@ -153,7 +153,7 @@ const routes: Routes = [
       },
       {
         path: 'create-project-type/:id/edit',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-create/project-type-create.component').then(
             c => c.ProjectTypeCreateComponent
