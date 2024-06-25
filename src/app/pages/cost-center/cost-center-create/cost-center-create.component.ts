@@ -31,9 +31,9 @@ export class CostCenterCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idCostCenters) {
+      if (this.idCostCenter) {
         this.loading.set(true);
-        const costCenter = await this.costCenterRepository.getStatusById(this.idCostCenters);
+        const costCenter = await this.costCenterRepository.getStatusById(this.idCostCenter);
         this.formGroup.patchValue(costCenter);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class CostCenterCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idCostCenters) {
+      if (!this.idCostCenter) {
         await this.costCenterRepository.create(costCenter);
       } else {
-        await this.costCenterRepository.update(this.idCostCenters, costCenter);
+        await this.costCenterRepository.update(this.idCostCenter, costCenter);
       }
-      this.toastrService.success(`Status Sales ${!this.idCostCenters ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idCostCenter ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/cost-center');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
