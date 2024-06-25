@@ -1,6 +1,6 @@
-<div class="flex h-14 lg:h-[60px] justify-between items-center border-b bg-gray-100/40 px-3">
-  <div class="flex">
-    <button (click)="useSideBar.toggle()" class="me-5">
+<div class="flex h-14 lg:h-[88px] justify-between items-center border-b bg-[#F6F8FA] px-3">
+  <div class="flex gap-3">
+    <button (click)="useSideBar.toggle()">
       <lucide-icon name="menu" />
     </button>
     @if (!isMobile()) {
@@ -10,7 +10,7 @@
 
   <div class="flex">
     <div class="flex items-center">
-      <button class="me-8 p-0" (click)="changeColor()">
+      <button class="me-8 p-0 hidden md:block" (click)="changeColor()">
         <img src="/assets/icons/color-mode.png" alt="" height="25" />
       </button>
       <button class="relative p-0 me-4" (click)="openNotification()">
@@ -25,23 +25,21 @@
 
     <div ngbDropdown class="cursor-pointer">
       @if (currentUser()) {
-        <div class="flex items-center" id="dropdownUser" ngbDropdownToggle>
+        <div class="flex items-center after:hidden md:after:block" id="dropdownUser" ngbDropdownToggle>
           <img
             class="flex items-center"
             width="35"
             height="35"
             alt=""
-            class="rounded-full mx-5"
+            class="rounded-full ms-3 me-5 md:mx-5"
             fallback="https://ui-avatars.com/api/?name={{
               currentUser().displayName | shortName
             }}&background=3c405f&color=fff"
             [src]="currentUser().photoURL"
           />
-          <div class="">
+          <div class="hidden md:block">
             <p>{{ currentUser().displayName }}</p>
-            @if (isMobile) {
-              <p class="text-xs">{{ version }}</p>
-            }
+            <p class="text-xs">{{ version }}</p>
           </div>
         </div>
       }
