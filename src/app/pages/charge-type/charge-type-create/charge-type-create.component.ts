@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ChargeTypeRepository } from '@repositories/charge-type.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './charge-type-create.component.html'
 })
 export class ChargeTypeCreateComponent implements OnInit {
@@ -19,8 +20,7 @@ export class ChargeTypeCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private chargeTypeRepository = inject(ChargeTypeRepository);
 
-  idChargeTypes = getRouterParam('id');
-
+  idChargeType = getRouterParam('id');
   loading = signal(false);
   submitting = signal(false);
 

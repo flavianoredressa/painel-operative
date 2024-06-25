@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <div class="bg-[#F6F8FA] border-[1.8px] rounded-lg p-4 md:min-h-[212px] relative">
-    <h1 class="font-semibold text-lg md:text-2xl mb-10 font-poppins">
+    <h1 class="font-semibold text-lg md:text-2xl mb-8 font-poppins">
       {{ !idCollaborator ? "Informações básicas" : "Editar Colaborador" }}
     </h1>
     @if (loading()) {
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-4">
           <label class="form-label">Status:</label>
-          <ng-select [multiple]="false" [(ngModel)]="selectedStatus" formControlName="active">
+          <ng-select [multiple]="false" formControlName="active">
             <ng-option [value]="true">Ativo</ng-option>
             <ng-option [value]="false">Inativo</ng-option>
           </ng-select>

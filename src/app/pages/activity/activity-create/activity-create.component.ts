@@ -20,15 +20,13 @@ export class ActivityCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private activityRepository = inject(ActivityRepository);
 
-  idActivitys = getRouterParam('id');
-  selectedActivity = true;
+  idActivity = getRouterParam('id');
   loading = signal(false);
   submitting = signal(false);
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedActivity: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
 
   async ngOnInit() {

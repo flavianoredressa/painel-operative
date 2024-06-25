@@ -23,19 +23,15 @@ export class CollaboratorCreateComponent implements OnInit {
   private collaboratorRepository = inject(CollaboratorRepository);
 
   idCollaborator = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
   formGroup = this.formBuilder.group({
     admission_date: ['', [Validators.required]],
     birth_date: ['', [Validators.required]],
-    active: [true, [Validators.required]],
-    selectedStatus: [true, [Validators.required]]
+    active: [true, [Validators.required]]
   });
-
-  selectedStatus = true;
-
+  
   async ngOnInit() {
     try {
       if (this.idCollaborator) {

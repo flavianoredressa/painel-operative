@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { CostCenterRepository } from '@repositories/cost-center.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './cost-center-create.component.html'
 })
 export class CostCenterCreateComponent implements OnInit {
@@ -19,8 +20,7 @@ export class CostCenterCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private costCenterRepository = inject(CostCenterRepository);
 
-  idCostCenters = getRouterParam('id');
-
+  idCostCenter = getRouterParam('id');
   loading = signal(false);
   submitting = signal(false);
 
