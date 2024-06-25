@@ -83,13 +83,13 @@ const routes: Routes = [
       },
       {
         path: 'journey-create',
-        title: 'Jornada da criação',
+        title: 'Cadastrar jornada',
         loadComponent: () =>
           import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
       },
       {
         path: 'journey-create/:id/edit',
-        title: 'Jornada da criação edit',
+        title: 'Editando jornada',
         loadComponent: () =>
           import('../pages/journey/journey-create/journey-create.component').then(c => c.JourneyCreateComponent)
       },
@@ -103,7 +103,7 @@ const routes: Routes = [
       },
       {
         path: 'payment-method-create',
-        title: 'Metódo de Pagamento',
+        title: 'Cadastrar metódo de pagamento',
         loadComponent: () =>
           import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
             c => c.PaymentMethodCreateComponent
@@ -111,7 +111,7 @@ const routes: Routes = [
       },
       {
         path: 'payment-method-create/:id/edit',
-        title: 'Metódo de Pagamento edit',
+        title: 'Metódo de pagamento',
         loadComponent: () =>
           import('../pages/payment-method/payment-method-create/payment-method-create.component').then(
             c => c.PaymentMethodCreateComponent
@@ -137,7 +137,7 @@ const routes: Routes = [
       },
       {
         path: 'cost-center',
-        title: 'Centro de Custos',
+        title: 'Centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-list/cost-center-list.component').then(
             c => c.CostCenterListComponent
@@ -145,7 +145,7 @@ const routes: Routes = [
       },
       {
         path: 'create-cost-center',
-        title: 'Criando Centro de Custos',
+        title: 'Cadastrar centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent
@@ -153,7 +153,7 @@ const routes: Routes = [
       },
       {
         path: 'cost-center/:id/edit',
-        title: 'Editando Centro de Custos',
+        title: 'Editando centro de custos',
         loadComponent: () =>
           import('../pages/cost-center/cost-center-create/cost-center-create.component').then(
             c => c.CostCenterCreateComponent
@@ -161,7 +161,7 @@ const routes: Routes = [
       },
       {
         path: 'project-type',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-list/project-type-list.component').then(
             c => c.ProjectTypeListComponent
@@ -169,7 +169,7 @@ const routes: Routes = [
       },
       {
         path: 'create-project-type',
-        title: 'Tipo de Projeto',
+        title: 'Cadastrar tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-create/project-type-create.component').then(
             c => c.ProjectTypeCreateComponent
@@ -177,7 +177,7 @@ const routes: Routes = [
       },
       {
         path: 'create-project-type/:id/edit',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de projeto',
         loadComponent: () =>
           import('../pages/project-type/project-type-create/project-type-create.component').then(
             c => c.ProjectTypeCreateComponent
@@ -185,7 +185,7 @@ const routes: Routes = [
       },
       {
         path: 'charge-type',
-        title: 'Tipo de Cobrança',
+        title: 'Tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-list/charge-type-list.component').then(
             c => c.ChargeTypeListComponent
@@ -193,7 +193,7 @@ const routes: Routes = [
       },
       {
         path: 'create-charge-type',
-        title: 'Tipo de Projeto',
+        title: 'Cadastrar tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
             c => c.ChargeTypeCreateComponent
@@ -201,7 +201,7 @@ const routes: Routes = [
       },
       {
         path: 'create-charge-type/:id/edit',
-        title: 'Tipo de Projeto',
+        title: 'Tipo de cobrança',
         loadComponent: () =>
           import('../pages/charge-type/charge-type-create/charge-type-create.component').then(
             c => c.ChargeTypeCreateComponent
@@ -209,13 +209,13 @@ const routes: Routes = [
       },
       {
         path: 'user-types',
-        title: 'Tipos de Usuário',
+        title: 'Tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-list/user-types-list.component').then(c => c.UserTypesListComponent)
       },
       {
         path: 'create-user-types',
-        title: 'Tipos de Usuário',
+        title: 'Cadastrar tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-create/user-types-create.component').then(
             c => c.UserTypesCreateComponent
@@ -223,7 +223,7 @@ const routes: Routes = [
       },
       {
         path: 'create-user-types/:id/edit',
-        title: 'Tipos de Usuário',
+        title: 'Tipos de usuário',
         loadComponent: () =>
           import('../pages/user-types/user-types-create/user-types-create.component').then(
             c => c.UserTypesCreateComponent
@@ -272,7 +272,7 @@ const routes: Routes = [
       },
       {
         path: 'create-collaborator',
-        title: 'Colaborador',
+        title: 'Cadastrar Colaboradores',
         loadComponent: () =>
           import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
             c => c.CollaboratorCreateComponent
@@ -288,7 +288,7 @@ const routes: Routes = [
       },
       {
         path: 'status-task',
-        title: 'Status de Tarefas',
+        title: 'Status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-list/status-task-list.component').then(
             c => c.StatusTaskListComponent
@@ -296,7 +296,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-task',
-        title: 'Status de Tarefas',
+        title: 'Cadastrar status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
@@ -304,7 +304,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-task/:id/edit',
-        title: 'Colaborador',
+        title: 'Status de tarefas',
         loadComponent: () =>
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent

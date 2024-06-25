@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { StatusTaskRepository } from '@repositories/status-task.repository';
 import { ToastrService } from 'ngx-toastr';
@@ -10,8 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-satus-task-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
-  templateUrl: './status-task-create.component.html'
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
+  templateUrl: './status-task-create.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatusTaskCreateComponent implements OnInit {
   private router = inject(Router);
