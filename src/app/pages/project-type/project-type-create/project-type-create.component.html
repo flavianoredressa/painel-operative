@@ -12,7 +12,7 @@
     <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
       <div class="row">
         <div class="col-md-6 mb-3">
-          <app-input label="Nome" formControlName="name" position="left">
+          <app-input placeholder="Digite aqui..." label="Nome" formControlName="name" position="left">
             <img Icon src="assets/icons/text.svg" alt="name" />
           </app-input>
         </div>

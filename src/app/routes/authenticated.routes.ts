@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'status-sales',
-        title: 'Status de Vendas',
+        title: 'Status de vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-list/status-sale-list.component').then(
             c => c.StatusSaleListComponent
@@ -37,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-sales',
-        title: 'Criando Status de Vendas',
+        title: 'Cadastrar status de vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.StatusSaleCreateComponent
@@ -45,7 +45,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-sales/:id/edit',
-        title: 'Editando Status de Vendas',
+        title: 'Editando status de vendas',
         loadComponent: () =>
           import('../pages/status-sale/status-sale-create/status-sale-create.component').then(
             c => c.StatusSaleCreateComponent
@@ -53,7 +53,7 @@ const routes: Routes = [
       },
       {
         path: 'status-tasks',
-        title: 'Status de Vendas',
+        title: 'Status de tarefa',
         loadComponent: () =>
           import('../pages/status-task/status-task-list/status-task-list.component').then(
             c => c.StatusTaskListComponent
@@ -61,7 +61,7 @@ const routes: Routes = [
       },
       {
         path: 'create-status-tasks',
-        title: 'Criando Status de Vendas',
+        title: 'Cadastrar Status de tarefa',
         loadComponent: () =>
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
@@ -272,7 +272,7 @@ const routes: Routes = [
       },
       {
         path: 'create-collaborator',
-        title: 'Cadastrar Colaboradores',
+        title: 'Cadastrar colaborador',
         loadComponent: () =>
           import('../pages/collaborator/collaborator-create/collaborator-create.component').then(
             c => c.CollaboratorCreateComponent
@@ -318,7 +318,7 @@ const routes: Routes = [
       },
       {
         path: 'create-client',
-        title: 'Clientes',
+        title: 'Cadastrar clientes',
         loadComponent: () =>
           import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
       },
