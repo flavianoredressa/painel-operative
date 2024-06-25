@@ -1,9 +1,8 @@
 <div class="container mb-5">
-  <h1 class="font-semibold text-lg md:text-2xl mb-4">
-    {{ !idClients ? "Novo Cliente" : "Editar Cliente" }}
-  </h1>
-
-  <div class="border rounded-md p-4 md:min-h-[212px] relative">
+  <div class="bg-[#F6F8FA] border-[1.8px] rounded-lg p-4 md:min-h-[212px] relative">
+    <h1 class="font-semibold text-lg md:text-2xl mb-8 font-poppins">
+      {{ !idClients ? "Informações básicas" : "Editar cliente" }}
+    </h1>
     @if (loading()) {
       <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
         <span class="spinner-border spinner-border-sm mr-1"></span>
@@ -23,19 +22,21 @@
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <app-input label="Nome" formControlName="name" position="left">
-            <img Icon src="assets/icons/text.svg" alt="email" />
+          <app-input placeholder="Digite aqui..." label="Nome" formControlName="name" position="left">
+            <img Icon src="assets/icons/name.svg" alt="name" />
           </app-input>
         </div>
         <div class="col-md-6 mb-3">
-          <app-input label="E-mail" formControlName="email" />
+          <app-input placeholder="Digite aqui..." label="E-mail" formControlName="email" position="left">
+            <img Icon src="assets/icons/email.svg" alt="email" />
+          </app-input>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4 mb-3">
-          <app-input label="Telefone" formControlName="cellphone" position="left">
-            <img Icon src="assets/icons/text.svg" alt="cellphone" />
+          <app-input placeholder="Digite aqui..." label="Telefone" formControlName="cellphone" position="left">
+            <img Icon src="assets/icons/telefone.svg" alt="cellphone" />
           </app-input>
         </div>
         <div class="col-md-4 b-3">
@@ -46,64 +47,64 @@
           </ng-select>
         </div>
         <div class="col-md-4 mb-3">
-          <app-input label="CNPJ" formControlName="CNPJ" position="left">
-            <img Icon src="assets/icons/text.svg" alt="cnpj" />
+          <app-input placeholder="Digite aqui..." label="CNPJ" formControlName="CNPJ" position="left">
+            <img Icon src="assets/icons/numero.svg" alt="cnpj" />
           </app-input>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <app-input label="Razão Social" formControlName="corporateName" position="left">
+          <app-input placeholder="Digite aqui..." label="Razão Social" formControlName="corporateName" position="left">
             <img Icon src="assets/icons/text.svg" alt="corporate name" />
           </app-input>
         </div>
         <div class="col-md-6 mb-3">
-          <app-input label="Gerente" formControlName="manager" position="left">
-            <img Icon src="assets/icons/text.svg" alt="manager" />
+          <app-input placeholder="Digite aqui..." label="Gerente" formControlName="manager" position="left">
+            <img Icon src="assets/icons/name.svg" alt="manager" />
           </app-input>
         </div>
       </div>
 
-      <h4>Endereço</h4>
+      <h4 class="my-4">Endereço</h4>
 
       <div class="row">
         <div class="col-md-4 mb-3">
-          <app-input label="CEP" formControlName="CEP" position="left">
-            <img Icon src="assets/icons/text.svg" alt="cep" />
+          <app-input placeholder="Digite aqui..." label="CEP" formControlName="CEP" position="left">
+            <img Icon src="assets/icons/numero.svg" alt="cep" />
           </app-input>
         </div>
         <div class="col-md-2 mb-3">
           <app-input label="Número" formControlName="number" position="left">
-            <img Icon src="assets/icons/text.svg" alt="number" />
+            <img Icon src="assets/icons/numero.svg" alt="number" />
           </app-input>
         </div>
         <div class="col-md-4 mb-3">
-          <app-input label="Rua" formControlName="street" position="left">
-            <img Icon src="assets/icons/text.svg" alt="street" />
+          <app-input placeholder="Digite aqui..." label="Rua" formControlName="street" position="left">
+            <img class="w-[24px] h-[24px]" Icon src="assets/images/rua.png" alt="street" />
           </app-input>
         </div>
         <div class="col-md-2 mb-3">
-          <app-input label="Estado" formControlName="state" position="left">
-            <img Icon src="assets/icons/text.svg" alt="state" />
+          <app-input placeholder="Digite aqui..." label="Estado" formControlName="state" position="left">
+            <img class="w-[24px] h-[24px]" Icon src="assets/images/estado.png" alt="state" />
           </app-input>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <app-input label="Bairro" formControlName="district" position="left">
-            <img Icon src="assets/icons/text.svg" alt="district" />
+          <app-input placeholder="Digite aqui..." label="Bairro" formControlName="district" position="left">
+            <img Icon src="assets/icons/bairro.svg" alt="district" />
           </app-input>
         </div>
         <div class="col-md-6 mb-3">
-          <app-input label="Cidade" formControlName="city" position="left">
-            <img Icon src="assets/icons/text.svg" alt="city" />
+          <app-input placeholder="Digite aqui..." label="Cidade" formControlName="city" position="left">
+            <img class="w-[24px] h-[24px]" Icon src="assets/images/cidade.png" alt="city" />
           </app-input>
         </div>
       </div>
 
-      <div class="flex justify-center gap-3 mt-3 md:mt-8">
+      <div class="flex justify-end gap-3 mt-3 md:mt-8">
         <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white">Voltar</a>
         <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting()">
           {{ !idClients ? "Cadastrar" : "Atualizar" }}
