@@ -9,7 +9,7 @@ import { TagRepository } from '@repositories/tag.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-tag-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './tag-create.component.html'

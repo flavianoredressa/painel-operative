@@ -15,23 +15,23 @@ export class PaymentMethodRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<[PaymentMethod]>(`${environment.urlApi}/payment-method`);
+    return this.httpClient.get<PaymentMethod[]>(`${environment.urlApi}/payment-method`);
   }
 
   async getStatusById(id: string) {
-    const payment = await lastValueFrom(
+    const paymentMethod = await lastValueFrom(
       this.httpClient.get<PaymentMethod>(`${environment.urlApi}/payment-method/${id}`)
     );
-    return payment;
+    return paymentMethod;
   }
 
-  async create(payment: CreatePaymentMethod) {
-    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/payment-method`, payment));
+  async create(paymentMethod: CreatePaymentMethod) {
+    await lastValueFrom(this.httpClient.post(`${environment.urlApi}/payment-method`, paymentMethod));
     return;
   }
 
-  async update(id: string, payment: CreatePaymentMethod) {
-    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/payment-method/${id}`, payment));
+  async update(id: string, paymentMethod: CreatePaymentMethod) {
+    await lastValueFrom(this.httpClient.put(`${environment.urlApi}/payment-method/${id}`, paymentMethod));
     return;
   }
 

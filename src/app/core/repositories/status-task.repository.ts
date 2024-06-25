@@ -6,7 +6,7 @@ import { environment } from '@environment';
 import { StatusTask } from '@models/status-task';
 import { lastValueFrom } from 'rxjs';
 
-type CreatestatusTask = Pick<AddDocument<StatusTask>, 'name' | 'active'>;
+type CreateStatusTask = Pick<AddDocument<StatusTask>, 'name' | 'active'>;
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,12 @@ export class StatusTaskRepository {
     return statusTask;
   }
 
-  async create(statusTask: CreatestatusTask) {
+  async create(statusTask: CreateStatusTask) {
     await lastValueFrom(this.httpClient.post(`${environment.urlApi}/status-task`, statusTask));
     return;
   }
 
-  async update(id: string, statusTask: CreatestatusTask) {
+  async update(id: string, statusTask: CreateStatusTask) {
     await lastValueFrom(this.httpClient.put(`${environment.urlApi}/status-task/${id}`, statusTask));
     return;
   }

@@ -9,7 +9,7 @@ import { CostCenterRepository } from '@repositories/cost-center.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cost-center-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './cost-center-create.component.html'
@@ -26,7 +26,7 @@ export class CostCenterCreateComponent implements OnInit {
 
   formGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
-    active: [true, [Validators.required]],
+    active: [true, [Validators.required]]
   });
 
   async ngOnInit() {
@@ -64,7 +64,7 @@ export class CostCenterCreateComponent implements OnInit {
       } else {
         await this.costCenterRepository.update(this.idCostCenter, costCenter);
       }
-      this.toastrService.success(`Cost Center ${!this.idCostCenter ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idCostCenter ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/cost-center');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

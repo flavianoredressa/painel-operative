@@ -9,7 +9,7 @@ import { JourneyRepository } from '@repositories/journey.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-jouney-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './journey-create.component.html'
@@ -64,7 +64,7 @@ export class JourneyCreateComponent implements OnInit {
       } else {
         await this.journeyRepository.update(this.idJourney, journey);
       }
-      this.toastrService.success(`Journey ${!this.idJourney ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idJourney ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/journey');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

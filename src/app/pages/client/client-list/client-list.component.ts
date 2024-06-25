@@ -5,20 +5,20 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
-import { Journey } from '@models/journey';
+import { Client } from '@models/client';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { JourneyRepository } from '@repositories/journey.repository';
+import { ClientRepository } from '@repositories/client.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-list-journey',
+  selector: 'app-list-client',
   standalone: true,
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
-  templateUrl: './journey-list.component.html'
+  templateUrl: './client-list.component.html'
 })
-export class JourneyListComponent {
+export class ClientListComponent {
   modalConfirmationService = inject(ModalConfirmationService);
-  journeysRepository = inject(JourneyRepository);
+  clientsRepository = inject(ClientRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
 
@@ -26,26 +26,26 @@ export class JourneyListComponent {
     term: ['']
   });
 
-  list = toSignal(this.journeysRepository.getAll(), { initialValue: [null] });
+  list = toSignal(this.clientsRepository.getAll(), { initialValue: [null] });
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
-    const journeys = this.list();
-    return journeys.length === 1 && journeys[0] === null;
+    const clients = this.list();
+    return clients.length === 1 && clients[0] === null;
   });
 
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.list().filter(
-      (item: Journey) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
+      (item: Client) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );
   });
 
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir a Jornada?',
+      message: 'Você tem certeza que quer excluir o Status de vendas?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };
@@ -54,8 +54,8 @@ export class JourneyListComponent {
 
     if (res) {
       try {
-        await this.journeysRepository.delete(id);
-        const index = this.list().findIndex((journey: Journey) => journey.id === id);
+        await this.clientsRepository.delete(id);
+        const index = this.list().findIndex((client: Client) => client.id === id);
         this.filteredList().splice(index, 1);
       } catch (e) {
         if (e instanceof ApiError) {
@@ -68,7 +68,7 @@ export class JourneyListComponent {
   async changeStatus(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer mudar a Jornada?',
+      message: 'Você tem certeza que quer mudar o Cliente?',
       textCancel: 'Voltar',
       textConfirm: 'Sim',
       colorButton: '!bg-[#2d9c7f]'
@@ -79,12 +79,12 @@ export class JourneyListComponent {
     if (res) {
       try {
         const status = {
-          name: this.list().find((journey: Journey) => journey.id === id).name,
-          active: !this.list().find((journey: Journey) => journey.id === id).active
+          name: this.list().find((client: Client) => client.id === id).name,
+          active: !this.list().find((client: Client) => client.id === id).active
         };
-        await this.journeysRepository.update(id, status);
-        const journey = this.list().find((journey: Journey) => journey.id === id);
-        journey.active = !journey.active;
+        await this.clientsRepository.update(id, status);
+        const client = this.list().find((client: Client) => client.id === id);
+        client.active = !client.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

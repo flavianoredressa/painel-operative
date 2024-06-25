@@ -9,7 +9,7 @@ import { ChecklistRepository } from '@repositories/checklist.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-checklist-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './checklist-create.component.html'

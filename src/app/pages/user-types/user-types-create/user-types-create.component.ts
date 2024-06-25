@@ -9,7 +9,7 @@ import { UserTypesRepository } from '@repositories/user-types.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-user-types-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './user-types-create.component.html'

@@ -9,7 +9,7 @@ import { StatusTaskRepository } from '@repositories/status-task.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-status-task-create',
+  selector: 'app-satus-task-create',
   standalone: true,
   imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './status-task-create.component.html',
@@ -21,7 +21,7 @@ export class StatusTaskCreateComponent implements OnInit {
   private toastrService = inject(ToastrService);
   private statusTaskRepository = inject(StatusTaskRepository);
 
-  idStatusTask = getRouterParam('id');
+  idStatusTasks = getRouterParam('id');
 
   loading = signal(false);
   submitting = signal(false);
@@ -33,10 +33,10 @@ export class StatusTaskCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idStatusTask) {
+      if (this.idStatusTasks) {
         this.loading.set(true);
-        const statusSale = await this.statusTaskRepository.getStatusById(this.idStatusTask);
-        this.formGroup.patchValue(statusSale);
+        const statusTask = await this.statusTaskRepository.getStatusById(this.idStatusTasks);
+        this.formGroup.patchValue(statusTask);
         this.loading.set(false);
       }
     } catch (error) {
@@ -56,18 +56,18 @@ export class StatusTaskCreateComponent implements OnInit {
 
     try {
       const { name, active } = this.formGroup.value;
-      const statusSale = {
+      const statusTask = {
         active,
         name
       };
 
-      if (!this.idStatusTask) {
-        await this.statusTaskRepository.create(statusSale);
+      if (!this.idStatusTasks) {
+        await this.statusTaskRepository.create(statusTask);
       } else {
-        await this.statusTaskRepository.update(this.idStatusTask, statusSale);
+        await this.statusTaskRepository.update(this.idStatusTasks, statusTask);
       }
-      this.toastrService.success(`Status Task ${!this.idStatusTask ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/status-task');
+      this.toastrService.success(`Status Tasks ${!this.idStatusTasks ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.router.navigateByUrl('/status-tasks');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);

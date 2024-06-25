@@ -52,6 +52,30 @@ const routes: Routes = [
           )
       },
       {
+        path: 'status-tasks',
+        title: 'Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-list/status-task-list.component').then(
+            c => c.StatusTaskListComponent
+          )
+      },
+      {
+        path: 'create-status-tasks',
+        title: 'Criando Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
+      },
+      {
+        path: 'create-status-tasks/:id/edit',
+        title: 'Editando Status de Vendas',
+        loadComponent: () =>
+          import('../pages/status-task/status-task-create/status-task-create.component').then(
+            c => c.StatusTaskCreateComponent
+          )
+      },
+      {
         path: 'journey',
         title: 'Jornada',
         loadComponent: () =>
@@ -285,6 +309,24 @@ const routes: Routes = [
           import('../pages/status-task/status-task-create/status-task-create.component').then(
             c => c.StatusTaskCreateComponent
           )
+      },
+      {
+        path: 'client',
+        title: 'Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-list/client-list.component').then(c => c.ClientListComponent)
+      },
+      {
+        path: 'create-client',
+        title: 'Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
+      },
+      {
+        path: 'create-client/:id/edit',
+        title: 'Clientes',
+        loadComponent: () =>
+          import('../pages/client/client-create/client-create.component').then(c => c.ClientCreateComponent)
       }
     ]
   }
