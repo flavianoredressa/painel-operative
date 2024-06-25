@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
+import { InputComponent } from '@forms/input/input.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
@@ -30,9 +31,9 @@ export class ProjectTypeCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idProjectTypes) {
+      if (this.idProjectType) {
         this.loading.set(true);
-        const projectType = await this.projectTypeRepository.getStatusById(this.idProjectTypes);
+        const projectType = await this.projectTypeRepository.getStatusById(this.idProjectType);
         this.formGroup.patchValue(projectType);
         this.loading.set(false);
       }
@@ -58,12 +59,12 @@ export class ProjectTypeCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idProjectTypes) {
+      if (!this.idProjectType) {
         await this.projectTypeRepository.create(projectType);
       } else {
-        await this.projectTypeRepository.update(this.idProjectTypes, projectType);
+        await this.projectTypeRepository.update(this.idProjectType, projectType);
       }
-      this.toastrService.success(`Status Sales ${!this.idProjectTypes ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/project-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

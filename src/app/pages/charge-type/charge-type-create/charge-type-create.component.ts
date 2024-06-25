@@ -31,9 +31,9 @@ export class ChargeTypeCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idChargeTypes) {
+      if (this.idChargeType) {
         this.loading.set(true);
-        const chargeType = await this.chargeTypeRepository.getStatusById(this.idChargeTypes);
+        const chargeType = await this.chargeTypeRepository.getStatusById(this.idChargeType);
         this.formGroup.patchValue(chargeType);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class ChargeTypeCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idChargeTypes) {
+      if (!this.idChargeType) {
         await this.chargeTypeRepository.create(chargeType);
       } else {
-        await this.chargeTypeRepository.update(this.idChargeTypes, chargeType);
+        await this.chargeTypeRepository.update(this.idChargeType, chargeType);
       }
-      this.toastrService.success(`Status Sales ${!this.idChargeTypes ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idChargeType ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/charge-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

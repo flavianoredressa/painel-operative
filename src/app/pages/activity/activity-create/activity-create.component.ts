@@ -31,9 +31,9 @@ export class ActivityCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idActivitys) {
+      if (this.idActivity) {
         this.loading.set(true);
-        const activity = await this.activityRepository.getStatusById(this.idActivitys);
+        const activity = await this.activityRepository.getStatusById(this.idActivity);
         this.formGroup.patchValue(activity);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class ActivityCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idActivitys) {
+      if (!this.idActivity) {
         await this.activityRepository.create(activity);
       } else {
-        await this.activityRepository.update(this.idActivitys, activity);
+        await this.activityRepository.update(this.idActivity, activity);
       }
-      this.toastrService.success(`Status Sales ${!this.idActivitys ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idActivity ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/activity');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

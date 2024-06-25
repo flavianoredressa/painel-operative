@@ -66,7 +66,7 @@ export class PaymentMethodCreateComponent implements OnInit {
         await this.paymentMethodRepository.update(this.idPaymentMethods, paymentMethod);
       }
       this.toastrService.success(
-        `Método de Pagamento ${!this.idPaymentMethod ? 'cadastrado' : 'atualizado'} com sucesso.`
+        `Método de Pagamento ${!this.idPaymentMethods ? 'cadastrado' : 'atualizado'} com sucesso.`
       );
       this.router.navigateByUrl('/payment-method');
     } catch (error) {

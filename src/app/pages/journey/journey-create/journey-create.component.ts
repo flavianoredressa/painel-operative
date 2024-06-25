@@ -31,9 +31,9 @@ export class JourneyCreateComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      if (this.idJourneys) {
+      if (this.idJourney) {
         this.loading.set(true);
-        const journey = await this.journeyRepository.getStatusById(this.idJourneys);
+        const journey = await this.journeyRepository.getStatusById(this.idJourney);
         this.formGroup.patchValue(journey);
         this.loading.set(false);
       }
@@ -59,12 +59,12 @@ export class JourneyCreateComponent implements OnInit {
         name
       };
 
-      if (!this.idJourneys) {
+      if (!this.idJourney) {
         await this.journeyRepository.create(journey);
       } else {
-        await this.journeyRepository.update(this.idJourneys, journey);
+        await this.journeyRepository.update(this.idJourney, journey);
       }
-      this.toastrService.success(`Status Sales ${!this.idJourneys ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idJourney ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/journey');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
