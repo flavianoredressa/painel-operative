@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-client-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule, NgIf],
   templateUrl: './client-create.component.html'
 })
 export class ClientCreateComponent implements OnInit {
@@ -118,5 +119,36 @@ export class ClientCreateComponent implements OnInit {
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  // Variável para controlar se a imagem padrão ou a imagem do perfil deve ser exibida
+  showDefaultImage: boolean = true;
+
+  // URL da imagem do perfil que será exibida
+  profileImageUrl: string;
+
+  // Função chamada quando o usuário seleciona um arquivo de imagem
+  onFileSelected(event: Event) {
+    // Obtém o input de arquivo (file input) que acionou o evento
+    const inputElement = event.target as HTMLInputElement;
+    // Obtém o arquivo de imagem selecionado pelo usuário
+    const arquivo = inputElement.files?.[0];
+
+    if (arquivo) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        // Verifica se o resultado da leitura do arquivo está disponível
+        if (e.target?.result) {
+          // Define a URL da imagem do perfil como o resultado da leitura do arquivo
+          this.profileImageUrl = e.target.result as string;
+          // Define que a imagem do perfil (e não a imagem padrão) deve ser exibida
+          this.showDefaultImage = false;
+        }
+      };
+      // Lê o conteúdo do arquivo como um URL de dados (data URL)
+      reader.readAsDataURL(arquivo);
+    }
+    // Limpar o valor do arquivo selecionado no input
+    inputElement.value = '';
   }
 }
