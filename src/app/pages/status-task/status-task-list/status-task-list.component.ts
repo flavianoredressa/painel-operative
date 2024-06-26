@@ -8,12 +8,13 @@ import { ModalConfirmationService } from '@components/modals/modal-confirmation/
 import { StatusTask } from '@models/status-task';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusTaskRepository } from '@repositories/status-task.repository';
+import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-status-task',
   standalone: true,
-  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, JsonPipe],
+  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, JsonPipe, LucideAngularModule],
   templateUrl: './status-task-list.component.html'
 })
 export class StatusTaskListComponent {
