@@ -1,10 +1,13 @@
-<div class="container my-8">
+<div class="container">
+  <div class="my-5 cursor-pointer" (click)="goBack()">
+    <lucide-icon name="arrow-left"></lucide-icon>
+  </div>
   <div class="flex justify-between">
     <form [formGroup]="formSearch" class="relative select-none mb-4 md:mb-0">
       <input
         formControlName="term"
         placeholder="Pesquisar"
-        class="h-[38px] border border-solid w-[163px] border-[#C1C7D0] bg-[#F6F8FA] rounded-lg outline-none ps-11 select-text"
+        class="h-[38px] border border-solid max-sm:w-[163px] md:w-[232px] border-[#C1C7D0] bg-[#F6F8FA] rounded-lg outline-none ps-11 select-text"
       />
       <img src="assets/icons/search.svg" class="absolute top-50 left-4 translate-y-1/2" alt="" srcset="" />
     </form>
@@ -33,7 +36,7 @@
         <tbody>
           @if (isLoading()) {
             <tr>
-              <td colspan="3" class="text-center">
+              <td colspan="4" class="text-center">
                 <span class="spinner-border spinner-border-sm mr-1"></span>
               </td>
             </tr>
