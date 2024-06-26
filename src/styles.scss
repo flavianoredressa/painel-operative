@@ -37,7 +37,7 @@ lucide-icon svg {
 }
 
 table {
-  @apply md:table-fixed w-full text-left border-separate border-spacing-0 border-[1.8px] border-solid border-[#c1c7d0] rounded-lg font-poppins whitespace-nowrap;
+  @apply md:table-fixed w-full text-left border-separate border-spacing-0 sm:border-[2px] border-solid md:border-[#c1c7d0] rounded-lg font-poppins whitespace-nowrap;
   & thead {
     @apply bg-[#ECEFF3];
     th {
@@ -68,21 +68,22 @@ table {
 tbody tr:last-child td {
   border-bottom: none;
 }
+@media screen and (min-width: 600px) {
+  thead tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+  }
 
-thead tr:first-child th:first-child {
-  border-top-left-radius: 8px;
-}
+  thead tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+  }
 
-thead tr:first-child th:last-child {
-  border-top-right-radius: 8px;
-}
+  tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
 
-tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 8px;
-}
-
-tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 8px;
+  tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
 }
 
 ngb-pagination {

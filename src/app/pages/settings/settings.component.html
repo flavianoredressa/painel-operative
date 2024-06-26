@@ -1,42 +1,46 @@
-<div class="container-fluid my-8 bg-[#F6F8FA] px-[38px] py-8 rounded-lg border-gray-200 border-2 border-solid">
-  <div class="w-full bg-white rounded-lg h-12 flex items-center border-gray-200 border-2 border-solid">
-    <img class="ml-4" src="assets/icons/search.svg" alt="" />
-    <input
-      class="w-full text-gray-600 outline-none ml-2 font-normal"
-      type="search"
-      name="Pesquisa"
-      placeholder="Pesquisa"
-      id=""
-    />
-  </div>
-
-  @for (setting of settingsItems; track $index) {
-    <div
-      class="bg-white flex justify-start rounded-lg mt-7 border-2 border-solid border-gray-300 flex-wrap p-[25px] gap-6"
-    >
-      <p class="font-semibold text-xl w-full">{{ setting.group }}</p>
-      @for (item of setting.items; track $index) {
-        <div class="bg-[#F6F8FA] w-[224px] h-[55px] flex items-center rounded-lg border-gray-300 border-2 border-solid">
-          @if (item.icon) {
-            <lucide-icon class="ml-3 text-[#545968]" [img]="item.icon" [size]="28" />
-          }
-          <span class="cursor-pointer font-semibold text-[#666D80] text-lg ml-3" [routerLink]="item.url">{{
-            item.label
-          }}</span>
-        </div>
-      }
+<div class="px-7">
+  <div class="container-fluid my-8 bg-[#F6F8FA] px-[38px] py-8 px rounded-lg border-gray-200 border-2 border-solid">
+    <div class="w-full bg-white rounded-lg h-12 flex items-center border-gray-200 border-2 border-solid">
+      <img class="ml-4" src="assets/icons/search.svg" alt="" />
+      <input
+        class="w-full text-gray-600 outline-none ml-2 font-normal"
+        type="search"
+        name="Pesquisa"
+        placeholder="Pesquisa"
+        id=""
+      />
     </div>
-  }
 
-  <!-- <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/collaborator">Colaborador</p>
-  <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/status-sales">Status Vendas</p>
-  <p class="cursor-pointer" routerLink="/status-task">Status Tarefa</p>
-  <p class="cursor-pointer" routerLink="/payment-method">Metodo de pagamento</p>
-  <p class="cursor-pointer" routerLink="/activity">Atividades</p>
-  <p class="cursor-pointer" routerLink="/cost-center">Centro de Custo</p>
-  <p class="cursor-pointer" routerLink="/project-type">Tipo de Projeto</p>
-  <p class="cursor-pointer" routerLink="/charge-type">Tipo de cobrança</p>
-  <p class="cursor-pointer" routerLink="/user-types">Tipo de usuário</p>
-  <p class="cursor-pointer" routerLink="/checklists">Checklist</p>
-  <p class="cursor-pointer" routerLink="/tags">tags</p> -->
+    @for (setting of settingsItems; track $index) {
+      <div
+        class="bg-white flex justify-start rounded-lg mt-7 border-2 border-solid border-gray-300 flex-wrap p-[25px] gap-6"
+      >
+        <p class="font-semibold text-xl w-full">{{ setting.group }}</p>
+        @for (item of setting.items; track $index) {
+          <div
+            class="bg-[#F6F8FA] w-[224px] h-[55px] flex items-center rounded-lg border-gray-300 border-2 border-solid"
+          >
+            @if (item.icon) {
+              <lucide-icon class="ml-3 text-[#545968]" [img]="item.icon" [size]="28" />
+            }
+            <span class="cursor-pointer font-semibold text-[#666D80] text-lg ml-3" [routerLink]="item.url">{{
+              item.label
+            }}</span>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/collaborator">Colaborador</p>
+    <p class="cursor-pointer font-semibold text-[#666D80] mt-5 text-lg" routerLink="/status-sales">Status Vendas</p>
+    <p class="cursor-pointer" routerLink="/status-task">Status Tarefa</p>
+    <p class="cursor-pointer" routerLink="/payment-method">Metodo de pagamento</p>
+    <p class="cursor-pointer" routerLink="/activity">Atividades</p>
+    <p class="cursor-pointer" routerLink="/cost-center">Centro de Custo</p>
+    <p class="cursor-pointer" routerLink="/project-type">Tipo de Projeto</p>
+    <p class="cursor-pointer" routerLink="/charge-type">Tipo de cobrança</p>
+    <p class="cursor-pointer" routerLink="/user-types">Tipo de usuário</p>
+    <p class="cursor-pointer" routerLink="/checklists">Checklist</p>
+    <p class="cursor-pointer" routerLink="/tags">tags</p> -->
+  </div>
 </div>
