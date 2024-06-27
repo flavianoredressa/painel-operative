@@ -1,17 +1,19 @@
-<div class="flex h-14 lg:h-[60px] justify-between items-center border-b bg-gray-100/40 px-3">
-  <div class="flex">
-    <button (click)="useSideBar.toggle()" class="me-5">
-      <lucide-icon name="menu" />
-    </button>
-    @if (!isMobile) {
-      <p class="size-5 font-poppins line-height-[33px] font-semibold whitespace-nowrap">{{ title() }}</p>
-    }
-  </div>
+@if (currentUser()) {
+  <div class="flex h-[88px] justify-between items-center border-b bg-[#F6F8FA] px-3">
+    <div class="flex gap-3">
+      <button (click)="useSideBar.toggle()">
+        <lucide-icon name="menu" />
+      </button>
+      @if (!isMobile()) {
+        <p class="font-semibold text-[22px]">{{ title() }}</p>
+      }
+    </div>
 
-  <div class="flex">
-    <div class="flex items-center">
-      <div class="me-8 p-0" (click)="changeColor()">
-        <img src="/assets/icons/color-mode.png" alt="" height="25" />
+    <div class="flex">
+      <div class="flex items-center">
+        <button class="me-8 p-0 hidden md:block" (click)="changeColor()">
+          <img src="/assets/icons/color-mode.png" alt="" height="25" />
+        </button>
       </div>
       <button class="relative p-0 me-4" (click)="openNotification()">
         <img src="/assets/icons/notification.png" alt="" class="notifications-icon" width="25" height="25" />
@@ -21,35 +23,36 @@
           2
         </div>
       </button>
-    </div>
 
-    <div ngbDropdown class="cursor-pointer">
-      @if (currentUser()) {
-        <div class="flex items-center" id="dropdownUser" ngbDropdownToggle>
+      <div ngbDropdown class="dropdown-menu-end">
+        <div class="flex items-center after:hidden md:after:block" id="dropdownBasic1" ngbDropdownToggle>
           <img
             class="flex items-center"
             width="35"
             height="35"
             alt=""
-            class="rounded-full mx-5"
+            class="rounded-full ms-3 me-5 md:mx-5"
             fallback="https://ui-avatars.com/api/?name={{
-              currentUser().displayName | shortName
+              currentUser()?.displayName | shortName
             }}&background=3c405f&color=fff"
-            [src]="currentUser().photoURL"
+            [src]="currentUser()?.photoURL"
           />
-          <div class="">
-            <p>{{ currentUser().displayName }}</p>
-            @if (!isMobile) {
-              <p class="text-xs">{{version}}</p>
-            }
+
+          <div class="hidden md:block">
+            <p>{{ currentUser()?.displayName }}</p>
+            <p class="text-xs">{{ version }}</p>
+          </div>
+
+          <div class="flex self-end !ms-2 !mb-[2px] hidden md:block">
+            <img src="assets/icons/arrow-down.svg" alt="" />
           </div>
         </div>
-      }
 
-      <div ngbDropdownMenu aria-labelledby="dropdownUser" class="dropdown-menu-end">
-        <h6 class="dropdown-header">Menu</h6>
-        <button ngbDropdownItem (click)="logout()">Sair</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <h6 class="dropdown-header">Menu</h6>
+          <button ngbDropdownItem (click)="logout()">Sair</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,19 +8,25 @@ import { ModalConfirmationService } from '@components/modals/modal-confirmation/
 import { Activity } from '@models/activity';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivityRepository } from '@repositories/activity.repository';
+import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-activity',
   standalone: true,
-  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './activity-list.component.html'
 })
 export class ActivityListComponent {
+  constructor(private location: Location) {}
   modalConfirmationService = inject(ModalConfirmationService);
   ActivityRepository = inject(ActivityRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+
+  goBack(): void {
+    this.location.back();
+  }
 
   protected formSearch = this.builder.group({
     term: ['']

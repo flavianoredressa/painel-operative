@@ -8,12 +8,13 @@ import { ModalConfirmationService } from '@components/modals/modal-confirmation/
 import { ProjectType } from '@models/project-type';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
+import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-project-type',
   standalone: true,
-  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './project-type-list.component.html'
 })
 export class ProjectTypeListComponent {
