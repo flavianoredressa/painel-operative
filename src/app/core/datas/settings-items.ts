@@ -7,7 +7,8 @@ import {
   ReceiptText,
   Tags,
   UserCog,
-  Users
+  Users,
+  Receipt
 } from 'lucide-angular';
 
 export const SettingsItems = [
@@ -36,8 +37,8 @@ export const SettingsItems = [
     items: [
       { url: '/cost-center', label: 'Centro de Custo', icon: Coins },
       { url: '/checklists', label: 'Checklist', icon: ReceiptText },
-      { url: '/status-sales', label: 'Status Vendas' },
-      { url: '/charge-type', label: 'Tipo de cobrança' }
+      { url: '/status-sales', label: 'Status Vendas'},
+      { url: '/charge-type', label: 'Tipo de cobrança', icon: Receipt  }
     ]
   }
 ];
