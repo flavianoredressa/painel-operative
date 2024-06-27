@@ -6,10 +6,11 @@ import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { ProjectType } from '@models/project-type';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
 import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
+import { ProjectTypeCreateComponent } from '../project-type-create/project-type-create.component';
 
 @Component({
   selector: 'app-list-project-type',
@@ -22,6 +23,7 @@ export class ProjectTypeListComponent {
   projectTypeRepository = inject(ProjectTypeRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+  ngbModal = inject(NgbModal);
 
   protected formSearch = this.builder.group({
     term: ['']
@@ -92,5 +94,16 @@ export class ProjectTypeListComponent {
         }
       }
     }
+  }
+
+  async openModal() {
+    const modal = this.ngbModal.open(ProjectTypeCreateComponent, {
+      centered: true,
+      size: 'lg'
+    });
+
+    modal.componentInstance.disableButton = false;
+
+    await modal.result;
   }
 }
