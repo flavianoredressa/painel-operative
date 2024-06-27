@@ -121,15 +121,10 @@ export class ClientCreateComponent implements OnInit {
     }
   }
 
-  // Variável para controlar se a imagem padrão ou a imagem do perfil deve ser exibida
-  showDefaultImage: boolean = true;
-
-  // URL da imagem do perfil que será exibida
+  showDefaultImage = true;
   profileImageUrl: string;
 
-  // Função chamada quando o usuário seleciona um arquivo de imagem
   onFileSelected(event: Event) {
-    // Obtém o input de arquivo (file input) que acionou o evento
     const inputElement = event.target as HTMLInputElement;
     // Obtém o arquivo de imagem selecionado pelo usuário
     const arquivo = inputElement.files?.[0];
@@ -145,7 +140,7 @@ export class ClientCreateComponent implements OnInit {
           this.showDefaultImage = false;
         }
       };
-      // Lê o conteúdo do arquivo como um URL de dados (data URL)
+      // Lê o conteúdo do arquivo como um URL de dados
       reader.readAsDataURL(arquivo);
     }
     // Limpar o valor do arquivo selecionado no input
