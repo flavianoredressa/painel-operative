@@ -125,25 +125,20 @@ export class ClientCreateComponent implements OnInit {
   profileImageUrl: string;
 
   onFileSelected(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    // Obtém o arquivo de imagem selecionado pelo usuário
-    const arquivo = inputElement.files?.[0];
+    const inputElement = event.target as HTMLInputElement; // Obtém o input de arquivo
+    const arquivo = inputElement.files?.[0]; // Obtém o arquivo de imagem selecionado pelo usuário
 
     if (arquivo) {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
-        // Verifica se o resultado da leitura do arquivo está disponível
         if (e.target?.result) {
-          // Define a URL da imagem do perfil como o resultado da leitura do arquivo
-          this.profileImageUrl = e.target.result as string;
-          // Define que a imagem do perfil (e não a imagem padrão) deve ser exibida
-          this.showDefaultImage = false;
+          this.profileImageUrl = e.target.result as string; // Define a URL da imagem do perfil como o resultado da leitura do arquivo
+
+          this.showDefaultImage = false; // Define que a imagem do perfil (e não a imagem padrão) deve ser exibida
         }
       };
-      // Lê o conteúdo do arquivo como um URL de dados
-      reader.readAsDataURL(arquivo);
+      reader.readAsDataURL(arquivo); // Lê o conteúdo do arquivo como um URL de dado
     }
-    // Limpar o valor do arquivo selecionado no input
-    inputElement.value = '';
+    inputElement.value = ''; // Limpar o valor do arquivo selecionado no input
   }
 }
