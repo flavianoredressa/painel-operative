@@ -15,7 +15,7 @@ export class ChecklistRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<[Checklist]>(`${environment.urlApi}/checklists`);
+    return this.httpClient.get<Checklist[]>(`${environment.urlApi}/checklists`);
   }
 
   async getStatusById(id: string) {

@@ -15,7 +15,7 @@ export class JourneyRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<[Journey]>(`${environment.urlApi}/journey`);
+    return this.httpClient.get<Journey[]>(`${environment.urlApi}/journey`);
   }
 
   async getStatusById(id: string) {

@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   verifyPasswordResetCode
 } from '@angular/fire/auth';
-import { UserType } from '@enums/user-type';
 import { environment } from '@environment';
 import { lastValueFrom } from 'rxjs';
 
@@ -22,10 +21,10 @@ export class AuthService {
 
   async canLogin(email: string): Promise<boolean> {
     const { type } = await lastValueFrom(
-      this._http.post<{ type: UserType }>(`${environment.urlApi}/users/authentication/type`, email)
+      this._http.post<{ type: number }>(`${environment.urlApi}/users/authentication/type`, email)
     );
-
-    return type === UserType.ADMIN;
+    console.log(type);
+    return type === 1;
   }
 
   /**

@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { CollaboratorRepository } from '@repositories/collaborator.repository';
 import { parse } from 'date-fns';
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-collaborator-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, DatePipe],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, DatePipe, NgSelectModule],
   templateUrl: './collaborator-create.component.html'
 })
 export class CollaboratorCreateComponent implements OnInit {
@@ -22,7 +23,6 @@ export class CollaboratorCreateComponent implements OnInit {
   private collaboratorRepository = inject(CollaboratorRepository);
 
   idCollaborator = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
@@ -31,7 +31,7 @@ export class CollaboratorCreateComponent implements OnInit {
     birth_date: ['', [Validators.required]],
     active: [true, [Validators.required]]
   });
-
+  
   async ngOnInit() {
     try {
       if (this.idCollaborator) {

@@ -1,0 +1,132 @@
+<div class="container mb-5">
+  <div class="bg-[#F6F8FA] border-[1.8px] rounded-lg p-4 md:min-h-[212px] relative">
+    <h1 class="font-semibold text-lg md:text-2xl mb-8 font-poppins">
+      {{ !idClients ? "Informações básicas" : "Editar cliente" }}
+    </h1>
+    @if (loading()) {
+      <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <span class="spinner-border spinner-border-sm mr-1"></span>
+      </div>
+    }
+    <!-- @if (!isLoading) { -->
+    <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
+      <div class="container flex">
+        <div class="col-md-1 mb-3 rounded-circle">
+          <label for="upload-image" class="custom-upload-button rounded-circle">
+            <div class="rounded-circle">
+              <!-- Exibe a imagem padrão se a imagem do perfil não estiver disponível -->
+              <img *ngIf="showDefaultImage" src="assets/icons/default-user.svg" alt="foto cliente" width="100%" />
+              <!-- Exibe a imagem do perfil se estiver disponível -->
+              <img
+                *ngIf="!showDefaultImage"
+                class="profile-image"
+                [src]="profileImageUrl"
+                style="border-radius: 50%; width: 100px; height: 100px"
+              />
+            </div>
+          </label>
+          <input
+            type="file"
+            id="upload-image"
+            style="display: none"
+            (change)="onFileSelected($event)"
+            accept="image/png, image/jpeg"
+          />
+        </div>
+        <div class="col-md-6 ml-3 mt-3">
+          <b>Foto de perfil</b>
+          <p>Formatos permitidos: PNG e JPG. Recomenda-se 500x500 pixels.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="Nome" formControlName="name" position="left">
+            <img Icon src="assets/icons/name.svg" alt="name" />
+          </app-input>
+        </div>
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="E-mail" formControlName="email" position="left">
+            <img Icon src="assets/icons/email.svg" alt="email" />
+          </app-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <app-input placeholder="Digite aqui..." label="Telefone" formControlName="cellphone" position="left">
+            <img Icon src="assets/icons/telefone.svg" alt="cellphone" />
+          </app-input>
+        </div>
+        <div class="col-md-4 b-3">
+          <label class="form-label">Status:</label>
+          <ng-select [multiple]="false" formControlName="active">
+            <ng-option [value]="true">Ativo</ng-option>
+            <ng-option [value]="false">Inativo</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-md-4 mb-3">
+          <app-input placeholder="Digite aqui..." label="CNPJ" formControlName="CNPJ" position="left">
+            <img Icon src="assets/icons/numero.svg" alt="cnpj" />
+          </app-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="Razão Social" formControlName="corporateName" position="left">
+            <img Icon src="assets/icons/text.svg" alt="corporate name" />
+          </app-input>
+        </div>
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="Gerente" formControlName="manager" position="left">
+            <img Icon src="assets/icons/name.svg" alt="manager" />
+          </app-input>
+        </div>
+      </div>
+      <h4 class="my-4">Endereço</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <app-input placeholder="Digite aqui..." label="CEP" formControlName="CEP" position="left">
+            <img Icon src="assets/icons/numero.svg" alt="cep" />
+          </app-input>
+        </div>
+        <div class="col-md-2 mb-3">
+          <app-input label="Número" formControlName="number" position="left">
+            <img Icon src="assets/icons/numero.svg" alt="number" />
+          </app-input>
+        </div>
+        <div class="col-md-4 mb-3">
+          <app-input placeholder="Digite aqui..." label="Rua" formControlName="street" position="left">
+            <img class="w-[23px] h-[40px]" Icon src="assets/images/rua.png" alt="street" />
+          </app-input>
+        </div>
+        <div class="col-md-2 mb-3">
+          <app-input placeholder="Digite aqui..." label="Estado" formControlName="state" position="left">
+            <img class="w-[24px] h-[24px]" Icon src="assets/images/estado.png" alt="state" />
+          </app-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="Bairro" formControlName="district" position="left">
+            <img Icon src="assets/icons/bairro.svg" alt="district" />
+          </app-input>
+        </div>
+        <div class="col-md-6 mb-3">
+          <app-input placeholder="Digite aqui..." label="Cidade" formControlName="city" position="left">
+            <img class="w-[24px] h-[24px]" Icon src="assets/images/cidade.png" alt="city" />
+          </app-input>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3 mt-3 md:mt-8">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white">Voltar</a>
+        <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting()">
+          {{ !idClients ? "Cadastrar" : "Atualizar" }}
+        </button>
+      </div>
+    </form>
+    <!-- } @else {
+      <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <span class="spinner-border spinner-border-sm mr-1"></span>
+      </div>
+    } -->
+  </div>
+</div>

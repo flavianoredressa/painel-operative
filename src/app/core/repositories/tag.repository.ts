@@ -15,7 +15,7 @@ export class TagRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<Tag[]>(`${environment.urlApi}/tags`).pipe();
+    return this.httpClient.get<Tag[]>(`${environment.urlApi}/tags`);
   }
 
   async getStatusById(id: string) {

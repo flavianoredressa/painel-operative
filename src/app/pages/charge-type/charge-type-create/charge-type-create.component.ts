@@ -3,14 +3,15 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ChargeTypeRepository } from '@repositories/charge-type.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-charge-type-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './charge-type-create.component.html'
 })
 export class ChargeTypeCreateComponent implements OnInit {
@@ -20,7 +21,6 @@ export class ChargeTypeCreateComponent implements OnInit {
   private chargeTypeRepository = inject(ChargeTypeRepository);
 
   idChargeType = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
@@ -64,7 +64,7 @@ export class ChargeTypeCreateComponent implements OnInit {
       } else {
         await this.chargeTypeRepository.update(this.idChargeType, chargeType);
       }
-      this.toastrService.success(`Charge Type ${!this.idChargeType ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idChargeType ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/charge-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

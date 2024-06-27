@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         replaceUrl: true
       });
     } catch (error) {
+      console.log(error);
       if (error instanceof AppError) {
         this.toastrService.error(error.message, error.title);
       } else {

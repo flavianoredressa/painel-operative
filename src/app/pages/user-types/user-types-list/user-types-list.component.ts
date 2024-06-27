@@ -11,7 +11,7 @@ import { UserTypesRepository } from '@repositories/user-types.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-list-user-types',
+  selector: 'app-list-user-type',
   standalone: true,
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './user-types-list.component.html'
@@ -27,6 +27,7 @@ export class UserTypesListComponent {
   });
 
   list = toSignal(this.userTypesRepository.getAll(), { initialValue: [null] });
+
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
@@ -44,7 +45,7 @@ export class UserTypesListComponent {
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir o Tipo de projeto	?',
+      message: 'Você tem certeza que quer excluir o Status de vendas?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };

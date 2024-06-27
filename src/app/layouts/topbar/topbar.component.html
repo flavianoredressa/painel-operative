@@ -3,8 +3,8 @@
     <button (click)="useSideBar.toggle()">
       <lucide-icon name="menu" />
     </button>
-    @if (!isMobile()) {
-      <p class="font-semibold text-[22px]">{{ title() }}</p>
+    @if (!isMobile) {
+      <p class="size-5 font-poppins line-height-[33px] font-semibold whitespace-nowrap">{{ title() }}</p>
     }
   </div>
 
@@ -12,7 +12,7 @@
     <div class="flex items-center">
       <button class="me-8 p-0 hidden md:block" (click)="changeColor()">
         <img src="/assets/icons/color-mode.png" alt="" height="25" />
-      </button>
+      </div>
       <button class="relative p-0 me-4" (click)="openNotification()">
         <img src="/assets/icons/notification.png" alt="" class="notifications-icon" width="25" height="25" />
         <div
@@ -39,7 +39,9 @@
           />
           <div class="hidden md:block">
             <p>{{ currentUser().displayName }}</p>
-            <p class="text-xs">{{ version }}</p>
+            @if (!isMobile) {
+              <p class="text-xs">{{version}}</p>
+            }
           </div>
         </div>
       }

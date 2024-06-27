@@ -3,14 +3,15 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ActivityRepository } from '@repositories/activity.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-activity-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './activity-create.component.html'
 })
 export class ActivityCreateComponent implements OnInit {
@@ -20,7 +21,6 @@ export class ActivityCreateComponent implements OnInit {
   private activityRepository = inject(ActivityRepository);
 
   idActivity = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
@@ -64,9 +64,7 @@ export class ActivityCreateComponent implements OnInit {
       } else {
         await this.activityRepository.update(this.idActivity, activity);
       }
-      this.toastrService.success(
-        `Atividade ${!this.idActivity ? 'cadastrada' : 'atualizada'} com sucesso.`
-      );
+      this.toastrService.success(`Status Sales ${!this.idActivity ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/activity');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

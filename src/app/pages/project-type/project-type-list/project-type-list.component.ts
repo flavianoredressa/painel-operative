@@ -1,4 +1,4 @@
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,16 +18,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './project-type-list.component.html'
 })
 export class ProjectTypeListComponent {
-  constructor(private location: Location) {}
-
   modalConfirmationService = inject(ModalConfirmationService);
   projectTypeRepository = inject(ProjectTypeRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
-
-  goBack(): void {
-    this.location.back();
-  }
 
   protected formSearch = this.builder.group({
     term: ['']

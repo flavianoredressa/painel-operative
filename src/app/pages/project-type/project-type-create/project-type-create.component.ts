@@ -2,15 +2,16 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
+import { InputComponent } from '@forms/input/input.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
 import { ToastrService } from 'ngx-toastr';
-import { InputComponent } from '../../../forms/input/input.component';
 
 @Component({
-  selector: 'app-project-type-create',
+  selector: 'app-satus-sale-create',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective],
+  imports: [ReactiveFormsModule, InputComponent, errorTailorImports, IsLoadingDirective, NgSelectModule],
   templateUrl: './project-type-create.component.html'
 })
 export class ProjectTypeCreateComponent implements OnInit {
@@ -20,7 +21,6 @@ export class ProjectTypeCreateComponent implements OnInit {
   private projectTypeRepository = inject(ProjectTypeRepository);
 
   idProjectType = getRouterParam('id');
-
   loading = signal(false);
   submitting = signal(false);
 
@@ -64,7 +64,7 @@ export class ProjectTypeCreateComponent implements OnInit {
       } else {
         await this.projectTypeRepository.update(this.idProjectType, projectType);
       }
-      this.toastrService.success(`Project Type ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
+      this.toastrService.success(`Status Sales ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
       this.router.navigateByUrl('/project-type');
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');

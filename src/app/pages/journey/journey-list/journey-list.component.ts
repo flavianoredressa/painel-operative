@@ -11,14 +11,14 @@ import { JourneyRepository } from '@repositories/journey.repository';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-list-status-sale',
+  selector: 'app-list-journey',
   standalone: true,
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './journey-list.component.html'
 })
 export class JourneyListComponent {
   modalConfirmationService = inject(ModalConfirmationService);
-  JourneyRepository = inject(JourneyRepository);
+  journeysRepository = inject(JourneyRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
 
@@ -26,13 +26,13 @@ export class JourneyListComponent {
     term: ['']
   });
 
-  list = toSignal(this.JourneyRepository.getAll(), { initialValue: [null] });
+  list = toSignal(this.journeysRepository.getAll(), { initialValue: [null] });
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
-    const journey = this.list();
-    return journey.length === 1 && journey[0] === null;
+    const journeys = this.list();
+    return journeys.length === 1 && journeys[0] === null;
   });
 
   filteredList = computed(() => {
@@ -45,7 +45,7 @@ export class JourneyListComponent {
   async delete(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer excluir o Status de vendas?',
+      message: 'Você tem certeza que quer excluir a Jornada?',
       textCancel: 'Voltar',
       textConfirm: 'Excluir'
     };
@@ -54,7 +54,7 @@ export class JourneyListComponent {
 
     if (res) {
       try {
-        await this.JourneyRepository.delete(id);
+        await this.journeysRepository.delete(id);
         const index = this.list().findIndex((journey: Journey) => journey.id === id);
         this.filteredList().splice(index, 1);
       } catch (e) {
@@ -68,7 +68,7 @@ export class JourneyListComponent {
   async changeStatus(id: string) {
     const modalOptions = {
       title: 'Confirmação',
-      message: 'Você tem certeza que quer mudar o Status de vendas?',
+      message: 'Você tem certeza que quer mudar a Jornada?',
       textCancel: 'Voltar',
       textConfirm: 'Sim',
       colorButton: '!bg-[#2d9c7f]'
@@ -82,9 +82,9 @@ export class JourneyListComponent {
           name: this.list().find((journey: Journey) => journey.id === id).name,
           active: !this.list().find((journey: Journey) => journey.id === id).active
         };
-        await this.JourneyRepository.update(id, status);
-        const Journey = this.list().find((journey: Journey) => journey.id === id);
-        Journey.active = !Journey.active;
+        await this.journeysRepository.update(id, status);
+        const journey = this.list().find((journey: Journey) => journey.id === id);
+        journey.active = !journey.active;
       } catch (e) {
         if (e instanceof ApiError) {
           this.toastr.error(e.message);

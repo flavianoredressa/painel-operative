@@ -1,10 +1,7 @@
 <div class="p-0">
   <div class="px-7">
-    <div class="my-6 cursor-pointer" routerLink="/settings">
-      <lucide-icon name="arrow-left"></lucide-icon>
-    </div>
-    <div class="flex justify-between">
-      <form [formGroup]="formSearch" class="relative max-sm:w-[163px] md:w-[242px] select-none mb-4 md:mb-0">
+    <div class="flex justify-between pt-8">
+      <form [formGroup]="formSearch" class="relative max-sm:w-[168px] md:w-[242px] select-none mb-4 md:mb-0">
         <input
           formControlName="term"
           placeholder="Pesquisar"
@@ -14,7 +11,7 @@
       </form>
 
       <div class="text-end">
-        <a class="btn btn-primary w-[163px] flex items-center justify-center" routerLink="/create-status-task">
+        <a class="btn btn-primary w-[168px] flex items-center justify-center" routerLink="/create-status-task">
           <img src="assets/icons/add.svg" class="me-2" /> Criar Tarefa</a
         >
       </div>
