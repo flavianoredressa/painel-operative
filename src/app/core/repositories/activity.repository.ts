@@ -14,11 +14,12 @@ type CreateActivity = Pick<AddDocument<Activity>, 'name' | 'active'>;
 export class ActivityRepository {
   constructor(private httpClient: HttpClient) {}
 
-  getAll() {
-    return this.httpClient.get<Activity[]>(`${environment.urlApi}/activity`);
+  async getAll() {
+    const res = await lastValueFrom(this.httpClient.get<Activity[]>(`${environment.urlApi}/activity`));
+    return res;
   }
 
-  async getStatusById(id: string) {
+  async getActivityById(id: string) {
     const activity = await lastValueFrom(this.httpClient.get<Activity>(`${environment.urlApi}/activity/${id}`));
     return activity;
   }

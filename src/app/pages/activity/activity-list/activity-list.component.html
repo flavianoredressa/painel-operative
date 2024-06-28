@@ -1,28 +1,24 @@
-<div class="container">
-  <div class="my-5 cursor-pointer" (click)="goBack()">
-    <lucide-icon name="arrow-left"></lucide-icon>
-  </div>
-  <div class="flex justify-between">
-    <form [formGroup]="formSearch" class="relative select-none mb-4 md:mb-0">
-      <input
-        formControlName="term"
-        placeholder="Pesquisar"
-        class="h-[38px] border border-solid max-sm:w-[163px] md:w-[232px] border-[#C1C7D0] bg-[#F6F8FA] rounded-lg outline-none ps-11 select-text"
-      />
-      <img src="assets/icons/search.svg" class="absolute top-50 left-4 translate-y-1/2" alt="" srcset="" />
-    </form>
+<div class="p-0">
+  <div class="px-7">
+    <div class="flex justify-between pt-8 items-start">
+      <form [formGroup]="formSearch" class="relative max-sm:w-[168px] md:w-[242px] select-none mb-4 md:mb-0">
+        <input
+          formControlName="term"
+          placeholder="Pesquisar"
+          class="h-[38px] border border-solid border-[#C1C7D0] bg-[#F6F8FA] rounded-lg outline-none ps-11 w-full select-text"
+        />
+        <img src="assets/icons/search.svg" class="absolute top-50 left-4 translate-y-1/2" alt="" srcset="" />
+      </form>
 
-    <div class="text-end">
-      <a
-        class="btn btn-primary w-[163px] h-[38px] md:w-auto flex items-center justify-center"
-        routerLink="/create-activity"
-      >
-        <img src="assets/icons/add.svg" class="me-2" />Criar Atividade</a
-      >
+      <button class="text-end" (click)="openModal()">
+        <a class="btn btn-primary w-[168px] flex items-center justify-center">
+          <img src="assets/icons/add.svg" class="me-2" />Criar Atividade</a
+        >
+      </button>
     </div>
   </div>
 
-  <div class="mt-4">
+  <div class="mt-4 max-sm:p-0 sm:px-7">
     <div class="relative w-full overflow-auto">
       <table>
         <thead>
