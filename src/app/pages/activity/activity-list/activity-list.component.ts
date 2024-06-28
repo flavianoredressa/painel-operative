@@ -1,15 +1,16 @@
-import { DatePipe, Location } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { Activity } from '@models/activity';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivityRepository } from '@repositories/activity.repository';
 import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
+import { ActivityCreateComponent } from '../activity-create/activity-create.component';
 
 @Component({
   selector: 'app-list-activity',
@@ -17,22 +18,18 @@ import { ToastrService } from 'ngx-toastr';
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './activity-list.component.html'
 })
-export class ActivityListComponent {
-  constructor(private location: Location) {}
+export class ActivityListComponent implements OnInit {
   modalConfirmationService = inject(ModalConfirmationService);
   ActivityRepository = inject(ActivityRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
-
-  goBack(): void {
-    this.location.back();
-  }
+  ngbModal = inject(NgbModal);
 
   protected formSearch = this.builder.group({
     term: ['']
   });
 
-  list = toSignal(this.ActivityRepository.getAll(), { initialValue: [null] });
+  list = signal([null]);
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
@@ -47,6 +44,11 @@ export class ActivityListComponent {
       (item: Activity) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );
   });
+
+  async ngOnInit() {
+    const activitys = await this.ActivityRepository.getAll();
+    this.list.set(activitys);
+  }
 
   async delete(id: string) {
     const modalOptions = {
@@ -97,5 +99,19 @@ export class ActivityListComponent {
         }
       }
     }
+  }
+
+  openModal() {
+    const modal = this.ngbModal.open(ActivityCreateComponent, {
+      centered: true,
+      size: 'md'
+    });
+
+    modal.result.then(async res => {
+      if (res) {
+        const activitys = await this.ActivityRepository.getAll();
+        this.list.set(activitys);
+      }
+    });
   }
 }
