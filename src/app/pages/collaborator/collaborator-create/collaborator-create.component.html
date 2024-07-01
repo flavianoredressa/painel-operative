@@ -1,38 +1,41 @@
-<div class="container mb-5">
+<div class="container p-6">
   <div class="bg-[#F6F8FA] border-[1.8px] rounded-lg p-4 md:min-h-[212px] relative">
-    <h1 class="font-semibold text-lg md:text-2xl mb-8 font-poppins">
-      {{ !idCollaborator ? "Informações básicas" : "Editar Colaborador" }}
-    </h1>
+    <div class="flex justify-center">
+      <h1 class="font-semibold text-lg md:text-2xl mb-6 mt-2 font-poppins">
+        {{ !idCollaborator ? "Informações básicas" : "Editar Colaboradores" }}
+      </h1>
+    </div>
     @if (loading()) {
       <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
         <span class="spinner-border spinner-border-sm mr-1"></span>
       </div>
     }
-    <form class="grid gap-3" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <app-input type="date" label="Data de admissão" formControlName="admission_date" position="left">
-            <img Icon src="assets/images/calendar.png" alt="date" />
-          </app-input>
-        </div>
-        <div class="col-md-4">
-          <app-input type="date" label="Data de nascimento" formControlName="birth_date" position="left">
-            <img Icon src="assets/icons/Birth_date.svg" alt="date" />
-          </app-input>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Status:</label>
-          <ng-select [multiple]="false" formControlName="active">
-            <ng-option [value]="true">Ativo</ng-option>
-            <ng-option [value]="false">Inativo</ng-option>
-          </ng-select>
-        </div>
+    <!-- @if (!isLoading) { -->
+    <form class="gap-4" [formGroup]="formGroup" errorTailor (ngSubmit)="handleSubmit()" novalidate>
+      <div class="w-full mb-5">
+        <app-input type="date" label="Data de admissão" formControlName="admission_date" position="left">
+          <img Icon src="assets/images/calendar.png" alt="date" />
+        </app-input>
+      </div>
+      <div class="w-full mb-5">
+        <app-input type="date" label="Data de nascimento" formControlName="birth_date" position="left">
+          <img Icon src="assets/icons/Birth_date.svg" alt="date" />
+        </app-input>
+      </div>
+      <div class="w-full">
+        <label class="form-label">Status:</label>
+        <ng-select [multiple]="false" formControlName="active">
+          <ng-option [value]="true">Ativo</ng-option>
+          <ng-option [value]="false">Inativo</ng-option>
+        </ng-select>
       </div>
 
-      <div class="flex justify-end gap-3 mt-3 md:mt-8">
-        <a href="javascript:history.back()" class="btn btn-outline-secondary w-1/2 md:w-64 hover:!text-white">Voltar</a>
-        <button type="submit" class="btn btn-primary w-1/2 md:w-64" [isLoading]="submitting()">
+      <div class="flex flex-col gap-3 mt-3 md:mt-8">
+        <button type="submit" class="btn btn-primary w-full" [isLoading]="submitting()">
           {{ !idCollaborator ? "Cadastrar" : "Atualizar" }}
+        </button>
+        <button type="button" (click)="close()" class="btn btn-outline-secondary w-full hover:!text-white">
+          Voltar
         </button>
       </div>
     </form>

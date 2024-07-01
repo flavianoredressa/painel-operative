@@ -1,14 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { Collaborator } from '@models/collaborator';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollaboratorRepository } from '@repositories/collaborator.repository';
 import { ToastrService } from 'ngx-toastr';
+import { CollaboratorCreateComponent } from '../collaborator-create/collaborator-create.component';
 
 @Component({
   selector: 'app-list-collaborator',
@@ -16,18 +17,20 @@ import { ToastrService } from 'ngx-toastr';
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './collaborator-list.component.html'
 })
-export class CollaboratorListComponent {
+export class CollaboratorListComponent implements OnInit {
   modalConfirmationService = inject(ModalConfirmationService);
   collaboratorRepository = inject(CollaboratorRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+  ngbModal = inject(NgbModal);
+
   currentDate: string;
 
   protected formSearch = this.builder.group({
     term: ['']
   });
 
-  list = toSignal(this.collaboratorRepository.getAll(), { initialValue: [null] });
+  list = signal([null]);
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
@@ -47,6 +50,11 @@ export class CollaboratorListComponent {
     const newDate = new Date(date);
     newDate.setDate(newDate.getDate() + 1);
     return newDate;
+  }
+
+  async ngOnInit() {
+    const collaborators = await this.collaboratorRepository.getAll();
+    this.list.set(collaborators);
   }
 
   async delete(id: string) {
@@ -99,5 +107,19 @@ export class CollaboratorListComponent {
         }
       }
     }
+  }
+
+  openModal() {
+    const modal = this.ngbModal.open(CollaboratorCreateComponent, {
+      centered: true,
+      size: 'md'
+    });
+
+    modal.result.then(async res => {
+      if (res) {
+        const collaborators = await this.collaboratorRepository.getAll();
+        this.list.set(collaborators);
+      }
+    });
   }
 }

@@ -1,9 +1,9 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { CollaboratorRepository } from '@repositories/collaborator.repository';
@@ -17,10 +17,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './collaborator-create.component.html'
 })
 export class CollaboratorCreateComponent implements OnInit {
-  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
   private collaboratorRepository = inject(CollaboratorRepository);
+  private ngbActiveModal = inject(NgbActiveModal);
 
   idCollaborator = getRouterParam('id');
   loading = signal(false);
@@ -31,7 +31,7 @@ export class CollaboratorCreateComponent implements OnInit {
     birth_date: ['', [Validators.required]],
     active: [true, [Validators.required]]
   });
-  
+
   async ngOnInit() {
     try {
       if (this.idCollaborator) {
@@ -81,12 +81,16 @@ export class CollaboratorCreateComponent implements OnInit {
         await this.collaboratorRepository.update(this.idCollaborator, collaborator);
       }
       this.toastrService.success(`Colaborador ${!this.idCollaborator ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/collaborator');
+      this.ngbActiveModal.close(true);
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  close() {
+    this.ngbActiveModal.close();
   }
 }
