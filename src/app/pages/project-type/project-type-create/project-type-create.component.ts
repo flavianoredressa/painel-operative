@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { ProjectTypeRepository } from '@repositories/project-type.repository';
@@ -15,10 +15,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './project-type-create.component.html'
 })
 export class ProjectTypeCreateComponent implements OnInit {
-  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
   private projectTypeRepository = inject(ProjectTypeRepository);
+  private ngbActiveModal = inject(NgbActiveModal);
 
   idProjectType = getRouterParam('id');
   loading = signal(false);
@@ -65,12 +65,16 @@ export class ProjectTypeCreateComponent implements OnInit {
         await this.projectTypeRepository.update(this.idProjectType, projectType);
       }
       this.toastrService.success(`Status Sales ${!this.idProjectType ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/project-type');
+      this.ngbActiveModal.close(true);
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  close() {
+    this.ngbActiveModal.close();
   }
 }
