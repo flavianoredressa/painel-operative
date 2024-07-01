@@ -14,8 +14,9 @@ type CreateStatusTask = Pick<AddDocument<StatusTask>, 'name' | 'active'>;
 export class StatusTaskRepository {
   constructor(private httpClient: HttpClient) {}
 
-  getAll() {
-    return this.httpClient.get<StatusTask[]>(`${environment.urlApi}/status-task`);
+  async getAll() {
+    const res = await lastValueFrom(this.httpClient.get<StatusTask[]>(`${environment.urlApi}/status-task`));
+    return res;
   }
 
   async getStatusById(id: string) {
