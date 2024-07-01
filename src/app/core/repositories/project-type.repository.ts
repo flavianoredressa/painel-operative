@@ -14,8 +14,9 @@ type CreateProjectType = Pick<AddDocument<ProjectType>, 'name' | 'active'>;
 export class ProjectTypeRepository {
   constructor(private httpClient: HttpClient) {}
 
-  getAll() {
-    return this.httpClient.get<ProjectType[]>(`${environment.urlApi}/project-type`);
+  async getAll() {
+    const res = await lastValueFrom(this.httpClient.get<ProjectType[]>(`${environment.urlApi}/project-type`));
+    return res;
   }
 
   async getStatusById(id: string) {

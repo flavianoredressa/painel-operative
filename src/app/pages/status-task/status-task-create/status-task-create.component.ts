@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { StatusTaskRepository } from '@repositories/status-task.repository';
@@ -16,10 +16,10 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatusTaskCreateComponent implements OnInit {
-  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
   private statusTaskRepository = inject(StatusTaskRepository);
+  private ngbActiveModal = inject(NgbActiveModal);
 
   idStatusTasks = getRouterParam('id');
 
@@ -67,12 +67,16 @@ export class StatusTaskCreateComponent implements OnInit {
         await this.statusTaskRepository.update(this.idStatusTasks, statusTask);
       }
       this.toastrService.success(`Status Tasks ${!this.idStatusTasks ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/status-tasks');
+      this.ngbActiveModal.close(true);
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  close() {
+    this.ngbActiveModal.close();
   }
 }

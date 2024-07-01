@@ -14,8 +14,9 @@ type CreateCollaborator = Pick<AddDocument<Collaborator>, 'admission_date' | 'ac
 export class CollaboratorRepository {
   constructor(private httpClient: HttpClient) {}
 
-  getAll() {
-    return this.httpClient.get<Collaborator[]>(`${environment.urlApi}/collaborator`);
+  async getAll() {
+    const res = await lastValueFrom(this.httpClient.get<Collaborator[]>(`${environment.urlApi}/collaborator`));
+    return res;
   }
 
   async create(collaborator: CreateCollaborator) {

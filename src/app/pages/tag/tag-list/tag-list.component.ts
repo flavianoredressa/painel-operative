@@ -1,14 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { Tag } from '@models/tag';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagRepository } from '@repositories/tag.repository';
 import { ToastrService } from 'ngx-toastr';
+import { TagCreateComponent } from '../tag-create/tag-create.component';
 
 @Component({
   selector: 'app-list-tag',
@@ -16,17 +17,18 @@ import { ToastrService } from 'ngx-toastr';
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './tag-list.component.html'
 })
-export class TagListComponent {
+export class TagListComponent implements OnInit {
   modalConfirmationService = inject(ModalConfirmationService);
   tagRepository = inject(TagRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+  ngbModal = inject(NgbModal);
 
   protected formSearch = this.builder.group({
     term: ['']
   });
 
-  list = toSignal(this.tagRepository.getAll(), { initialValue: [null] });
+  list = signal([null]);
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
@@ -41,6 +43,11 @@ export class TagListComponent {
       (item: Tag) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );
   });
+
+  async ngOnInit() {
+    const tag = await this.tagRepository.getAll();
+    this.list.set(tag);
+  }
 
   async delete(id: string) {
     const modalOptions = {
@@ -91,5 +98,19 @@ export class TagListComponent {
         }
       }
     }
+  }
+
+  openModal() {
+    const modal = this.ngbModal.open(TagCreateComponent, {
+      centered: true,
+      size: 'md'
+    });
+
+    modal.result.then(async res => {
+      if (res) {
+        const tags = await this.tagRepository.getAll();
+        this.list.set(tags);
+      }
+    });
   }
 }

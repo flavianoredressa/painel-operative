@@ -14,8 +14,9 @@ type CreateTag = Pick<AddDocument<Tag>, 'name' | 'active'>;
 export class TagRepository {
   constructor(private httpClient: HttpClient) {}
 
-  getAll() {
-    return this.httpClient.get<Tag[]>(`${environment.urlApi}/tags`);
+  async getAll() {
+    const res = await lastValueFrom(this.httpClient.get<Tag[]>(`${environment.urlApi}/tags`));
+    return res;
   }
 
   async getStatusById(id: string) {

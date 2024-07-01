@@ -1,15 +1,16 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiError } from '@burand/angular';
 import { ModalConfirmationService } from '@components/modals/modal-confirmation/modal-confirmation.service';
 import { StatusTask } from '@models/status-task';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusTaskRepository } from '@repositories/status-task.repository';
 import { LucideAngularModule } from 'lucide-angular';
 import { ToastrService } from 'ngx-toastr';
+import { StatusTaskCreateComponent } from '../status-task-create/status-task-create.component';
 
 @Component({
   selector: 'app-list-status-task',
@@ -17,17 +18,19 @@ import { ToastrService } from 'ngx-toastr';
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, JsonPipe, LucideAngularModule],
   templateUrl: './status-task-list.component.html'
 })
-export class StatusTaskListComponent {
+export class StatusTaskListComponent implements OnInit {
   modalConfirmationService = inject(ModalConfirmationService);
   statusTaskRepository = inject(StatusTaskRepository);
   builder = inject(FormBuilder);
   toastr = inject(ToastrService);
+  ngbModal = inject(NgbModal);
 
   protected formSearch = this.builder.group({
     term: ['']
   });
 
-  list = toSignal(this.statusTaskRepository.getAll(), { initialValue: [] });
+  list = signal([null]);
+
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
   isLoading = computed(() => {
@@ -37,15 +40,15 @@ export class StatusTaskListComponent {
 
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
-    const list = this.list();
-
-    if (list) {
-      return list.filter(
-        (item: StatusTask) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
-      );
-    }
-    return [];
+    return this.list().filter(
+      (item: StatusTask) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
+    );
   });
+
+  async ngOnInit() {
+    const statusTask = await this.statusTaskRepository.getAll();
+    this.list.set(statusTask);
+  }
 
   async delete(id: string) {
     const modalOptions = {
@@ -96,5 +99,19 @@ export class StatusTaskListComponent {
         }
       }
     }
+  }
+
+  openModal() {
+    const modal = this.ngbModal.open(StatusTaskCreateComponent, {
+      centered: true,
+      size: 'md'
+    });
+
+    modal.result.then(async res => {
+      if (res) {
+        const statusTask = await this.statusTaskRepository.getAll();
+        this.list.set(statusTask);
+      }
+    });
   }
 }

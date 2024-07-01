@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IsLoadingDirective, getRouterParam } from '@burand/angular';
 import { InputComponent } from '@forms/input/input.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { TagRepository } from '@repositories/tag.repository';
@@ -15,10 +15,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './tag-create.component.html'
 })
 export class TagCreateComponent implements OnInit {
-  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private toastrService = inject(ToastrService);
   private tagRepository = inject(TagRepository);
+  private ngbActiveModal = inject(NgbActiveModal);
 
   idTag = getRouterParam('id');
 
@@ -68,12 +68,16 @@ export class TagCreateComponent implements OnInit {
         await this.tagRepository.update(this.idTag, tag);
       }
       this.toastrService.success(`Tag ${!this.idTag ? 'cadastrado' : 'atualizado'} com sucesso.`);
-      this.router.navigateByUrl('/tags');
+      this.ngbActiveModal.close(true);
     } catch (error) {
       this.toastrService.error('Não foi possível salvar os dados.');
       console.error(error);
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  close() {
+    this.ngbActiveModal.close();
   }
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -18,7 +18,7 @@ import { ProjectTypeCreateComponent } from '../project-type-create/project-type-
   imports: [RouterLink, NgbPaginationModule, DatePipe, FormsModule, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './project-type-list.component.html'
 })
-export class ProjectTypeListComponent {
+export class ProjectTypeListComponent implements OnInit {
   modalConfirmationService = inject(ModalConfirmationService);
   projectTypeRepository = inject(ProjectTypeRepository);
   builder = inject(FormBuilder);
@@ -29,7 +29,7 @@ export class ProjectTypeListComponent {
     term: ['']
   });
 
-  list = toSignal(this.projectTypeRepository.getAll(), { initialValue: [null] });
+  list = signal([null]);
 
   searchTerm = toSignal(this.formSearch.controls.term.valueChanges, { initialValue: '' });
 
@@ -44,6 +44,11 @@ export class ProjectTypeListComponent {
       (item: ProjectType) => (item && item.name.toLowerCase().includes(term)) || item.id.toString().includes(term)
     );
   });
+
+  async ngOnInit() {
+    const projectTypes = await this.projectTypeRepository.getAll();
+    this.list.set(projectTypes);
+  }
 
   async delete(id: string) {
     const modalOptions = {
@@ -96,14 +101,17 @@ export class ProjectTypeListComponent {
     }
   }
 
-  async openModal() {
+  openModal() {
     const modal = this.ngbModal.open(ProjectTypeCreateComponent, {
       centered: true,
-      size: 'lg'
+      size: 'md'
     });
 
-    modal.componentInstance.disableButton = false;
-
-    await modal.result;
+    modal.result.then(async res => {
+      if (res) {
+        const projectTypes = await this.projectTypeRepository.getAll();
+        this.list.set(projectTypes);
+      }
+    });
   }
 }
